@@ -367,8 +367,8 @@ function handleMenuJump(value) {
   });
 </script>
 <div id="utility-fab" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
-  <button onclick="toggleUtilityBox()" style="background-color: #004aad; color: white; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 1.5rem; cursor: pointer;">☰</button>
-  <div id="utility-box" style="display: none; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px;">
+  <button onclick="toggleUtilityBox()" style="background-color: #004aad; color: white; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font-weight: bold;">☰</button>
+  <div id="utility-box" style="display: none; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px; transition: all 0.3s ease; opacity: 0; transform: translateY(-10px);">
     <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
       <input type="email" name="email" placeholder="Email" required />
       <input type="password" name="password" placeholder="Password" required />
@@ -386,8 +386,31 @@ function handleMenuJump(value) {
 <script>
 function toggleUtilityBox() {
   const box = document.getElementById('utility-box');
-  box.style.display = box.style.display === 'none' ? 'flex' : 'none';
-  box.style.flexDirection = 'column';
+  const isHidden = box.style.display === 'none';
+
+  if (isHidden) {
+    box.style.display = 'flex';
+    requestAnimationFrame(() => {
+      box.style.opacity = '1';
+      box.style.transform = 'translateY(0)';
+    });
+    document.addEventListener('click', outsideClickListener);
+  } else {
+    box.style.opacity = '0';
+    box.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+      box.style.display = 'none';
+    }, 300);
+    document.removeEventListener('click', outsideClickListener);
+  }
+}
+
+function outsideClickListener(event) {
+  const box = document.getElementById('utility-box');
+  const fab = document.getElementById('utility-fab');
+  if (!fab.contains(event.target)) {
+    toggleUtilityBox();
+  }
 }
 
 document.getElementById("login-form").addEventListener("submit", function(e) {
