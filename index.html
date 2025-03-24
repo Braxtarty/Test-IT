@@ -28,7 +28,6 @@
       margin: 0;
       padding: 0;
     }
-    /* Remove background from body so we can use the .bg-image div behind everything */
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
@@ -36,7 +35,7 @@
       position: relative; /* So the .bg-image behind can stay fixed */
     }
 
-    /* Full-screen, fixed background image behind all content */
+    /* Full-screen, fixed background image div */
     .bg-image {
       position: fixed;
       top: 0;
@@ -46,8 +45,6 @@
       z-index: -1;
       background: url('ashbld1.jpg') no-repeat center center;
       background-size: cover; 
-      /* If you still see zoom issues on certain mobile browsers,
-         try background-size: contain; or a media query override */
     }
     
     /* Header Section (normal flow, scrolls away) */
@@ -134,11 +131,16 @@
       border-radius: 0.5rem;
     }
     
+    /* Footer with dark blue background for legibility */
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
       color: #fff;
+      background: rgba(0,74,173,0.85);
+      margin-top: 2rem;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
     }
     
     /* Fixed Utility FAB (hamburger/login/darkmode) */
@@ -180,8 +182,7 @@
       form {
         justify-content: center;
       }
-      /* If you find the background is still too large on certain mobile browsers,
-         you could override .bg-image with background-size: contain here. */
+      /* If needed, override .bg-image with background-size: contain for certain mobile browsers */
     }
   </style>
 </head>
