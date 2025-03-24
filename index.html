@@ -6,6 +6,11 @@
   <title>IT Infrastructure Vision</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
+  50% { box-shadow: 0 0 15px rgba(0, 74, 173, 1); }
+  100% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
+}
     :root {
       --primary-color: #004aad;
       --background: #f0f4f8;
@@ -367,7 +372,7 @@ function handleMenuJump(value) {
   });
 </script>
 <div id="utility-fab" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
-  <button onclick="toggleUtilityBox()" style="background-color: #004aad; color: white; border: none; border-radius: 50%; width: 48px; height: 48px; font-size: 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; font-weight: bold;">☰</button>
+  <button onclick="toggleUtilityBox()" style="$1" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
   <div id="utility-box" style="display: none; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px; transition: all 0.3s ease; opacity: 0; transform: translateY(-10px);">
     <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
       <input type="email" name="email" placeholder="Email" required />
