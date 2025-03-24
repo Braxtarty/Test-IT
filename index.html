@@ -8,9 +8,10 @@
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  
   <style>
     /*----------------------------------------------*/
-    /*           CSS Variables                      */
+    /*        CSS Variables                         */
     /*----------------------------------------------*/
     :root {
       --primary-color: #1669d9;
@@ -24,9 +25,9 @@
       --overlay-bg: rgba(0, 0, 0, 0.7);
       --card-text: #f0f0f0;
     }
-
+    
     /*----------------------------------------------*/
-    /*        Global Reset & Base Styles            */
+    /*     Global Reset & Base Styles               */
     /*----------------------------------------------*/
     * {
       margin: 0;
@@ -39,22 +40,23 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original building image on body */
+    /* Background image on body for desktop */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
       position: relative;
     }
+    /* On mobile, use a higher-resolution image */
     @media (max-width: 600px) {
-      /* On mobile, use scroll attachment for a crisper image */
       body {
-        background-attachment: scroll;
+        background: url("ashbld1@2x.jpg") no-repeat center center fixed;
+        background-size: cover;
       }
     }
-
+    
     /*----------------------------------------------*/
-    /*      Responsive Container for Alignment      */
+    /*       Container for Consistent Layout        */
     /*----------------------------------------------*/
     .container {
       width: 100%;
@@ -71,16 +73,16 @@
         padding: 0 0.5rem;
       }
     }
-
+    
     /*----------------------------------------------*/
-    /*          Animated Glow Effect                */
+    /*         Animated Glow Effect                 */
     /*----------------------------------------------*/
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
       50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
       100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
     }
-
+    
     /*----------------------------------------------*/
     /*             Header Section                   */
     /*----------------------------------------------*/
@@ -90,7 +92,13 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* Animated border (glow) for the header */
+    /* For mobile, slightly more transparent header */
+    @media (max-width: 600px) {
+      header {
+        background: rgba(0, 74, 173, 0.75);
+      }
+    }
+    /* Animated glowing border for header */
     header::before {
       content: "";
       position: absolute;
@@ -100,17 +108,19 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Optional subtle watermark effect (change text as desired) */
+    /* Watermark: repeated "insurance" in smaller font, covering the header */
     header::after {
-      content: "INSURANCE";
+      content: "insurance insurance insurance insurance insurance \A insurance insurance insurance insurance insurance";
+      white-space: pre;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-15deg);
-      font-size: 6rem;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
       color: rgba(255,255,255,0.05);
       pointer-events: none;
       z-index: 1;
+      text-align: center;
     }
     .header-title-container {
       position: relative;
@@ -135,9 +145,9 @@
       padding: 0.5rem 1rem;
       margin: 0;
     }
-
+    
     /*----------------------------------------------*/
-    /*         White Card Sections (Main)           */
+    /*           Main Content Sections              */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -152,7 +162,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
     }
-    /* Animated border for each section */
     section::before {
       content: "";
       position: absolute;
@@ -182,9 +191,9 @@
     ul {
       padding-left: 1.5rem;
     }
-
+    
     /*----------------------------------------------*/
-    /*              Form & Button Styles            */
+    /*            Form & Button Styles              */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -210,13 +219,13 @@
     form button:hover {
       background: #0f56b0;
     }
-    /* Ensure the slider uses full container width */
+    /* Ensure the slider stretches across the container */
     input[type="range"] {
       width: 100%;
     }
-
+    
     /*----------------------------------------------*/
-    /*                  Footer                      */
+    /*                   Footer                     */
     /*----------------------------------------------*/
     footer {
       position: relative;
@@ -232,16 +241,13 @@
     footer::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       border: 2px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
       animation: glow 2s infinite;
     }
-
+    
     /*----------------------------------------------*/
     /*         Utility FAB (Hamburger)              */
     /*----------------------------------------------*/
@@ -281,7 +287,7 @@
   </style>
 </head>
 <body>
-  <!-- Clear any hash and force scroll to top on load -->
+  <!-- Clear any saved anchor & force scroll to top on load -->
   <script>
     window.location.hash = '';
     history.scrollRestoration = "manual";
@@ -290,7 +296,7 @@
     });
   </script>
   
-  <!-- Header Section with Blue Overlay, Animated Border & Watermark -->
+  <!-- Header Section with Blue Overlay, Animated Border & Repeating Watermark -->
   <header>
     <div class="container">
       <div class="header-title-container">
@@ -300,7 +306,7 @@
     </div>
   </header>
   
-  <!-- Fixed Utility FAB (Hamburger) -->
+  <!-- Fixed Utility FAB (Hamburger/Login/Dark Mode) -->
   <div class="utility-fab">
     <button onclick="openClientPortal()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box" id="utility-box">
@@ -365,7 +371,7 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" opens the utility box -->
+      <!-- "Access Client Portal" button opens the hamburger (utility box) -->
       <button onclick="openClientPortal()">Access Client Portal 🔐</button>
     </section>
     
@@ -397,22 +403,18 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
   </main>
   
-  <!-- GIF Section (Centered, without container "card") -->
+  <!-- GIF Section: Centered and without a white card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
@@ -425,7 +427,7 @@
   </footer>
   
   <script>
-    // Function to open utility box for sign-in (called by both hamburger and Access Client Portal)
+    // Open the utility box for sign-in when "Access Client Portal" is clicked.
     function openClientPortal() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -435,7 +437,7 @@
       }
     }
     
-    // Toggle Utility Box visibility
+    // Toggle the visibility of the utility box (hamburger menu)
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -453,7 +455,7 @@
       }
     }
     
-    // Toggle Dark Mode
+    // Toggle dark mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
@@ -473,7 +475,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder)
+    // Quote form submission (placeholder logic)
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
