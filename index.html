@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport -->
+  <!-- Responsive viewport with device-fit -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -40,7 +40,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image for both PC and mobile */
+    /* Use the original background image on body for both PC and mobile */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -49,7 +49,7 @@
     }
     
     /*----------------------------------------------*/
-    /*    Container for Consistent Alignment        */
+    /*   Container for Consistent Alignment         */
     /*----------------------------------------------*/
     .container {
       width: 100%;
@@ -81,10 +81,11 @@
     /*----------------------------------------------*/
     header {
       position: relative;
-      background: rgba(0, 74, 173, 0.85);
+      background: rgba(0, 74, 173, 0.75); /* Slightly more transparent */
       padding: 2rem 1rem;
       text-align: center;
     }
+    /* Animated glowing border for header */
     header::before {
       content: "";
       position: absolute;
@@ -94,18 +95,18 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
+    /* Repeating watermark filling the header */
     header::after {
-      content: "insurance insurance insurance insurance\ninsurance insurance insurance insurance";
-      white-space: pre;
+      content: "insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance";
+      white-space: nowrap;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: rgba(255,255,255,0.05);
       pointer-events: none;
       z-index: 1;
-      text-align: center;
     }
     .header-title-container {
       position: relative;
@@ -115,6 +116,19 @@
       align-items: center;
       gap: 0.5rem;
       color: #fff;
+    }
+    /* Flashy title wrapper with animated gradient border */
+    .flashy-title {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 2px solid;
+      border-image: linear-gradient(45deg, #f06, #ff6, #f06) 1;
+      animation: borderPulse 3s infinite;
+    }
+    @keyframes borderPulse {
+      0% { border-image-source: linear-gradient(45deg, #f06, #ff6, #f06); }
+      50% { border-image-source: linear-gradient(45deg, #ff6, #f06, #ff6); }
+      100% { border-image-source: linear-gradient(45deg, #f06, #ff6, #f06); }
     }
     .header-title {
       font-size: 2rem;
@@ -175,19 +189,15 @@
       font-size: 1.5rem;
       margin-top: 0;
     }
-    h2 {
-      font-size: 1.25rem;
-    }
+    h2 { font-size: 1.25rem; }
     p, ul {
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-    ul {
-      padding-left: 1.5rem;
-    }
+    ul { padding-left: 1.5rem; }
     
     /*----------------------------------------------*/
-    /*             Form & Button Styles             */
+    /*            Form & Button Styles              */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -210,12 +220,8 @@
       font-weight: bold;
       cursor: pointer;
     }
-    form button:hover {
-      background: #0f56b0;
-    }
-    input[type="range"] {
-      width: 100%;
-    }
+    form button:hover { background: #0f56b0; }
+    input[type="range"] { width: 100%; }
     
     /*----------------------------------------------*/
     /*                   Footer                     */
@@ -242,7 +248,7 @@
     }
     
     /*----------------------------------------------*/
-    /*          Utility FAB (Hamburger)             */
+    /*         Utility FAB (Hamburger)              */
     /*----------------------------------------------*/
     .utility-fab {
       position: fixed;
@@ -267,46 +273,34 @@
       pointer-events: none;
       z-index: 101;
     }
-    /* Utility box initially hidden via JS class "hidden" */
-    .hidden {
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-    }
-    
+    .hidden { display: none; opacity: 0; transform: translateY(-10px); pointer-events: none; }
     @media (max-width: 600px) {
-      .header-title {
-        font-size: 1.5rem;
-        padding: 0.75rem 1.5rem;
-      }
-      .header-subtitle {
-        font-size: 0.85rem;
-      }
+      .header-title { font-size: 1.5rem; padding: 0.75rem 1.5rem; }
+      .header-subtitle { font-size: 0.85rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Clear any saved anchor & force scroll to top -->
   <script>
+    // Prevent unwanted scroll restoration.
     window.location.hash = '';
     history.scrollRestoration = "manual";
-    window.addEventListener("load", () => {
-      window.scrollTo(0, 0);
-    });
+    window.addEventListener("load", () => { window.scrollTo(0, 0); });
   </script>
   
   <!-- Header Section -->
   <header>
     <div class="container">
       <div class="header-title-container">
-        <h1 class="header-title">IT Infrastructure Vision</h1>
+        <span class="flashy-title">
+          <h1 class="header-title">IT Infrastructure Vision</h1>
+        </span>
         <p class="header-subtitle">Laying the foundation for secure, scalable growth 🚀</p>
       </div>
     </div>
   </header>
   
-  <!-- Fixed Utility FAB (Hamburger) -->
+  <!-- Utility FAB (Hamburger) -->
   <div class="utility-fab">
     <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box hidden" id="utility-box">
@@ -371,11 +365,11 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- Button to open utility box for sign-in -->
+      <!-- "Access Client Portal" button toggles the utility box -->
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
-    <!-- Client Dashboard: Hidden until sign-in -->
+    <!-- Client Dashboard Section (Hidden until login) -->
     <section id="client-demo" style="display:none;">
       <h2>📋 Client Dashboard</h2>
       <p id="dashboard-greeting">Hello Demo User, welcome to your dashboard!</p>
@@ -415,16 +409,12 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-        
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-        
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-        
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-        
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
@@ -443,12 +433,12 @@
   </footer>
   
   <script>
-    // Toggle Utility Box using a class toggle for reliability.
+    // Utility box toggle function using computed style and a "hidden" class.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
         box.classList.remove("hidden");
-        // Enable pointer events and animate in.
+        box.style.display = "flex";
         requestAnimationFrame(() => {
           box.style.opacity = "1";
           box.style.transform = "translateY(0)";
@@ -463,26 +453,22 @@
         }, 300);
       }
     }
-    // Initially mark utility box as hidden.
+    // Initially mark the utility box as hidden.
     document.getElementById("utility-box").classList.add("hidden");
-
+    
     // Toggle Dark Mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
     
-    // Handle login form submission in utility box.
+    // Handle login form submission: simulate successful login, close utility box, show client dashboard, and scroll to it.
     document.getElementById("login-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      // For demonstration, assume login is successful.
-      // Hide the utility box.
-      toggleUtilityBox();
-      // Reveal the client dashboard section.
+      toggleUtilityBox(); // Close the utility box
       document.getElementById("client-demo").style.display = "block";
-      // Optionally, update the greeting.
-      document.getElementById("dashboard-greeting").textContent = 
+      // Update the dashboard greeting with the user's email prefix
+      document.getElementById("dashboard-greeting").textContent =
         "Hello " + this.email.value.split('@')[0] + ", welcome to your dashboard!";
-      // Scroll to the dashboard.
       document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
     });
     
@@ -501,7 +487,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder).
+    // Quote form submission (placeholder logic)
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
@@ -511,12 +497,20 @@
       });
     }
     
+    // Logout function: hides client dashboard and resets the login form in the utility box.
+    function logoutDemoUser() {
+      document.getElementById("client-demo").style.display = "none";
+      document.getElementById("dashboard-greeting").textContent = "Hello Demo User, welcome to your dashboard!";
+      document.getElementById("login-form").reset();
+      document.getElementById("login-form").style.display = "flex";
+      // Optionally, scroll back to the header.
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    
     // Prevent unwanted scroll restoration.
     window.location.hash = '';
     history.scrollRestoration = "manual";
-    window.addEventListener("load", () => {
-      window.scrollTo(0, 0);
-    });
+    window.addEventListener("load", () => { window.scrollTo(0, 0); });
   </script>
 </body>
 </html>
