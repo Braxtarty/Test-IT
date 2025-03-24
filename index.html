@@ -82,6 +82,9 @@
       top: 1rem;
       right: 1rem;
       z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     .collapsible {
       background-color: var(--primary-color);
@@ -105,25 +108,39 @@
       background: var(--card-bg);
       color: var(--card-text);
     }
+    .diagram img {
+      max-width: 100%;
+      height: auto;
+      max-height: 400px;
+      border-radius: 0.5rem;
+      display: block;
+      margin: 0 auto;
+    }
+    #dashboard {
+      background-image: url('ashbld1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+    }
   </style>
 </head>
 <body>
   <div class="toggle-container">
     <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+    <button class="collapsible">🔐 Click to Log In</button>
   </div>
   <header>
     <h1>IT Infrastructure Vision</h1>
     <p>Laying the foundation for secure, scalable growth 🚀</p>
   </header>
 
-  <section>
-    <button class="collapsible">🔐 Click to Log In</button>
-    <div class="content" id="login-form">
-      <input type="email" placeholder="Email" id="email" required>
-      <input type="password" placeholder="Password" id="password" required>
-      <button onclick="loginDemoUser()">Log In 🔐</button>
-    </div>
-  </section>
+  <div class="content" id="login-form">
+    <input type="email" placeholder="Email" id="email" required>
+    <input type="password" placeholder="Password" id="password" required>
+    <button onclick="loginDemoUser()">Log In 🔐</button>
+  </div>
 
   <section id="dashboard" style="display:none">
     <h2 id="dashboard-greeting">Hello!</h2>
@@ -144,17 +161,6 @@
       <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000">
       <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
     </div>
-  </section>
-
-  <section>
-    <h2>💬 Get a Quick Insurance Quote</h2>
-    <form id="quote-form" style="display: flex; flex-direction: column; gap: 1rem;">
-      <label>Full Name:<input type="text" name="name" required /></label>
-      <label>Age:<input type="number" name="age" min="18" required /></label>
-      <label>Zip Code:<input type="text" name="zip" required /></label>
-      <label>Desired Coverage Amount ($):<input type="number" name="coverage" required /></label>
-      <button type="submit">Get My Quote 🚀</button>
-    </form>
   </section>
 
   <footer>
@@ -179,7 +185,7 @@
         document.getElementById("login-form").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
         document.getElementById("dashboard-email").textContent = email;
-        document.getElementById("dashboard-greeting").textContent = `Hello ${email.split('@')[0]}, pretty cool right? 😎`;
+        document.getElementById("dashboard-greeting").textContent = `Hey ${email.split('@')[0]}, Jeff knows what's up!`;
       } else {
         alert("Please enter valid credentials (any input works for demo).")
       }
@@ -217,42 +223,6 @@
         slider.addEventListener("input", updatePremium);
         updatePremium();
       }
-
-      const form = document.getElementById("quote-form");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const name = form.name.value.trim();
-        const age = form.age.value.trim();
-        const zip = form.zip.value.trim();
-        const coverage = form.coverage.value.trim();
-
-        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
-        let hasError = false;
-
-        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
-        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
-        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
-        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
-
-        if (hasError) return;
-
-        const data = { name, age, zip, coverage };
-
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-
-          alert("✅ Your quote request has been submitted successfully!");
-          form.reset();
-        } catch (error) {
-          alert("❌ There was a problem submitting your quote. Please try again later.");
-        }
-      });
     });
   </script>
 </body>
