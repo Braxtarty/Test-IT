@@ -256,8 +256,8 @@ body.dark-mode {
   </section>
 
   <section id="client-demo" style="display:none; margin-top: 1rem;">
-  <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative;">
-  <p style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;">Hello Jeff, pretty cool right? 😎</p>
+  <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative; display: none;">
+  <p style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;" id="dashboard-greeting"></p>
     <div style="position:absolute; top:1rem; right:1rem;">
       <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem; cursor:pointer;">Log Out</button>
     </div>
@@ -392,6 +392,7 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     document.getElementById("client-demo").style.display = "block";
     document.getElementById("dashboard-links").style.display = "flex";
     document.getElementById("dashboard-email").textContent = email;
+document.getElementById("dashboard-greeting").textContent = `Hello ${email.split('@')[0]}, pretty cool right? 😎`;
     const welcome = document.getElementById("utility-welcome");
     welcome.textContent = `Logged in as: ${email}`;
     welcome.style.display = "block";
