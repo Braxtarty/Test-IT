@@ -8,19 +8,19 @@
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
+    /* Keyframes for glowing effect on title */
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+      50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
+      100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+    }
+    
     /* Container to center content on all sections */
     .container {
       width: 100%;
       max-width: 1000px;
       margin: 0 auto;
       padding: 0 1rem;
-    }
-
-    /* Keyframes for glowing effect on title */
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
-      50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
-      100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
     }
     
     /* Light/Dark Color Variables */
@@ -49,8 +49,8 @@
       line-height: 1.6;
       position: relative;
     }
-
-    /* Full-screen fixed background image */
+    
+    /* Full-screen, fixed background image */
     .bg-image {
       position: fixed;
       top: 0;
@@ -59,7 +59,7 @@
       bottom: 0;
       z-index: -1;
       background: url('ashbld1.jpg') no-repeat center center;
-      background-size: cover;
+      background-size: cover; 
     }
     
     /* Header Section (normal flow, scrolls away) */
@@ -68,10 +68,9 @@
       padding: 1rem 0;
       text-align: center;
     }
-    /* Wrap header content in a container for alignment */
     .header-title-container {
       position: relative;
-      z-index: 10001; /* Ensure it stays above the fixed hamburger */
+      z-index: 10001; /* Raised above the fixed hamburger */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -83,14 +82,17 @@
       font-size: 2rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       letter-spacing: 0.5px;
+      font-weight: bold; /* Increased boldness */
+      padding: 1rem 1.5rem; /* Increased inner margin for breathing room */
       animation: glow 2s infinite;
     }
     .header-subtitle {
       margin: 0;
       font-size: 1rem;
+      padding: 0.5rem 1rem; /* Some padding to match the title */
     }
     
-    /* Main content sections */
+    /* Main Content */
     main {
       padding-bottom: 2rem;
     }
@@ -150,7 +152,7 @@
       border-radius: 0.5rem;
     }
     
-    /* Footer Styling */
+    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
@@ -161,7 +163,6 @@
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
     }
-    /* Wrap footer content in container to match main content alignment */
     footer .container {
       text-align: center;
     }
@@ -206,7 +207,7 @@
   </style>
 </head>
 <body>
-  <!-- Full-screen Background Image -->
+  <!-- Full-screen background image -->
   <div class="bg-image"></div>
   
   <!-- Header Section -->
