@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport with device-fit -->
+  <!-- Responsive viewport settings -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-  
+
   <style>
     /*----------------------------------------------*/
-    /*   Consolidated CSS Variables                 */
+    /*        CSS Variables                         */
     /*----------------------------------------------*/
     :root {
       --primary-color: #1669d9;
@@ -28,7 +27,7 @@
     }
 
     /*----------------------------------------------*/
-    /*   Global Reset & Settings                    */
+    /*          Global Reset & Settings             */
     /*----------------------------------------------*/
     * {
       margin: 0;
@@ -40,9 +39,8 @@
       overflow-x: hidden;
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      /* Prevent unwanted horizontal scrolling */
     }
-    /* For desktop, use fixed background; on mobile, switch to scroll */
+    /* Use the original background image on body */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -50,28 +48,28 @@
       position: relative;
     }
     @media (max-width: 600px) {
+      /* On mobile, use scroll for background to avoid fuzziness */
       body {
         background-attachment: scroll;
       }
     }
-    
+
     /*----------------------------------------------*/
-    /*   Container for Consistent Alignment         */
+    /*         Container for Alignment              */
     /*----------------------------------------------*/
     .container {
       width: 100%;
-      margin: 0;
+      margin: 0 auto;
       padding: 0 1rem;
     }
-    @media (min-width: 600px) {
+    @media (max-width: 600px) {
       .container {
-        max-width: 1000px;
-        margin: 0 auto;
+        padding: 0 0.5rem;
       }
     }
-    
+
     /*----------------------------------------------*/
-    /*   Animated Glow Effect                       */
+    /*            Animated Glow Effect              */
     /*----------------------------------------------*/
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
@@ -80,7 +78,7 @@
     }
 
     /*----------------------------------------------*/
-    /*   Header Section                             */
+    /*              Header Section                  */
     /*----------------------------------------------*/
     header {
       position: relative;
@@ -88,14 +86,11 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* Apply animated border flair to the header */
+    /* Animated border for header */
     header::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       border: 3px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
@@ -109,7 +104,7 @@
       align-items: center;
       gap: 0.5rem;
       color: #fff;
-      /* Removed extra right padding so the text stays centered */
+      /* No extra right padding so text stays centered */
     }
     .header-title {
       font-size: 2rem;
@@ -125,10 +120,13 @@
       padding: 0.5rem 1rem;
       margin: 0;
     }
-    
+
     /*----------------------------------------------*/
-    /*   Section (White Cards with Animated Borders)*/
+    /*            White Card Sections               */
     /*----------------------------------------------*/
+    main {
+      padding-bottom: 2rem;
+    }
     section {
       position: relative;
       background: var(--overlay-bg);
@@ -139,13 +137,11 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
     }
+    /* Animated border for sections */
     section::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       border: 2px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
@@ -171,9 +167,9 @@
     ul {
       padding-left: 1.5rem;
     }
-    
+
     /*----------------------------------------------*/
-    /*   Form & Button Styles                       */
+    /*             Form & Button Styles             */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -199,9 +195,9 @@
     form button:hover {
       background: #0f56b0;
     }
-    
+
     /*----------------------------------------------*/
-    /*   Footer with Animated Border                */
+    /*                   Footer                     */
     /*----------------------------------------------*/
     footer {
       position: relative;
@@ -217,18 +213,15 @@
     footer::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       border: 2px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    
+
     /*----------------------------------------------*/
-    /*   Fixed Utility FAB (Hamburger/Menu)         */
+    /*          Utility FAB (Hamburger)             */
     /*----------------------------------------------*/
     .utility-fab {
       position: fixed;
@@ -254,9 +247,6 @@
       z-index: 101;
     }
     
-    /*----------------------------------------------*/
-    /*   Mobile Adjustments                         */
-    /*----------------------------------------------*/
     @media (max-width: 600px) {
       .header-title {
         font-size: 1.5rem;
@@ -269,7 +259,7 @@
   </style>
 </head>
 <body>
-  <!-- Clear any existing anchor and force scroll to top on load -->
+  <!-- Clear any saved anchor & force scroll to top -->
   <script>
     window.location.hash = '';
     history.scrollRestoration = "manual";
@@ -288,7 +278,7 @@
     </div>
   </header>
   
-  <!-- Fixed Utility FAB (Hamburger) -->
+  <!-- Fixed Utility FAB (Hamburger/Login/Dark Mode) -->
   <div class="utility-fab">
     <button onclick="openClientPortal()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box" id="utility-box">
@@ -353,7 +343,7 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- This button now opens the utility (hamburger) for sign-in -->
+      <!-- This button will now call openClientPortal() to open the hamburger menu -->
       <button onclick="openClientPortal()">Access Client Portal 🔐</button>
     </section>
     
@@ -385,16 +375,12 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
@@ -405,7 +391,7 @@
     </section>
   </main>
   
-  <!-- Footer Section -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       Built with ❤️ by Braxton – Ready to future‑proof our IT.
@@ -413,9 +399,7 @@
   </footer>
   
   <script>
-    // Utility functions
-
-    // Opens the utility box for sign-in if not open; if open, scrolls to it.
+    // Open the utility box if not open, or scroll to it if open.
     function openClientPortal() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -425,6 +409,7 @@
       }
     }
     
+    // Toggle the utility box (hamburger menu) visibility.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -442,6 +427,7 @@
       }
     }
     
+    // Toggle dark mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
@@ -471,7 +457,7 @@
       });
     }
     
-    // Prevent unwanted scroll position on refresh
+    // Prevent unwanted scroll restoration
     window.location.hash = '';
     history.scrollRestoration = "manual";
     window.addEventListener("load", () => {
