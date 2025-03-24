@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport -->
+  <!-- Responsive viewport with device-fit -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -40,7 +40,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image on body for both PC & mobile */
+    /* Use original background image for PC & mobile */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -49,7 +49,7 @@
     }
     
     /*----------------------------------------------*/
-    /*   Container for Consistent Alignment         */
+    /*      Container for Consistent Alignment      */
     /*----------------------------------------------*/
     .container {
       width: 100%;
@@ -77,7 +77,7 @@
     }
     
     /*----------------------------------------------*/
-    /*          Header Section                      */
+    /*             Header Section                   */
     /*----------------------------------------------*/
     header {
       position: relative;
@@ -94,7 +94,7 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Repeating watermark that fills the header */
+    /* Repeating watermark across the header */
     header::after {
       content: "insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance";
       white-space: nowrap;
@@ -116,7 +116,7 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title wrapper with animated gradient border in shades of blue & grey */
+    /* Flashy title with animated gradient border in blue and grey */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -167,7 +167,7 @@
     }
     
     /*----------------------------------------------*/
-    /*       Main Content (White Card Sections)     */
+    /*        Main Content (White Card Sections)    */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -209,7 +209,7 @@
     ul { padding-left: 1.5rem; }
     
     /*----------------------------------------------*/
-    /*            Form & Button Styles              */
+    /*           Form & Button Styles               */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -285,12 +285,8 @@
       pointer-events: none;
       z-index: 101;
     }
-    .hidden {
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-    }
+    .hidden { display: none; opacity: 0; transform: translateY(-10px); pointer-events: none; }
+    
     @media (max-width: 600px) {
       .header-title {
         font-size: 1.5rem;
@@ -327,16 +323,15 @@
     <button id="hamburger-btn" onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box hidden" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
+      <!-- Login form (visible before sign in) -->
       <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
         <input type="email" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Password" required />
         <button type="submit">Log In 🔐</button>
       </form>
-      <p id="utility-welcome" style="display: none; font-size: 0.9rem;"></p>
-      <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
-        <button onclick="location.href='#client-demo'">Client Dashboard</button>
-        <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
-        <button onclick="location.href='#quote-form'">Quote Form</button>
+      <!-- User info (visible after sign in) -->
+      <div id="user-info" style="display:none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+        <p id="user-text">Logged in as: <span id="user-name"></span></p>
         <button onclick="logoutDemoUser()">Sign Out</button>
       </div>
     </div>
@@ -387,7 +382,7 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" button toggles the utility box -->
+      <!-- "Access Client Portal" button now toggles the utility box -->
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
@@ -431,22 +426,18 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-        
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-        
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-        
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-        
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
   </main>
   
-  <!-- GIF Section: Centered without a card container -->
+  <!-- GIF Section: Centered without a white card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
@@ -459,7 +450,7 @@
   </footer>
   
   <script>
-    // Toggle Utility Box using computed style and a "hidden" class.
+    // Utility Box Toggle using computed style and "hidden" class.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
@@ -488,16 +479,31 @@
     // Handle login form submission.
     document.getElementById("login-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      // Update hamburger button text to show signed-in username.
+      // Get username (using email prefix)
       const username = this.email.value.split('@')[0];
-      document.getElementById("hamburger-btn").textContent = username;
-      // Close utility box.
-      toggleUtilityBox();
-      // Show client dashboard.
+      // Hide the login form and show user info.
+      this.style.display = "none";
+      document.getElementById("user-info").style.display = "flex";
+      document.getElementById("user-name").textContent = username;
+      // Reveal the client dashboard.
       document.getElementById("client-demo").style.display = "block";
       document.getElementById("dashboard-greeting").textContent = "Hello " + username + ", welcome to your dashboard!";
+      // Scroll to the dashboard.
       document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
     });
+    
+    // Logout function: reset the utility box to show login form.
+    function logoutDemoUser() {
+      // Hide client dashboard.
+      document.getElementById("client-demo").style.display = "none";
+      // Reset the login form and show it.
+      document.getElementById("login-form").reset();
+      document.getElementById("login-form").style.display = "flex";
+      // Hide the user info.
+      document.getElementById("user-info").style.display = "none";
+      // Optionally, scroll back to the top.
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     
     // Premium slider functionality.
     const coverageSlider = document.getElementById("coverage-slider");
@@ -514,7 +520,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder).
+    // Quote form submission (placeholder logic).
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
@@ -522,18 +528,6 @@
         alert("✅ Your quote request has been submitted!");
         quoteForm.reset();
       });
-    }
-    
-    // Logout function: resets login and dashboard.
-    function logoutDemoUser() {
-      document.getElementById("client-demo").style.display = "none";
-      document.getElementById("dashboard-greeting").textContent = "Hello Demo User, welcome to your dashboard!";
-      document.getElementById("login-form").reset();
-      document.getElementById("login-form").style.display = "flex";
-      // Reset hamburger button text to default.
-      document.getElementById("hamburger-btn").textContent = "☰";
-      // Optionally, scroll back to the header.
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     
     // Prevent unwanted scroll restoration.
