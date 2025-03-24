@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport with device-fit -->
+  <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -11,7 +11,7 @@
   
   <style>
     /*----------------------------------------------*/
-    /*        CSS Variables                         */
+    /*           CSS Variables                      */
     /*----------------------------------------------*/
     :root {
       --primary-color: #1669d9;
@@ -27,7 +27,7 @@
     }
     
     /*----------------------------------------------*/
-    /*     Global Reset & Base Styles               */
+    /*       Global Reset & Base Styles             */
     /*----------------------------------------------*/
     * {
       margin: 0;
@@ -40,23 +40,16 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Background image on body for desktop */
+    /* Use the original background image on body for both mobile & PC */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
       position: relative;
     }
-    /* On mobile, use a higher-resolution image */
-    @media (max-width: 600px) {
-      body {
-        background: url("ashbld1@2x.jpg") no-repeat center center fixed;
-        background-size: cover;
-      }
-    }
     
     /*----------------------------------------------*/
-    /*       Container for Consistent Layout        */
+    /*   Container for Consistent Alignment         */
     /*----------------------------------------------*/
     .container {
       width: 100%;
@@ -75,7 +68,7 @@
     }
     
     /*----------------------------------------------*/
-    /*         Animated Glow Effect                 */
+    /*          Animated Glow Effect                */
     /*----------------------------------------------*/
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
@@ -92,12 +85,6 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* For mobile, slightly more transparent header */
-    @media (max-width: 600px) {
-      header {
-        background: rgba(0, 74, 173, 0.75);
-      }
-    }
     /* Animated glowing border for header */
     header::before {
       content: "";
@@ -108,15 +95,15 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Watermark: repeated "insurance" in smaller font, covering the header */
+    /* Repeating watermark across the header */
     header::after {
-      content: "insurance insurance insurance insurance insurance \A insurance insurance insurance insurance insurance";
+      content: "insurance insurance insurance insurance\ninsurance insurance insurance insurance";
       white-space: pre;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: rgba(255,255,255,0.05);
       pointer-events: none;
       z-index: 1;
@@ -147,7 +134,7 @@
     }
     
     /*----------------------------------------------*/
-    /*           Main Content Sections              */
+    /*      White Card Sections (Main Content)      */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -162,6 +149,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
     }
+    /* Animated border for sections */
     section::before {
       content: "";
       position: absolute;
@@ -193,7 +181,7 @@
     }
     
     /*----------------------------------------------*/
-    /*            Form & Button Styles              */
+    /*          Form & Button Styles                */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -219,13 +207,13 @@
     form button:hover {
       background: #0f56b0;
     }
-    /* Ensure the slider stretches across the container */
+    /* Ensure the slider stretches full width */
     input[type="range"] {
       width: 100%;
     }
     
     /*----------------------------------------------*/
-    /*                   Footer                     */
+    /*                Footer                        */
     /*----------------------------------------------*/
     footer {
       position: relative;
@@ -287,7 +275,7 @@
   </style>
 </head>
 <body>
-  <!-- Clear any saved anchor & force scroll to top on load -->
+  <!-- Prevent unwanted anchor scrolling -->
   <script>
     window.location.hash = '';
     history.scrollRestoration = "manual";
@@ -296,7 +284,7 @@
     });
   </script>
   
-  <!-- Header Section with Blue Overlay, Animated Border & Repeating Watermark -->
+  <!-- Header Section with Blue Overlay, Animated Border & Watermark -->
   <header>
     <div class="container">
       <div class="header-title-container">
@@ -306,9 +294,9 @@
     </div>
   </header>
   
-  <!-- Fixed Utility FAB (Hamburger/Login/Dark Mode) -->
+  <!-- Fixed Utility FAB (Hamburger) -->
   <div class="utility-fab">
-    <button onclick="openClientPortal()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
+    <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
       <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -371,8 +359,8 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" button opens the hamburger (utility box) -->
-      <button onclick="openClientPortal()">Access Client Portal 🔐</button>
+      <!-- "Access Client Portal" button opens the hamburger utility box -->
+      <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
     <section>
@@ -394,7 +382,7 @@
         Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.
       </p>
       <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
-      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;" />
+      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" />
       <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
     </section>
     
@@ -414,7 +402,7 @@
     </section>
   </main>
   
-  <!-- GIF Section: Centered and without a white card container -->
+  <!-- GIF Section: Centered without a white card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
@@ -427,20 +415,11 @@
   </footer>
   
   <script>
-    // Open the utility box for sign-in when "Access Client Portal" is clicked.
-    function openClientPortal() {
-      const box = document.getElementById("utility-box");
-      if (box.style.display === "none" || box.style.opacity === "0") {
-        toggleUtilityBox();
-      } else {
-        box.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-    
-    // Toggle the visibility of the utility box (hamburger menu)
+    // Toggle Utility Box function using computed style for reliability
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
-      if (box.style.display === "none" || box.style.opacity === "0") {
+      const computed = window.getComputedStyle(box);
+      if (computed.display === "none" || computed.opacity === "0") {
         box.style.display = "flex";
         requestAnimationFrame(() => {
           box.style.opacity = "1";
@@ -455,7 +434,7 @@
       }
     }
     
-    // Toggle dark mode
+    // Toggle Dark Mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
@@ -475,7 +454,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder logic)
+    // Quote form submission (placeholder)
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
