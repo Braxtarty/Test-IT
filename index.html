@@ -410,14 +410,14 @@ function toggleUtilityBox() {
       box.style.opacity = '1';
       box.style.transform = 'translateY(0)';
     });
-    document.addEventListener('click', outsideClickListener);
+    // document.addEventListener('click', outsideClickListener);
   } else {
     box.style.opacity = '0';
     box.style.transform = 'translateY(-10px)';
     setTimeout(() => {
       box.style.display = 'none';
     }, 300);
-    document.removeEventListener('click', outsideClickListener);
+    // document.removeEventListener('click', outsideClickListener);
   }
 }
 
