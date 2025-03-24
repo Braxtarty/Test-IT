@@ -11,11 +11,13 @@
     /* Color Variables */
     :root {
       --primary-color: #004aad;
-      --background: #bbb; /* Darker default light-mode background */
+      --background: #fff; /* White background for light mode */
       --text: #333;
       --white: #ffffff;
       --card-bg: #ffffff;
       --card-text: #333333;
+      --header-bg: #fff; /* Opaque header background for light mode */
+      --header-color: #333; /* Dark text for header in light mode */
     }
     /* Dark Mode Variables */
     body.dark-mode {
@@ -24,6 +26,8 @@
       --white: #2c2c2c;
       --card-bg: #2c2c2c;
       --card-text: #f0f0f0;
+      --header-bg: #000; /* Opaque header background for dark mode */
+      --header-color: #fff; /* Light header text in dark mode */
     }
     
     /* Global Styles */
@@ -44,7 +48,6 @@
     header {
       background: url('ashbld1.jpg') no-repeat center center;
       background-size: cover;
-      color: var(--white);
       padding: 2rem 1rem;
       text-align: center;
     }
@@ -58,19 +61,22 @@
       font-size: 2rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       letter-spacing: 0.5px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+      background-color: var(--header-bg);
+      color: var(--header-color);
       padding: 0.75rem 1.25rem;
       border-radius: 0.75rem;
       display: inline-block;
-      border: 2px solid var(--white);
-      animation: glow 2s infinite alternate;
-      /* Subtle text-shadow for legibility */
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-      box-shadow: 0 0 10px rgba(0,74,173,0.4);
+      border: 2px solid var(--header-bg);
+      /* Removed glow animation for a clean opaque look */
     }
     .header-subtitle {
       margin-top: 0.5rem;
       font-size: 0.95rem;
+      background-color: var(--header-bg);
+      color: var(--header-color);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      display: inline-block;
     }
     
     section {
@@ -122,6 +128,12 @@
       background-color: #00388a;
     }
     
+    .diagram-section {
+      text-align: center;
+      margin-top: 1rem;
+      padding-top: 0;
+    }
+    
     .diagram img {
       max-width: 100%;
       height: auto;
@@ -151,10 +163,6 @@
       gap: 1rem;
       max-width: 500px;
       margin: auto;
-    }
-    .diagram-section {
-      margin-top: 1rem;
-      padding-top: 0;
     }
     .utility-fab {
       position: fixed;
@@ -209,11 +217,13 @@
     </div>
   </header>
   
+  <!-- About Section (Tailored for Jeff) -->
   <section>
-    <h2>👋 About Me</h2>
-    <p>I’m Braxton, stepping into the role of IT point person with a passion for building smart, secure, and scalable systems. This micro‑site outlines the initial vision for transforming our IT from the ground up.</p>
+    <h2>👋 About Jeff</h2>
+    <p>Jeff is pioneering a forward‑thinking approach to our IT infrastructure—focusing on innovative, secure, and scalable solutions that adapt to today’s dynamic business challenges.</p>
   </section>
   
+  <!-- Phase Sections -->
   <section>
     <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
     <ul>
@@ -241,6 +251,43 @@
     </ul>
   </section>
   
+  <!-- Client Dashboard -->
+  <section>
+    <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
+    <p>This is a placeholder for what a client portal might include in the future:</p>
+    <ul>
+      <li>🔒 Secure login for clients to view policy documents</li>
+      <li>📄 Downloadable PDFs of their coverage</li>
+      <li>📬 Messages from their assigned agent</li>
+      <li>💡 Renewal reminders and auto‑payment settings</li>
+    </ul>
+    <button onclick="openClientPortal()">Access Client Portal 🔐</button>
+  </section>
+  
+  <!-- Why This Matters -->
+  <section>
+    <h2>🧠 Why This Matters</h2>
+    <p>Insurance clients expect simplicity, transparency, and control. This roadmap demonstrates how scalable tech foundations meet modern industry standards.</p>
+    <ul>
+      <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
+      <li>🧾 Easy quote intake with data capture to Sheets</li>
+      <li>🔍 Clear phase breakdowns for leadership &amp; dev planning</li>
+      <li>⚙️ Secure, HIPAA/SOC2‑ready infrastructure vision</li>
+    </ul>
+  </section>
+  
+  <!-- Premium Estimator -->
+  <section class="premium-section">
+    <h2>💸 Try Our Premium Estimator</h2>
+    <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
+    <div class="premium-estimator-container">
+      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
+      <input type="range" id="coverage-slider" style="cursor: pointer;" min="10000" max="500000" step="10000" value="100000">
+      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+    </div>
+  </section>
+  
+  <!-- Insurance Quote (Moved Below Premium Estimator) -->
   <section>
     <h2>💬 Get a Quick Insurance Quote</h2>
     <form id="quote-form" aria-label="Get a Quick Insurance Quote" style="display: flex; flex-direction: column; gap: 1rem;">
@@ -260,39 +307,14 @@
     </form>
   </section>
   
-  <section>
-    <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
-    <p>This is a placeholder for what a client portal might include in the future:</p>
-    <ul>
-      <li>🔒 Secure login for clients to view policy documents</li>
-      <li>📄 Downloadable PDFs of their coverage</li>
-      <li>📬 Messages from their assigned agent</li>
-      <li>💡 Renewal reminders and auto‑payment settings</li>
-    </ul>
-    <button onclick="openClientPortal()">Access Client Portal 🔐</button>
-  </section>
-  
-  <section>
-    <h2>🧠 Why This Matters</h2>
-    <p>Insurance clients expect simplicity, transparency, and control. This demo demonstrates a roadmap that meets and exceeds industry expectations using scalable tech foundations and modern UI principles.</p>
-    <ul>
-      <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
-      <li>🧾 Easy quote intake with data capture to Sheets</li>
-      <li>🔍 Clear phase breakdowns for leadership &amp; dev planning</li>
-      <li>⚙️ Secure, HIPAA/SOC2‑ready infrastructure vision</li>
-    </ul>
-  </section>
-  
-  <section class="premium-section">
-    <h2>💸 Try Our Premium Estimator</h2>
-    <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
-    <div class="premium-estimator-container">
-      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
-      <input type="range" id="coverage-slider" style="cursor: pointer;" min="10000" max="500000" step="10000" value="100000">
-      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+  <!-- Centered GIF (No Heading) -->
+  <section class="diagram-section">
+    <div class="diagram">
+      <img src="getli.gif" alt="Animated Infrastructure Overview">
     </div>
   </section>
   
+  <!-- Demo Client Dashboard (Remains Unchanged) -->
   <section id="client-demo">
     <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative; display: none;">
       <p id="dashboard-greeting" style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;">Hello Demo User, pretty cool right? 😎</p>
@@ -313,15 +335,8 @@
     </div>
   </section>
   
-  <section class="diagram-section">
-    <h2>📊 Visual Overview</h2>
-    <div class="diagram">
-      <img src="getli.gif" alt="Animated Infrastructure Overview">
-    </div>
-  </section>
-  
   <footer>
-    Built with ❤️ by Braxton – Ready to future‑proof our IT.
+    Built with ❤️ by Jeff – Ready to future‑proof our IT.
   </footer>
   
   <!-- Utility FAB and Box -->
