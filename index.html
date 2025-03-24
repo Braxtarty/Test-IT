@@ -362,10 +362,7 @@ function handleMenuJump(value) {
 }
 
 // Dark mode toggle
-const toggle = document.createElement('button');
-toggle.textContent = '🌙 Toggle Dark Mode';
-toggle.style.cssText = 'margin-left: 1rem; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: white; color: #004aad; font-weight: bold; border: none; cursor: pointer;';
-document.querySelector('header div').appendChild(toggle);
+
 
 let darkMode = false;
 toggle.addEventListener('click', () => {
