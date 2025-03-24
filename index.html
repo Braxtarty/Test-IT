@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Let the page scale responsively on mobile -->
+  <!-- Make it responsive on mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>IT Infrastructure Vision</title>
-  <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth" />
-  <meta name="keywords" content="IT infrastructure, scalable growth, secure systems" />
 
-  <!-- Basic CSS: minimal, fully responsive approach -->
+  <title>IT Infrastructure Vision</title>
+  <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
+  <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
+
+  <!-- Minimal CSS for a simpler layout -->
   <style>
-    /* Reset default margins & paddings, no horizontal scroll */
+    /* Reset & Basic Setup */
     * {
       margin: 0;
       padding: 0;
@@ -22,53 +22,63 @@
       overflow-x: hidden;
       font-family: sans-serif;
       line-height: 1.6;
-      background: #f0f0f0; /* Simple light background for the page */
+      color: #0c1a3e; /* Dark text for default body */
     }
 
-    /* A container that centers content and adjusts width on larger screens */
+    /* Body with the building background, fixed so it doesn't scroll on desktop
+       If iOS Safari doesn't support fixed well, it will degrade gracefully. */
+    body {
+      background: url("ashbld1.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Single .container that centers content on large screens
+       and uses full width on small screens */
     .container {
       width: 100%;
-      max-width: 1000px; /* You can adjust this if you like a narrower/wider layout */
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 0 1rem; /* Some horizontal padding for breathing room */
+      padding: 0 1rem;
+      /* For word wrapping on narrow displays */
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
-    /* Header with a background image, covering horizontally & vertically */
+    /* A blue header "overlay" on top of the background */
     header {
-      background: url("ashbld1.jpg") no-repeat center center;
-      background-size: cover;
-      color: #fff;
+      background: rgba(0, 74, 173, 0.85); /* Dark blue overlay */
       text-align: center;
-      padding: 3rem 1rem; /* Generous vertical space */
+      padding: 2rem 1rem;
+      color: #fff;
     }
-    /* Title & subtitle scale with screen size using media queries */
-    h1.header-title {
+    header h1 {
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
-    p.header-subtitle {
+    header p {
       font-size: 1rem;
       margin-top: 0.5rem;
     }
 
-    /* White “card” sections, each with some margin for separation */
+    /* White card-like sections with a subtle drop shadow */
     section {
       background: #fff;
-      margin: 2rem 0; /* Spacing between sections */
       border-radius: 0.5rem;
       padding: 1.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
-    /* Basic heading sizes inside sections */
-    h2 {
+    section h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
+      color: #0c1a3e;
     }
-    p, ul {
+    section p, section ul {
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-    ul {
+    section ul {
       padding-left: 1.5rem;
     }
 
@@ -98,65 +108,64 @@
       background: #0f56b0;
     }
 
-    /* Basic footer, centered text */
+    /* A simple footer, also with a blue overlay for contrast */
     footer {
-      background: #004aad;
+      background: rgba(0, 74, 173, 0.85);
       color: #fff;
       text-align: center;
       padding: 1rem;
       margin-top: 2rem;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
     }
 
-    /* Optional “hamburger” menu in the top-right corner, if you still want it */
+    /* Optional “hamburger” menu if you want a floating button at top-right */
     .hamburger-fab {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      background: #1669d9;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
       width: 48px;
       height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: #1669d9;
+      color: #fff;
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 999;
     }
 
-    /* Mobile adjustments: slightly smaller fonts, etc. */
+    /* Media query for smaller screens */
     @media (max-width: 600px) {
-      h1.header-title {
+      header h1 {
         font-size: 1.75rem;
-      }
-      h2 {
-        font-size: 1.25rem;
-      }
-      form label, form input, form button {
-        font-size: 0.95rem;
       }
       section {
         margin: 1rem 0;
         padding: 1rem;
+      }
+      section h2 {
+        font-size: 1.25rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Optional “hamburger” if you want a floating menu -->
+  <!-- Optional hamburger if you want a floating menu -->
   <button class="hamburger-fab">☰</button>
-  
-  <!-- Header with building image background -->
+
+  <!-- A Blue Header on top of the building background -->
   <header>
     <div class="container">
-      <h1 class="header-title">IT Infrastructure Vision</h1>
-      <p class="header-subtitle">Laying the foundation for secure, scalable growth 🚀</p>
+      <h1>IT Infrastructure Vision</h1>
+      <p>Laying the foundation for secure, scalable growth 🚀</p>
     </div>
   </header>
 
-  <!-- Main content in a centered container -->
+  <!-- Main content container (white "cards" for each section) -->
   <main class="container">
-    <!-- About Section -->
+    <!-- About Me -->
     <section>
       <h2>👋 About Me</h2>
       <p>
@@ -164,7 +173,7 @@
       </p>
     </section>
 
-    <!-- Phase 1 Section -->
+    <!-- Phase 1 -->
     <section>
       <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
       <ul>
@@ -174,7 +183,7 @@
       </ul>
     </section>
 
-    <!-- Phase 2 Section -->
+    <!-- Phase 2 -->
     <section>
       <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
       <ul>
@@ -184,7 +193,7 @@
       </ul>
     </section>
 
-    <!-- Phase 3 Section -->
+    <!-- Phase 3 -->
     <section>
       <h2>🌐 Phase 3: Long‑Term Vision (6+ Months)</h2>
       <ul>
@@ -194,7 +203,7 @@
       </ul>
     </section>
 
-    <!-- Sample Client Dashboard -->
+    <!-- Sample Dashboard -->
     <section>
       <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
       <p>This is a placeholder for what a client portal might include in the future:</p>
@@ -210,9 +219,7 @@
     <!-- Why This Matters -->
     <section>
       <h2>🧠 Why This Matters</h2>
-      <p>
-        This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.
-      </p>
+      <p>This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.</p>
       <ul>
         <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
         <li>🧾 Easy quote intake with data capture to Sheets</li>
@@ -224,49 +231,47 @@
     <!-- Premium Estimator -->
     <section>
       <h2>💸 Try Our Premium Estimator</h2>
-      <p>
-        Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.
-      </p>
+      <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
       <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
       <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;" />
       <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
     </section>
 
-    <!-- Insurance Quote Form -->
+    <!-- Quote Form -->
     <section>
       <h2>💬 Get a Quick Insurance Quote</h2>
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-        
+
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-        
+
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-        
+
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-        
+
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
 
-    <!-- Example Diagram / GIF -->
+    <!-- Example GIF / Diagram -->
     <section>
-      <h2>Animated Diagram</h2>
+      <h2>Diagram</h2>
       <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer with the same dark blue overlay -->
   <footer>
     Built with ❤️ by Braxton – Ready to future‑proof our IT.
   </footer>
 
-  <!-- Minimal JS for slider & quote form -->
+  <!-- Minimal JS for the slider & quote form -->
   <script>
-    // Basic premium estimator logic
+    // Basic Premium Estimator
     const coverageSlider = document.getElementById("coverage-slider");
     const coverageDisplay = document.getElementById("coverage-display");
     const premiumDisplay = document.getElementById("premium-display");
@@ -282,12 +287,12 @@
       updatePremium();
     }
 
-    // Basic quote form logic
+    // Basic Quote Form Submission
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        // Just a placeholder example
+        // Just a placeholder for real logic
         alert("✅ Your quote request has been submitted!");
         quoteForm.reset();
       });
