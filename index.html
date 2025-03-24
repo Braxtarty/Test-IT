@@ -1,27 +1,146 @@
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Infrastructure Vision</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  <!--
+  MIT License
+
+  Copyright (c) 2025 Braxtarty
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the “Software”), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #004aad;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    .diagram {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    button {
+      background-color: #004aad;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>IT Infrastructure Vision</h1>
+    <p>Prepared for {company name} – Laying the foundation for secure, scalable growth 🚀</p>
+  </header>
+
+  <section>
+    <h2>👋 About Me</h2>
+    <p>I’m Braxtarty, stepping into the role of IT point person with a passion for building smart, secure, and scalable systems. This micro-site outlines the initial vision for transforming our IT from the ground up.</p>
+  </section>
+
+  <section>
+    <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
+    <ul>
+      <li>Secure email setup with Google Workspace or Microsoft 365</li>
+      <li>Website with quote functionality and secure forms</li>
+      <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
+    <ul>
+      <li>CRM integration (HubSpot / Salesforce)</li>
+      <li>Client login system + document delivery</li>
+      <li>Internal knowledge base (Notion / Confluence)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🌐 Phase 3: Long-Term Vision (6+ Months)</h2>
+    <ul>
+      <li>Custom policy management system</li>
+      <li>Secure API integrations (payments, e-signatures)</li>
+      <li>Compliance & monitoring tools (SOC2, penetration testing)</li>
+    </ul>
+  </section>
 
   <section>
     <h2>💬 Get a Quick Insurance Quote</h2>
     <form action="#" method="post" style="display: flex; flex-direction: column; gap: 1rem;">
       <label>
         Full Name:
-        <input type="text" name="name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem;" />
+        <input type="text" name="name" required />
       </label>
       <label>
         Age:
-        <input type="number" name="age" min="18" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem;" />
+        <input type="number" name="age" min="18" required />
       </label>
       <label>
         Zip Code:
-        <input type="text" name="zip" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem;" />
+        <input type="text" name="zip" required />
       </label>
       <label>
         Desired Coverage Amount ($):
-        <input type="number" name="coverage" required style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.5rem;" />
+        <input type="number" name="coverage" required />
       </label>
-      <button type="submit" style="background-color: #004aad; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">
-        Get My Quote 🚀
-      </button>
+      <button type="submit">Get My Quote 🚀</button>
     </form>
   </section>
 
@@ -33,45 +152,45 @@
   <footer>
     Built with ❤️ by Braxtarty – Ready to future-proof our IT.
   </footer>
+
+  <script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const age = form.age.value.trim();
+      const zip = form.zip.value.trim();
+      const coverage = form.coverage.value.trim();
+
+      form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
+
+      let hasError = false;
+
+      if (!name) { form.name.style.borderColor = "red"; hasError = true; }
+      if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
+      if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
+      if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
+
+      if (hasError) return;
+
+      const data = { name, age, zip, coverage };
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        alert("✅ Your quote request has been submitted successfully!");
+        form.reset();
+      } catch (error) {
+        alert("❌ There was a problem submitting your quote. Please try again later.");
+      }
+    });
+  </script>
 </body>
 </html>
-
-<!-- README.md -->
-<!--
-# IT Infrastructure Vision 💼💻
-
-A portfolio mini-site showcasing an IT transformation roadmap for a life insurance startup. This project outlines scalable and secure infrastructure phases and serves as a visual aid for stakeholder meetings.
-
-## 🚀 Features
-- Strategic IT roadmap (0–6+ months)
-- Embedded infrastructure diagram
-- Clean, responsive design
-- License: MIT
-
-## 🛠️ Tech Stack
-- HTML/CSS
-- Responsive layout
-- Static hosting (Netlify, GitHub Pages, etc.)
-
-## 📄 License
-[MIT](./LICENSE)
-
-## 👋 About Me
-I’m Braxtarty, the prospective IT lead, presenting a vision for building secure, modern infrastructure tailored to life insurance needs. Let’s future-proof this company together!
--->
-
-<!-- .gitignore -->
-<!--
-# Mac system files
-.DS_Store
-
-# Node or build tools (if added later)
-node_modules/
-dist/
-build/
-
-# Environment config (if added later)
-.env
--->
-
-
