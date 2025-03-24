@@ -130,13 +130,19 @@
 </head>
 <body>
   <header>
-  <h1>IT Infrastructure Vision</h1>
-  <p>Prepared for {company name} – Laying the foundation for secure, scalable growth 🚀</p>
-  <form id="login-form" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
-    <input type="email" name="email" placeholder="Email" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
-    <input type="password" name="password" placeholder="Password" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
-    <button type="submit">Log In 🔐</button>
-  </form>
+  <div style="display: flex; flex-direction: column; align-items: center; padding: 1rem; background-color: #004aad; color: white;">
+    <h1 style="margin-bottom: 0.5rem;">IT Infrastructure Vision</h1>
+    <p style="margin-top: 0;">Prepared for {company name} – Laying the foundation for secure, scalable growth 🚀</p>
+    <div id="demo-bar" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; align-items: center;">
+      <form id="login-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+        <input type="email" name="email" placeholder="Email" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
+        <input type="password" name="password" placeholder="Password" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: #ffffff; color: #004aad; font-weight: bold; border: none; cursor: pointer;">Log In 🔐</button>
+      </form>
+      <button onclick="location.href='#client-demo'" style="background: white; color: #004aad; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: bold;">Dashboard</button>
+      <button onclick="location.href='#coverage-slider'" style="background: white; color: #004aad; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: bold;">Premium Estimator</button>
+    </div>
+  </div>
 </header>
 
   <section>
@@ -338,3 +344,4 @@
 </script>
 </body>
 </html>
+
