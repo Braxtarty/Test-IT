@@ -361,18 +361,7 @@ function handleMenuJump(value) {
   if (value) location.href = value;
 }
 
-// Dark mode toggle
 
-
-let darkMode = false;
-toggle.addEventListener('click', () => {
-  darkMode = !darkMode;
-  document.body.style.backgroundColor = darkMode ? '#111' : '#f0f4f8';
-  document.body.style.color = darkMode ? '#eee' : '#333';
-  document.querySelectorAll('section').forEach(s => {
-    s.style.backgroundColor = darkMode ? '#1c1c1c' : 'white';
-    s.style.color = darkMode ? '#eee' : '#333';
-  });
   document.querySelector('footer').style.color = darkMode ? '#aaa' : '#777';
 });
 </script>
