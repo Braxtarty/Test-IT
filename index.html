@@ -130,18 +130,25 @@
 </head>
 <body>
   <header>
-  <div style="display: flex; flex-direction: column; align-items: center; padding: 1rem; background-color: #004aad; color: white;">
-    <h1 style="margin-bottom: 0.5rem;">IT Infrastructure Vision</h1>
-    <p style="margin-top: 0;">Prepared for {company name} – Laying the foundation for secure, scalable growth 🚀</p>
-    <div id="demo-bar" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; align-items: center;">
-      <form id="login-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
-        <input type="email" name="email" placeholder="Email" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
-        <input type="password" name="password" placeholder="Password" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
-        <button type="submit" style="padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: #ffffff; color: #004aad; font-weight: bold; border: none; cursor: pointer;">Log In 🔐</button>
-      </form>
-      <button onclick="location.href='#client-demo'" style="background: white; color: #004aad; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: bold;">Dashboard</button>
-      <button onclick="location.href='#coverage-slider'" style="background: white; color: #004aad; padding: 0.5rem 1rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: bold;">Premium Estimator</button>
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background-color: #004aad; color: white; flex-wrap: wrap;">
+    <div>
+      <label for="demo-menu" style="font-weight: bold; margin-right: 0.5rem;">🔧 Tools:</label>
+      <select id="demo-menu" onchange="handleMenuJump(this.value)" style="padding: 0.5rem; border-radius: 0.5rem; border: none;">
+        <option value="">Select...</option>
+        <option value="#client-demo">Client Dashboard</option>
+        <option value="#coverage-slider">Premium Estimator</option>
+        <option value="#quote-form">Quote Form</option>
+      </select>
     </div>
+    <div style="text-align: center; flex: 1;">
+      <h1 style="margin: 0;">IT Infrastructure Vision</h1>
+      <p style="margin: 0.25rem 0 0; font-size: 0.9rem;">Prepared for {company name} – Laying the foundation for secure, scalable growth 🚀</p>
+    </div>
+    <form id="login-form" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+      <input type="email" name="email" placeholder="Email" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
+      <input type="password" name="password" placeholder="Password" required style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #ccc;">
+      <button type="submit" style="padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: #ffffff; color: #004aad; font-weight: bold; border: none; cursor: pointer;">Log In 🔐</button>
+    </form>
   </div>
 </header>
 
@@ -295,6 +302,9 @@
   document.getElementById("login-form").style.display = "flex";
   document.getElementById("login-form").reset();
 }
+function handleMenuJump(value) {
+  if (value) location.href = value;
+}
 </script>
 <script>
   // Quote form logic already exists
@@ -344,4 +354,3 @@
 </script>
 </body>
 </html>
-
