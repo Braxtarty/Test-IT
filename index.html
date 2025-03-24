@@ -342,42 +342,24 @@ function handleMenuJump(value) {
 });
 </script>
 <script>
-  // Quote form logic already exists
-
-  // Demo login logic
-  document.getElementById("login-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = this.email.value.trim();
-  const pass = this.password.value.trim();
-  if (email && pass) {
-    this.style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("client-demo").style.display = "block";
-    document.getElementById("client-demo").style.display = "block";
-    document.getElementById("dashboard-links").style.display = "flex";
-  } else {
-    alert("Please enter valid credentials (any input works for demo).");
-  }} else {
-      alert("Please enter valid credentials (any input works for demo).");
-    }
-  });
-
-  // Premium Estimator
-  window.addEventListener("DOMContentLoaded", () => {
+// Restore Premium Estimator functionality
+window.addEventListener("DOMContentLoaded", () => {
   const slider = document.getElementById("coverage-slider");
   const coverageDisplay = document.getElementById("coverage-display");
   const premiumDisplay = document.getElementById("premium-display");
 
   if (slider && coverageDisplay && premiumDisplay) {
-    function updatePremium() {
+    const updatePremium = () => {
       const coverage = parseInt(slider.value);
       const premium = Math.round(coverage * 0.0005);
       coverageDisplay.textContent = coverage.toLocaleString();
       premiumDisplay.textContent = premium;
-    }
+    };
 
     slider.addEventListener("input", updatePremium);
     updatePremium();
+  }
+});
   }
 });
 </script>
@@ -402,14 +384,20 @@ function handleMenuJump(value) {
 <script>
 function toggleUtilityBox() {
   const box = document.getElementById('utility-box');
-  const isHidden = window.getComputedStyle(box).display === 'none';
-
-  if (isHidden) {
+  if (box.style.display === 'none' || box.style.opacity === '0') {
     box.style.display = 'flex';
     requestAnimationFrame(() => {
       box.style.opacity = '1';
       box.style.transform = 'translateY(0)';
     });
+  } else {
+    box.style.opacity = '0';
+    box.style.transform = 'translateY(-10px)';
+    setTimeout(() => {
+      box.style.display = 'none';
+    }, 300);
+  }
+});
   } else {
     box.style.opacity = '0';
     box.style.transform = 'translateY(-10px)';
