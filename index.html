@@ -8,11 +8,12 @@
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
-    /* Disable horizontal scroll and remove default margin/padding */
+    /* Disable horizontal scroll and overscroll bounce */
     html, body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      overscroll-behavior: none; /* Helps reduce iOS bounce issues */
       width: 100%;
     }
 
@@ -218,11 +219,19 @@
   </style>
 </head>
 <body>
-  <!-- Prevent unwanted scroll on load -->
+  <!-- Prevent anchor jump by clearing hash and manual scroll top -->
   <script>
+    // Clear any existing hash to avoid jumping to anchors
+    window.location.hash = '';
+    
+    // Disable browser's built-in scroll restoration
     history.scrollRestoration = "manual";
+    
+    // Use a small timeout so iOS Safari can update the hash before we scroll
     window.addEventListener("load", () => {
-      window.scrollTo(0, 0);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 50);
     });
   </script>
   
@@ -253,7 +262,7 @@
       <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
         <button onclick="location.href='#client-demo'">Client Dashboard</button>
         <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
-        <button onclick="location.href='#quote-form'">Quote Form</button>
+        <button onclick="location.href='#quote-form-actual'">Quote Form</button>
         <button onclick="logoutDemoUser()">Sign Out</button>
       </div>
     </div>
@@ -330,7 +339,8 @@
       </section>
       
       <section>
-        <h2 id="quote-form">💬 Get a Quick Insurance Quote</h2>
+        <h2>💬 Get a Quick Insurance Quote</h2>
+        <!-- We removed id="quote-form" from the heading to avoid anchor jumps -->
         <form id="quote-form-actual" aria-label="Get a Quick Insurance Quote" role="form" style="display: flex; flex-direction: column; gap: 1rem;">
           <label for="name">Full Name:</label>
           <input type="text" id="name" name="name" required />
@@ -379,65 +389,6 @@
   </footer>
   
   <script>
-    // Disable browser's built-in scroll restoration
-    history.scrollRestoration = "manual";
-    
-    // Scroll to top on page load
-    window.addEventListener("load", function() {
-      window.scrollTo(0, 0);
-    });
-    
-    window.addEventListener("DOMContentLoaded", () => {
-      // Handle Quote Form Submission
-      const form = document.getElementById("quote-form-actual");
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = form.name.value.trim();
-        const age = form.age.value.trim();
-        const zip = form.zip.value.trim();
-        const coverage = form.coverage.value.trim();
-  
-        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
-  
-        let hasError = false;
-        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
-        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
-        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
-        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
-  
-        if (hasError) return;
-  
-        const data = { name, age, zip, coverage };
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-          alert("✅ Your quote request has been submitted successfully!");
-          form.reset();
-        } catch (error) {
-          alert("❌ There was a problem submitting your quote. Please try again later.");
-        }
-      });
-  
-      // Handle Premium Slider
-      const slider = document.getElementById("coverage-slider");
-      const coverageDisplay = document.getElementById("coverage-display");
-      const premiumDisplay = document.getElementById("premium-display");
-      if (slider && coverageDisplay && premiumDisplay) {
-        const updatePremium = () => {
-          const coverage = parseInt(slider.value);
-          const premium = Math.round(coverage * 0.0005);
-          coverageDisplay.textContent = coverage.toLocaleString();
-          premiumDisplay.textContent = premium;
-        };
-        slider.addEventListener("input", updatePremium);
-        updatePremium();
-      }
-    });
-    
     // Logout Demo User
     function logoutDemoUser() {
       document.getElementById("dashboard").style.display = "none";
@@ -503,6 +454,56 @@
         document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
       } else {
         alert("Please enter valid credentials (any input works for demo).");
+      }
+    });
+    
+    // Quote Form Submission & Premium Slider
+    window.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("quote-form-actual");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const age = form.age.value.trim();
+        const zip = form.zip.value.trim();
+        const coverage = form.coverage.value.trim();
+  
+        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
+  
+        let hasError = false;
+        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
+        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
+        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
+        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
+  
+        if (hasError) return;
+  
+        const data = { name, age, zip, coverage };
+        try {
+          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+          alert("✅ Your quote request has been submitted successfully!");
+          form.reset();
+        } catch (error) {
+          alert("❌ There was a problem submitting your quote. Please try again later.");
+        }
+      });
+      
+      const slider = document.getElementById("coverage-slider");
+      const coverageDisplay = document.getElementById("coverage-display");
+      const premiumDisplay = document.getElementById("premium-display");
+      if (slider && coverageDisplay && premiumDisplay) {
+        const updatePremium = () => {
+          const coverage = parseInt(slider.value);
+          const premium = Math.round(coverage * 0.0005);
+          coverageDisplay.textContent = coverage.toLocaleString();
+          premiumDisplay.textContent = premium;
+        };
+        slider.addEventListener("input", updatePremium);
+        updatePremium();
       }
     });
   </script>
