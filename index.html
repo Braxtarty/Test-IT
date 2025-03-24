@@ -6,30 +6,20 @@
   <title>IT Infrastructure Vision</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
-:root {
-  --card-bg: #ffffff;
-  --card-text: #333333;
-}
-body.dark-mode {
-  --background: #1a1a1a;
-  --text: #f0f0f0;
-  --white: #2c2c2c;
-  --card-bg: #2c2c2c;
-  --card-text: #f0f0f0;
-}
-@keyframes glow {
-  0% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
-  50% { box-shadow: 0 0 15px rgba(0, 74, 173, 1); }
-  100% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
-}
     :root {
       --primary-color: #004aad;
       --background: #f0f4f8;
       --text: #333;
       --white: #ffffff;
+      --card-bg: #ffffff;
+      --card-text: #333333;
     }
-    * {
-      box-sizing: border-box;
+    body.dark-mode {
+      --background: #1a1a1a;
+      --text: #f0f0f0;
+      --white: #2c2c2c;
+      --card-bg: #2c2c2c;
+      --card-text: #f0f0f0;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -58,9 +48,6 @@ body.dark-mode {
     h1, h2 {
       margin-top: 0;
     }
-    ul {
-      padding-left: 1.5rem;
-    }
     input {
       width: 100%;
       padding: 0.5rem;
@@ -81,46 +68,44 @@ body.dark-mode {
     button:hover {
       background-color: #00388a;
     }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
   </style>
 </head>
 <body>
-<script>
-function logoutDemoUser() {
-  document.getElementById("dashboard").style.display = "none";
-  document.getElementById("client-demo").style.display = "none";
-  document.getElementById("login-form").style.display = "flex";
-  document.getElementById("dashboard-links").style.display = "none";
-  document.getElementById("utility-welcome").style.display = "none";
-  document.getElementById("dashboard-email").textContent = "Demo User";
-  document.getElementById("dashboard-greeting").textContent = "";
-  document.getElementById("login-form").reset();
-  const utilityBox = document.getElementById("utility-box");
-  if (utilityBox.style.display === 'none') toggleUtilityBox();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  <header>
+    <h1>IT Infrastructure Vision</h1>
+    <p>Laying the foundation for secure, scalable growth 🚀</p>
+  </header>
 
-function toggleUtilityBox() {
-  const box = document.getElementById('utility-box');
-  if (box.style.display === 'none' || box.style.opacity === '0') {
-    box.style.display = 'flex';
-    requestAnimationFrame(() => {
-      box.style.opacity = '1';
-      box.style.transform = 'translateY(0)';
-    });
-  } else {
-    box.style.opacity = '0';
-    box.style.transform = 'translateY(-10px)';
-    setTimeout(() => {
-      box.style.display = 'none';
-    }, 300);
-  }
-}
-</script>
+  <section id="login-form">
+    <h2>Log In</h2>
+    <input type="email" placeholder="Email" id="email" required>
+    <input type="password" placeholder="Password" id="password" required>
+    <button onclick="loginDemoUser()">Log In 🔐</button>
+  </section>
+
+  <section id="dashboard" style="display:none">
+    <h2 id="dashboard-greeting">Hello!</h2>
+    <p id="dashboard-email"></p>
+    <button onclick="logoutDemoUser()">Sign Out</button>
+  </section>
+
+  <script>
+    function logoutDemoUser() {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("login-form").style.display = "block";
+      document.getElementById("dashboard-email").textContent = "";
+      document.getElementById("dashboard-greeting").textContent = "";
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
+    }
+
+    function loginDemoUser() {
+      const email = document.getElementById("email").value;
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+      document.getElementById("dashboard-greeting").textContent = `Hello, ${email.split("@")[0]} 👋`;
+      document.getElementById("dashboard-email").textContent = email;
+    }
+  </script>
 </body>
 </html>
