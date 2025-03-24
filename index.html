@@ -265,6 +265,7 @@ body.dark-mode {
     <div style="display:flex; align-items:center; gap:1rem;">
       <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=demo" alt="avatar" width="50" height="50" style="border-radius:50%;">
       <h3>📋 Client Dashboard</h3>
+<p id="dashboard-email" style="font-style: italic; margin: 0;"></p>
     </div>
     $1
 <p style="margin-top: 1.5rem;">Life insurance offers peace of mind and protects what matters most. With your personal client dashboard, you’ll be able to view documents securely, manage your coverage, and receive timely updates from your agent — all in one place. Convenience and clarity are at your fingertips.</p>
@@ -342,13 +343,14 @@ $1
   document.getElementById("client-demo").style.display = "none";
   document.getElementById("login-form").style.display = "flex";
   document.getElementById("dashboard-links").style.display = "none";
-document.getElementById("login-form").style.display = "flex";
   document.getElementById("utility-welcome").style.display = "none";
   document.getElementById("dashboard-email").textContent = "Demo User";
   document.getElementById("dashboard-greeting").textContent = "";
   document.getElementById("login-form").reset();
   const utilityBox = document.getElementById("utility-box");
-  if (utilityBox.style.display === 'none') toggleUtilityBox();
+  utilityBox.style.display = 'flex';
+  utilityBox.style.opacity = '1';
+  utilityBox.style.transform = 'translateY(0)';
 }
 function handleMenuJump(value) {
   if (value) location.href = value;
