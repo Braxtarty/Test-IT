@@ -8,6 +8,17 @@
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
+    /* Use ashbld1.jpg as the background */
+    body {
+      background: url('ashbld1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
     /* Combined Root Variables */
     :root {
       --primary-color: #004aad;
@@ -32,13 +43,9 @@
       box-sizing: border-box;
     }
     
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--background);
-      margin: 0;
-      padding: 0;
-      color: var(--text);
-      line-height: 1.6;
+    /* Apply text border (via text-shadow) to enhance legibility */
+    body, h1, h2, p, li, label, button, input, a {
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
     
     header {
@@ -63,7 +70,7 @@
       display: inline-block;
       border: 2px solid var(--white);
       animation: glow 2s infinite alternate;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
       box-shadow: 0 0 10px rgba(0,74,173,0.4);
     }
     .header-subtitle {
@@ -406,7 +413,7 @@
       document.getElementById("login-form").reset();
     }
   
-    // Removed duplicate handleMenuJump; only one remains
+    // Only one handleMenuJump function remains
     function handleMenuJump(value) {
       if (value) location.href = value;
     }
