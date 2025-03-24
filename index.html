@@ -200,6 +200,16 @@
     </ul>
   </section>
 
+  <section>
+    <h2>💸 Try Our Premium Estimator</h2>
+    <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto;">
+      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
+      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000">
+      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+    </div>
+  </section>
+
   <section id="client-demo">
     <h2>🔐 Demo Client Portal Login</h2>
     <form id="login-form" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: auto;">
@@ -219,11 +229,10 @@
     </div>
   </section>
 
- <section class="diagram">
-  <h2>📊 Visual Overview</h2>
-  <img src="getli.gif" alt="Animated Infrastructure Overview"
-    style="width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; border-radius: 1rem;">
-</section>
+  <section class="diagram">
+    <h2>📊 Visual Overview</h2>
+    <img src="getli.gif" alt="Animated Infrastructure Overview" style="width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; border-radius: 1rem;">
+  </section>
 
   <footer>
     Built with ❤️ by Braxtarty – Ready to future-proof our IT.
@@ -285,6 +294,35 @@
     } else {
       alert("Please enter valid credentials (any input works for demo).");
     }
+  });
+</script>
+<script>
+  // Quote form logic already exists
+
+  // Demo login logic
+  document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = this.email.value.trim();
+    const pass = this.password.value.trim();
+
+    if (email && pass) {
+      this.style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    } else {
+      alert("Please enter valid credentials (any input works for demo).");
+    }
+  });
+
+  // Premium Estimator
+  const slider = document.getElementById("coverage-slider");
+  const coverageDisplay = document.getElementById("coverage-display");
+  const premiumDisplay = document.getElementById("premium-display");
+
+  slider.addEventListener("input", () => {
+    const coverage = parseInt(slider.value);
+    const premium = Math.round(coverage * 0.0005); // just a demo multiplier
+    coverageDisplay.textContent = coverage.toLocaleString();
+    premiumDisplay.textContent = premium;
   });
 </script>
 </body>
