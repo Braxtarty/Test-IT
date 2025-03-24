@@ -77,19 +77,52 @@
       font-size: 0.9rem;
       color: #777;
     }
+    .toggle-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+    }
+    .collapsible {
+      background-color: var(--primary-color);
+      color: white;
+      cursor: pointer;
+      padding: 1rem;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+      border-radius: 0.5rem;
+    }
+    .content {
+      display: none;
+      overflow: hidden;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      background: var(--card-bg);
+      color: var(--card-text);
+    }
   </style>
 </head>
 <body>
+  <div class="toggle-container">
+    <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+  </div>
   <header>
     <h1>IT Infrastructure Vision</h1>
     <p>Laying the foundation for secure, scalable growth 🚀</p>
   </header>
 
-  <section id="login-form">
-    <h2>Log In</h2>
-    <input type="email" placeholder="Email" id="email" required>
-    <input type="password" placeholder="Password" id="password" required>
-    <button onclick="loginDemoUser()">Log In 🔐</button>
+  <section>
+    <button class="collapsible">🔐 Click to Log In</button>
+    <div class="content" id="login-form">
+      <input type="email" placeholder="Email" id="email" required>
+      <input type="password" placeholder="Password" id="password" required>
+      <button onclick="loginDemoUser()">Log In 🔐</button>
+    </div>
   </section>
 
   <section id="dashboard" style="display:none">
@@ -129,6 +162,16 @@
   </footer>
 
   <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    const collapsible = document.querySelector(".collapsible");
+    const content = document.querySelector(".content");
+    collapsible.addEventListener("click", () => {
+      content.style.display = content.style.display === "block" ? "none" : "block";
+    });
+
     function loginDemoUser() {
       const email = document.getElementById("email").value.trim();
       const pass = document.getElementById("password").value.trim();
