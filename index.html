@@ -91,7 +91,6 @@
       color: white;
       cursor: pointer;
       padding: 1rem;
-      width: 100%;
       text-align: left;
       border: none;
       outline: none;
@@ -102,11 +101,16 @@
       display: none;
       overflow: hidden;
       padding: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 0.5rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: #000;
       margin-top: 1rem;
-      background: var(--card-bg);
-      color: var(--card-text);
+      width: 300px;
+      position: absolute;
+      top: 7rem;
+      right: 1rem;
+      z-index: 999;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
     .diagram img {
       max-width: 100%;
@@ -117,12 +121,18 @@
       margin: 0 auto;
     }
     #dashboard {
-      background-image: url('ashbld1.jpg');
       background-size: cover;
       background-position: center;
       color: white;
       border-radius: 1rem;
       padding: 2rem;
+      background-image: url('ashbld1.jpg');
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    #dashboard.active {
+      background-image: none;
+      background-color: var(--card-bg);
+      color: var(--card-text);
     }
   </style>
 </head>
@@ -142,15 +152,24 @@
     <button onclick="loginDemoUser()">Log In 🔐</button>
   </div>
 
-  <section id="dashboard" style="display:none">
-    <h2 id="dashboard-greeting">Hello!</h2>
-    <p id="dashboard-email"></p>
-    <p>
-      Life insurance can provide financial security for loved ones, help cover final expenses,
-      and even supplement retirement income. With a modern client portal, users gain 24/7 access to their policy,
-      updates from their agent, and peace of mind knowing their information is secure and easy to manage.
-    </p>
-    <button id="signout-btn" onclick="logoutDemoUser()">Sign Out</button>
+  <section id="dashboard">
+    <div id="dashboard-inner" style="display:none">
+      <h2 id="dashboard-greeting">Hello!</h2>
+      <p id="dashboard-email"></p>
+      <p>
+        Life insurance can provide financial security for loved ones, help cover final expenses,
+        and even supplement retirement income. With a modern client portal, users gain 24/7 access to their policy,
+        updates from their agent, and peace of mind knowing their information is secure and easy to manage.
+      </p>
+      <button id="signout-btn" onclick="logoutDemoUser()">Sign Out</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>🛣️ Roadmap to Growth</h2>
+    <p><strong>Year 1:</strong> Build smart with SaaS tools, serverless functions, and a secure cloud-first stack. Emphasize multi-state compliance and client communication.</p>
+    <p><strong>Year 2:</strong> Introduce automation, scale cloud resources as needed, integrate APIs that boost ROI, and analyze customer insights to drive growth.</p>
+    <p><strong>Why it Matters:</strong> Multi-state expansion = broader market + resilience. Start lean, scale smart, serve well. ⚙️🌎📈</p>
   </section>
 
   <section>
@@ -183,7 +202,8 @@
       const pass = document.getElementById("password").value.trim();
       if (email && pass) {
         document.getElementById("login-form").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("dashboard-inner").style.display = "block";
+        document.getElementById("dashboard").classList.add("active");
         document.getElementById("dashboard-email").textContent = email;
         document.getElementById("dashboard-greeting").textContent = `Hey ${email.split('@')[0]}, Jeff knows what's up!`;
       } else {
@@ -194,17 +214,14 @@
     function logoutDemoUser() {
       const loginForm = document.getElementById("login-form");
       const dashboard = document.getElementById("dashboard");
-      const emailField = document.getElementById("email");
-      const passField = document.getElementById("password");
-      const emailLabel = document.getElementById("dashboard-email");
-      const greet = document.getElementById("dashboard-greeting");
-
-      if (dashboard) dashboard.style.display = "none";
-      if (loginForm) loginForm.style.display = "block";
-      if (emailLabel) emailLabel.textContent = "";
-      if (greet) greet.textContent = "Hello!";
-      if (emailField) emailField.value = "";
-      if (passField) passField.value = "";
+      const dashboardInner = document.getElementById("dashboard-inner");
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("dashboard-email").textContent = "";
+      document.getElementById("dashboard-greeting").textContent = "Hello!";
+      loginForm.style.display = "block";
+      dashboardInner.style.display = "none";
+      dashboard.classList.remove("active");
     }
 
     window.addEventListener("DOMContentLoaded", () => {
