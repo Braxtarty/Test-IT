@@ -41,11 +41,10 @@
       line-height: 1.6;
       position: relative;
     }
-    /* Remove background image from body so we use a pseudo-element */
+    /* Use a fixed background image via pseudo-element */
     body {
       color: var(--text);
     }
-    /* Background image on a fixed pseudo-element */
     body::before {
       content: "";
       position: fixed;
@@ -57,7 +56,7 @@
       background-size: cover;
       z-index: -2;
     }
-    /* On mobile, apply a filter to improve clarity */
+    /* Mobile: apply filter for improved clarity */
     @media (max-width: 600px) {
       body::before {
         filter: contrast(1.1) brightness(1.05);
@@ -97,7 +96,7 @@
     /*----------------------------------------------*/
     header {
       position: relative;
-      background: rgba(0, 74, 173, 0.75); /* Slightly more transparent */
+      background: rgba(0, 74, 173, 0.75);
       padding: 2rem 1rem;
       text-align: center;
     }
@@ -273,6 +272,11 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 0.85rem;
+    }
     
     /*----------------------------------------------*/
     /*         Utility FAB (Hamburger)              */
@@ -400,7 +404,6 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" button toggles the utility box -->
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
@@ -460,7 +463,7 @@
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
   
-  <!-- Footer Section with email attachment link -->
+  <!-- Footer Section with Email Attachment Link -->
   <footer>
     <div class="container">
       Built with ❤️ by Braxton – Ready to future‑proof our IT.
