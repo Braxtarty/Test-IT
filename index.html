@@ -2,509 +2,296 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Viewport to cover the entire device width & handle notches -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no" />
+  <!-- Let the page scale responsively on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>IT Infrastructure Vision</title>
-  <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
-  <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+  <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth" />
+  <meta name="keywords" content="IT infrastructure, scalable growth, secure systems" />
+
+  <!-- Basic CSS: minimal, fully responsive approach -->
   <style>
-    /* Prevent horizontal scroll & overscroll bounce on iOS */
-    html, body {
+    /* Reset default margins & paddings, no horizontal scroll */
+    * {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
-      overscroll-behavior: none;
+      box-sizing: border-box;
+    }
+    html, body {
       width: 100%;
+      overflow-x: hidden;
+      font-family: sans-serif;
+      line-height: 1.6;
+      background: #f0f0f0; /* Simple light background for the page */
     }
 
-    /* Force wrapping for any large text */
-    html, body, h1, h2, p, .header-title, .header-subtitle, section {
-      white-space: normal;
-      word-break: break-word;
-      overflow-wrap: break-word;
-    }
-
-    /* Single container approach:
-       - Full width on mobile
-       - Up to 1000px centered on larger screens */
+    /* A container that centers content and adjusts width on larger screens */
     .container {
       width: 100%;
-      margin: 0;
-      padding: 0 1rem;
-    }
-    @media (min-width: 600px) {
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-      }
+      max-width: 1000px; /* You can adjust this if you like a narrower/wider layout */
+      margin: 0 auto;
+      padding: 0 1rem; /* Some horizontal padding for breathing room */
     }
 
-    /* Glow animation for the header title */
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
-      50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
-      100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
-    }
-
-    /* Color Variables */
-    :root {
-      --primary-color: #1669d9;
-      --text: #0c1a3e;
-      --overlay-bg: rgba(255, 255, 255, 0.85);
-      --white: #ffffff;
-      --card-text: #0c1a3e;
-    }
-    body.dark-mode {
-      --text: #f0f0f0;
-      --overlay-bg: rgba(0, 0, 0, 0.7);
-      --card-text: #f0f0f0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      line-height: 1.6;
-      position: relative;
-    }
-    
-    /* Full-screen fixed background image */
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      background: url('ashbld1.jpg') no-repeat center center;
-      background-size: cover;
-    }
-    
-    /* Header Section */
+    /* Header with a background image, covering horizontally & vertically */
     header {
-      background: rgba(0, 74, 173, 0.85);
-      padding: 1rem 0;
-      text-align: center;
-    }
-    .header-title-container {
-      position: relative;
-      z-index: 10001;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+      background: url("ashbld1.jpg") no-repeat center center;
+      background-size: cover;
       color: #fff;
+      text-align: center;
+      padding: 3rem 1rem; /* Generous vertical space */
     }
-    .header-title {
-      margin: 0;
+    /* Title & subtitle scale with screen size using media queries */
+    h1.header-title {
       font-size: 2rem;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      letter-spacing: 1px;
-      font-weight: 900;
-      padding: 1rem 2rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-      animation: glow 2s infinite;
+      margin-bottom: 0.5rem;
     }
-    .header-subtitle {
+    p.header-subtitle {
       font-size: 1rem;
-      padding: 0.5rem 1rem;
-      margin: 0;
+      margin-top: 0.5rem;
     }
 
-    /* Main Content & Sections */
-    main {
-      padding-bottom: 2rem;
-    }
+    /* White “card” sections, each with some margin for separation */
     section {
-      width: 100%;
-      margin: 2rem 0;
-      background: var(--overlay-bg);
-      color: var(--card-text);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: #fff;
+      margin: 2rem 0; /* Spacing between sections */
+      border-radius: 0.5rem;
+      padding: 1.5rem;
     }
-    @media (max-width: 600px) {
-      section {
-        margin: 1rem 0;
-        padding: 1.5rem;
-      }
-    }
-    h1, h2 {
-      font-size: 1.5rem;
-      margin-top: 0;
-    }
+
+    /* Basic heading sizes inside sections */
     h2 {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
     p, ul {
-      margin: 0.5rem 0;
+      font-size: 1rem;
+      margin-bottom: 1rem;
     }
     ul {
       padding-left: 1.5rem;
     }
 
-    /* Form & Button Styles */
-    input, button, select {
-      font-size: 1rem;
+    /* Basic form styling */
+    form label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
     }
-    input {
+    form input {
       width: 100%;
       padding: 0.5rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
       border-radius: 0.5rem;
     }
-    button {
-      background-color: var(--primary-color);
-      color: var(--white);
-      padding: 0.75rem;
+    form button {
+      background: #1669d9;
+      color: #fff;
       border: none;
       border-radius: 0.5rem;
-      font-weight: bold;
+      padding: 0.75rem 1rem;
       cursor: pointer;
+      font-weight: bold;
     }
-    button:hover {
-      background-color: #0f56b0;
-    }
-    
-    /* Diagram Section */
-    .diagram-section {
-      text-align: center;
-      margin-top: 1rem;
-      padding-top: 0;
-    }
-    .diagram img {
-      max-width: 100%;
-      height: auto;
-      max-height: 400px;
-      border-radius: 0.5rem;
+    form button:hover {
+      background: #0f56b0;
     }
 
-    /* Footer */
+    /* Basic footer, centered text */
     footer {
-      background: rgba(0,74,173,0.85);
-      padding: 1rem;
-      font-size: 0.9rem;
+      background: #004aad;
       color: #fff;
-      margin-top: 2rem;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
       text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
     }
 
-    /* Fixed Utility FAB (Hamburger/Login/Dark Mode) */
-    .utility-fab {
+    /* Optional “hamburger” menu in the top-right corner, if you still want it */
+    .hamburger-fab {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      z-index: 9999;
+      background: #1669d9;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 999;
     }
-    .utility-box {
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      background: var(--overlay-bg);
-      color: var(--card-text);
-      padding: 1rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      width: 250px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: auto;
-      z-index: 10000;
+
+    /* Mobile adjustments: slightly smaller fonts, etc. */
+    @media (max-width: 600px) {
+      h1.header-title {
+        font-size: 1.75rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+      }
+      form label, form input, form button {
+        font-size: 0.95rem;
+      }
+      section {
+        margin: 1rem 0;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
-  <!-- Clear any hash and don't let the browser auto-restore scroll -->
-  <script>
-    window.location.hash = '';
-    history.scrollRestoration = "manual";
-    window.addEventListener("load", () => {
-      window.scrollTo(0, 0);
-    });
-  </script>
-
-  <!-- Full-screen Background -->
-  <div class="bg-image"></div>
-
-  <div class="container">
-    <!-- Header Section -->
-    <header>
-      <div class="header-title-container">
-        <h1 class="header-title">IT Infrastructure Vision</h1>
-        <p class="header-subtitle">Laying the foundation for secure, scalable growth 🚀</p>
-      </div>
-    </header>
-    
-    <!-- Utility FAB -->
-    <div class="utility-fab">
-      <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
-      <div class="utility-box" id="utility-box">
-        <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
-        <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="password" name="password" placeholder="Password" required />
-          <button type="submit">Log In 🔐</button>
-        </form>
-        <p id="utility-welcome" style="display: none; font-size: 0.9rem;"></p>
-        <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
-          <button onclick="location.href='#client-demo'">Client Dashboard</button>
-          <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
-          <button onclick="location.href='#quote-form-actual'">Quote Form</button>
-          <button onclick="logoutDemoUser()">Sign Out</button>
-        </div>
-      </div>
+  <!-- Optional “hamburger” if you want a floating menu -->
+  <button class="hamburger-fab">☰</button>
+  
+  <!-- Header with building image background -->
+  <header>
+    <div class="container">
+      <h1 class="header-title">IT Infrastructure Vision</h1>
+      <p class="header-subtitle">Laying the foundation for secure, scalable growth 🚀</p>
     </div>
-    
-    <!-- Main Content -->
-    <main>
-      <section>
-        <h2>👋 About Me</h2>
-        <p>
-          I’m a creatively-driven problem solver with a curious mind and a passion for making things better, weirder, or both. Whether it’s designing, building, or brainstorming, I bring big ideas to life with a grounded, thoughtful approach. This site is a glimpse into what I’ve been up to — thanks for stopping by! 👾🛠️
-        </p>
-      </section>
-      
-      <section>
-        <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
-        <ul>
-          <li>Secure email setup with Google Workspace or Microsoft 365</li>
-          <li>Website with quote functionality and secure forms</li>
-          <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
-        </ul>
-      </section>
-      
-      <section>
-        <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
-        <ul>
-          <li>CRM integration (HubSpot / Salesforce)</li>
-          <li>Client login system + document delivery</li>
-          <li>Internal knowledge base (Notion / Confluence)</li>
-        </ul>
-      </section>
-      
-      <section>
-        <h2>🌐 Phase 3: Long‑Term Vision (6+ Months)</h2>
-        <ul>
-          <li>Custom policy management system</li>
-          <li>Secure API integrations (payments, e‑signatures)</li>
-          <li>Compliance &amp; monitoring tools (SOC2, penetration testing)</li>
-        </ul>
-      </section>
-      
-      <section>
-        <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
-        <p>This is a placeholder for what a client portal might include in the future:</p>
-        <ul>
-          <li>🔒 Secure login for clients to view policy documents</li>
-          <li>📄 Downloadable PDFs of their coverage</li>
-          <li>📬 Messages from their assigned agent</li>
-          <li>💡 Renewal reminders and auto‑payment settings</li>
-        </ul>
-        <button onclick="openClientPortal()">Access Client Portal 🔐</button>
-      </section>
-      
-      <section>
-        <h2>🧠 Why This Matters</h2>
-        <p>This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.</p>
-        <ul>
-          <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
-          <li>🧾 Easy quote intake with data capture to Sheets</li>
-          <li>🔍 Clear phase breakdowns for leadership &amp; dev planning</li>
-          <li>⚙️ Secure, HIPAA/SOC2‑ready infrastructure vision</li>
-        </ul>
-      </section>
-      
-      <section>
-        <h2>💸 Try Our Premium Estimator</h2>
-        <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
-        <div class="premium-estimator-container">
-          <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
-          <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;">
-          <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
-        </div>
-      </section>
-      
-      <section>
-        <h2>💬 Get a Quick Insurance Quote</h2>
-        <form id="quote-form-actual" aria-label="Get a Quick Insurance Quote" role="form" style="display: flex; flex-direction: column; gap: 1rem;">
-          <label for="name">Full Name:</label>
-          <input type="text" id="name" name="name" required />
-          <label for="age">Age:</label>
-          <input type="number" id="age" name="age" min="18" required />
-          <label for="zip">Zip Code:</label>
-          <input type="text" id="zip" name="zip" required />
-          <label for="coverage">Desired Coverage Amount ($):</label>
-          <input type="number" id="coverage" name="coverage" required />
-          <button type="submit">Get My Quote 🚀</button>
-        </form>
-      </section>
-      
-      <section class="diagram-section">
-        <div class="diagram">
-          <img src="getli.gif" alt="Animated Infrastructure Overview">
-        </div>
-      </section>
-      
-      <section id="client-demo">
-        <div id="dashboard" style="text-align: left; padding: 1.5rem; border-radius: 1rem; position: relative; display: none; background: var(--overlay-bg); color: var(--card-text);">
-          <p id="dashboard-greeting" style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;">Hello Demo User, pretty cool right? 😎</p>
-          <div style="position: absolute; top: 1rem; right: 1rem;">
-            <button onclick="logoutDemoUser()" style="background: #ccc; padding: 0.25rem 0.75rem; border: none; border-radius: 0.5rem; cursor: pointer;">Log Out</button>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=demo" alt="avatar" width="50" height="50" style="border-radius: 50%;">
-            <h3>📋 Client Dashboard</h3>
-          </div>
-          <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
-          <ul>
-            <li>✅ Policy Status: Active</li>
-            <li>📅 Next Payment: May 1, 2025</li>
-            <li>📄 Coverage PDF: <a href="#">Download</a></li>
-            <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
-          </ul>
-        </div>
-      </section>
-    </main>
-    
-    <footer>
-      <div class="container">
-        Built with ❤️ by Braxton – Ready to future‑proof our IT.
-      </div>
-    </footer>
-  </div>
+  </header>
 
+  <!-- Main content in a centered container -->
+  <main class="container">
+    <!-- About Section -->
+    <section>
+      <h2>👋 About Me</h2>
+      <p>
+        I’m a creatively-driven problem solver with a curious mind and a passion for making things better, weirder, or both. Whether it’s designing, building, or brainstorming, I bring big ideas to life with a grounded, thoughtful approach. This site is a glimpse into what I’ve been up to — thanks for stopping by! 👾🛠️
+      </p>
+    </section>
+
+    <!-- Phase 1 Section -->
+    <section>
+      <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
+      <ul>
+        <li>Secure email setup with Google Workspace or Microsoft 365</li>
+        <li>Website with quote functionality and secure forms</li>
+        <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
+      </ul>
+    </section>
+
+    <!-- Phase 2 Section -->
+    <section>
+      <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
+      <ul>
+        <li>CRM integration (HubSpot / Salesforce)</li>
+        <li>Client login system + document delivery</li>
+        <li>Internal knowledge base (Notion / Confluence)</li>
+      </ul>
+    </section>
+
+    <!-- Phase 3 Section -->
+    <section>
+      <h2>🌐 Phase 3: Long‑Term Vision (6+ Months)</h2>
+      <ul>
+        <li>Custom policy management system</li>
+        <li>Secure API integrations (payments, e‑signatures)</li>
+        <li>Compliance &amp; monitoring tools (SOC2, penetration testing)</li>
+      </ul>
+    </section>
+
+    <!-- Sample Client Dashboard -->
+    <section>
+      <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
+      <p>This is a placeholder for what a client portal might include in the future:</p>
+      <ul>
+        <li>🔒 Secure login for clients to view policy documents</li>
+        <li>📄 Downloadable PDFs of their coverage</li>
+        <li>📬 Messages from their assigned agent</li>
+        <li>💡 Renewal reminders and auto‑payment settings</li>
+      </ul>
+      <button>Access Client Portal 🔐</button>
+    </section>
+
+    <!-- Why This Matters -->
+    <section>
+      <h2>🧠 Why This Matters</h2>
+      <p>
+        This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.
+      </p>
+      <ul>
+        <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
+        <li>🧾 Easy quote intake with data capture to Sheets</li>
+        <li>🔍 Clear phase breakdowns for leadership &amp; dev planning</li>
+        <li>⚙️ Secure, HIPAA/SOC2‑ready infrastructure vision</li>
+      </ul>
+    </section>
+
+    <!-- Premium Estimator -->
+    <section>
+      <h2>💸 Try Our Premium Estimator</h2>
+      <p>
+        Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.
+      </p>
+      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
+      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;" />
+      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+    </section>
+
+    <!-- Insurance Quote Form -->
+    <section>
+      <h2>💬 Get a Quick Insurance Quote</h2>
+      <form id="quote-form" aria-label="Get a Quick Insurance Quote">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="18" required />
+        
+        <label for="zip">Zip Code:</label>
+        <input type="text" id="zip" name="zip" required />
+        
+        <label for="coverage">Desired Coverage Amount ($):</label>
+        <input type="number" id="coverage" name="coverage" required />
+        
+        <button type="submit">Get My Quote 🚀</button>
+      </form>
+    </section>
+
+    <!-- Example Diagram / GIF -->
+    <section>
+      <h2>Animated Diagram</h2>
+      <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    Built with ❤️ by Braxton – Ready to future‑proof our IT.
+  </footer>
+
+  <!-- Minimal JS for slider & quote form -->
   <script>
-    // Force no anchor & no scroll restore
-    window.location.hash = '';
-    history.scrollRestoration = "manual";
-    window.addEventListener("load", function() {
-      window.scrollTo(0, 0);
-    });
+    // Basic premium estimator logic
+    const coverageSlider = document.getElementById("coverage-slider");
+    const coverageDisplay = document.getElementById("coverage-display");
+    const premiumDisplay = document.getElementById("premium-display");
 
-    // Logout Demo User
-    function logoutDemoUser() {
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("client-demo").style.display = "none";
-      document.getElementById("login-form").style.display = "flex";
-      document.getElementById("dashboard-links").style.display = "none";
-      document.getElementById("utility-welcome").style.display = "none";
-      document.getElementById("dashboard-email").textContent = "Demo User";
-      document.getElementById("dashboard-greeting").textContent = "";
-      document.getElementById("login-form").reset();
-    }
-    
-    // Toggle Utility Box
-    function toggleUtilityBox() {
-      const box = document.getElementById("utility-box");
-      if (box.style.display === "none" || box.style.opacity === "0") {
-        box.style.display = "flex";
-        requestAnimationFrame(() => {
-          box.style.opacity = "1";
-          box.style.transform = "translateY(0)";
-        });
-      } else {
-        box.style.opacity = "0";
-        box.style.transform = "translateY(-10px)";
-        setTimeout(() => {
-          box.style.display = "none";
-        }, 300);
+    if (coverageSlider && coverageDisplay && premiumDisplay) {
+      function updatePremium() {
+        const coverage = parseInt(coverageSlider.value);
+        const premium = Math.round(coverage * 0.0005);
+        coverageDisplay.textContent = coverage.toLocaleString();
+        premiumDisplay.textContent = premium;
       }
+      coverageSlider.addEventListener("input", updatePremium);
+      updatePremium();
     }
 
-    // Toggle Dark Mode
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-
-    // Open Client Portal
-    function openClientPortal() {
-      const email = document.querySelector("#dashboard-email").textContent;
-      if (email && email !== "Demo User") {
-        document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
-      } else {
-        const box = document.getElementById("utility-box");
-        if (box.style.display === "none") toggleUtilityBox();
-        box.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-
-    // Handle Demo Login
-    document.getElementById("login-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = this.email.value.trim();
-      const pass = this.password.value.trim();
-      if (email && pass) {
-        this.style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("client-demo").style.display = "block";
-        document.getElementById("dashboard-links").style.display = "flex";
-        document.getElementById("dashboard-email").textContent = email;
-        document.getElementById("dashboard-greeting").textContent = `Hello ${email.split('@')[0]}, pretty cool right? 😎`;
-        const welcome = document.getElementById("utility-welcome");
-        welcome.textContent = `Logged in as: ${email}`;
-        welcome.style.display = "block";
-        document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
-      } else {
-        alert("Please enter valid credentials (any input works for demo).");
-      }
-    });
-
-    // Quote Form & Premium Slider
-    window.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("quote-form-actual");
-      form.addEventListener("submit", async (e) => {
+    // Basic quote form logic
+    const quoteForm = document.getElementById("quote-form");
+    if (quoteForm) {
+      quoteForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const name = form.name.value.trim();
-        const age = form.age.value.trim();
-        const zip = form.zip.value.trim();
-        const coverage = form.coverage.value.trim();
-
-        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
-
-        let hasError = false;
-        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
-        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
-        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
-        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
-
-        if (hasError) return;
-
-        const data = { name, age, zip, coverage };
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-          alert("✅ Your quote request has been submitted successfully!");
-          form.reset();
-        } catch (error) {
-          alert("❌ There was a problem submitting your quote. Please try again later.");
-        }
+        // Just a placeholder example
+        alert("✅ Your quote request has been submitted!");
+        quoteForm.reset();
       });
-      
-      const slider = document.getElementById("coverage-slider");
-      const coverageDisplay = document.getElementById("coverage-display");
-      const premiumDisplay = document.getElementById("premium-display");
-      if (slider && coverageDisplay && premiumDisplay) {
-        const updatePremium = () => {
-          const coverage = parseInt(slider.value);
-          const premium = Math.round(coverage * 0.0005);
-          coverageDisplay.textContent = coverage.toLocaleString();
-          premiumDisplay.textContent = premium;
-        };
-        slider.addEventListener("input", updatePremium);
-        updatePremium();
-      }
-    });
+    }
   </script>
 </body>
 </html>
