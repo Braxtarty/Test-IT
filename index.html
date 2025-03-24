@@ -84,12 +84,14 @@
     <h1>IT Infrastructure Vision</h1>
     <p>Laying the foundation for secure, scalable growth 🚀</p>
   </header>
+
   <section id="login-form">
     <h2>Log In</h2>
     <input type="email" placeholder="Email" id="email" required>
     <input type="password" placeholder="Password" id="password" required>
     <button onclick="loginDemoUser()">Log In 🔐</button>
   </section>
+
   <section id="dashboard" style="display:none">
     <h2 id="dashboard-greeting">Hello!</h2>
     <p id="dashboard-email"></p>
@@ -100,9 +102,32 @@
     </p>
     <button id="signout-btn" onclick="logoutDemoUser()">Sign Out</button>
   </section>
+
+  <section>
+    <h2>💸 Try Our Premium Estimator</h2>
+    <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto;">
+      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
+      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000">
+      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>💬 Get a Quick Insurance Quote</h2>
+    <form id="quote-form" style="display: flex; flex-direction: column; gap: 1rem;">
+      <label>Full Name:<input type="text" name="name" required /></label>
+      <label>Age:<input type="number" name="age" min="18" required /></label>
+      <label>Zip Code:<input type="text" name="zip" required /></label>
+      <label>Desired Coverage Amount ($):<input type="number" name="coverage" required /></label>
+      <button type="submit">Get My Quote 🚀</button>
+    </form>
+  </section>
+
   <footer>
     Built with ❤️ by Braxton – Ready to future-proof our IT.
   </footer>
+
   <script>
     function loginDemoUser() {
       const email = document.getElementById("email").value.trim();
@@ -132,6 +157,60 @@
       if (emailField) emailField.value = "";
       if (passField) passField.value = "";
     }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const slider = document.getElementById("coverage-slider");
+      const coverageDisplay = document.getElementById("coverage-display");
+      const premiumDisplay = document.getElementById("premium-display");
+
+      if (slider && coverageDisplay && premiumDisplay) {
+        const updatePremium = () => {
+          const coverage = parseInt(slider.value);
+          const premium = Math.round(coverage * 0.0005);
+          coverageDisplay.textContent = coverage.toLocaleString();
+          premiumDisplay.textContent = premium;
+        };
+
+        slider.addEventListener("input", updatePremium);
+        updatePremium();
+      }
+
+      const form = document.getElementById("quote-form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = form.name.value.trim();
+        const age = form.age.value.trim();
+        const zip = form.zip.value.trim();
+        const coverage = form.coverage.value.trim();
+
+        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
+        let hasError = false;
+
+        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
+        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
+        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
+        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
+
+        if (hasError) return;
+
+        const data = { name, age, zip, coverage };
+
+        try {
+          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+
+          alert("✅ Your quote request has been submitted successfully!");
+          form.reset();
+        } catch (error) {
+          alert("❌ There was a problem submitting your quote. Please try again later.");
+        }
+      });
+    });
   </script>
 </body>
 </html>
