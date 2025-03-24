@@ -257,7 +257,7 @@ body.dark-mode {
 
   <section id="client-demo" style="display:none; margin-top: 1rem;">
   <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative; display: none;">
-  <p style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;" id="dashboard-greeting"></p>
+  <p style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;" id="dashboard-greeting">Hello Demo User, pretty cool right? 😎</p>
     <div style="position:absolute; top:1rem; right:1rem;">
       <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem; cursor:pointer;">Log Out</button>
     </div>
@@ -330,6 +330,8 @@ body.dark-mode {
   document.getElementById("login-form").style.display = "flex";
   document.getElementById("dashboard-links").style.display = "none";
   document.getElementById("utility-welcome").style.display = "none";
+  document.getElementById("dashboard-email").textContent = "Demo User";
+  document.getElementById("dashboard-greeting").textContent = "";
   document.getElementById("login-form").reset();
 }
 function handleMenuJump(value) {
