@@ -28,22 +28,26 @@
       margin: 0;
       padding: 0;
     }
+    /* Remove background from body so we can use the .bg-image div behind everything */
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
-      /* Building background behind everything */
-      background: url('ashbld1.jpg') no-repeat center center fixed;
-      background-size: cover;
       line-height: 1.6;
+      position: relative; /* So the .bg-image behind can stay fixed */
     }
-    
-    /* Mobile adjustments for background image */
-    @media (max-width: 600px) {
-      body {
-        background-attachment: scroll;
-        background-size: contain;
-        background-position: center top;
-      }
+
+    /* Full-screen, fixed background image behind all content */
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: url('ashbld1.jpg') no-repeat center center;
+      background-size: cover; 
+      /* If you still see zoom issues on certain mobile browsers,
+         try background-size: contain; or a media query override */
     }
     
     /* Header Section (normal flow, scrolls away) */
@@ -176,11 +180,16 @@
       form {
         justify-content: center;
       }
+      /* If you find the background is still too large on certain mobile browsers,
+         you could override .bg-image with background-size: contain here. */
     }
   </style>
 </head>
 <body>
-  <!-- Header Section (scrolls away) -->
+  <!-- Full-screen background image div -->
+  <div class="bg-image"></div>
+  
+  <!-- Header Section -->
   <header>
     <div class="header-title-container">
       <h1 class="header-title">IT Infrastructure Vision</h1>
