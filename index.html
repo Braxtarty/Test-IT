@@ -44,7 +44,7 @@
       line-height: 1.6;
     }
     
-    /* Header with Fixed Background Image */
+    /* Header with Full-Height, Fixed Background Image */
     header {
       position: relative;
       height: 100vh; /* Full viewport height */
@@ -52,12 +52,13 @@
       background-size: cover;
       text-align: center;
     }
-    
-    /* Header Content: Title & Subtitle with opaque backgrounds */
+    /* Center the title & subtitle within the header */
     .header-content {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
       padding: 0 1rem;
     }
     .header-title {
@@ -81,14 +82,9 @@
       display: inline-block;
     }
     
-    /* Main content wraps the rest of the page and overlaps the header */
+    /* Main content flows below the header normally */
     main {
-      position: relative;
-      z-index: 2;
       background: var(--background);
-      /* Negative top margin causes main content to overlap header */
-      margin-top: -50px;
-      padding-top: 50px;
     }
     
     section {
@@ -191,18 +187,14 @@
         margin: 1rem;
         padding: 1.5rem;
       }
-      header .header-content {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      form {
-        justify-content: center;
+      .header-content {
+        padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header Section with Fixed Background Image -->
+  <!-- Header Section with Full-Height, Fixed Background Image -->
   <header>
     <div class="header-content">
       <h1 class="header-title">IT Infrastructure Vision</h1>
@@ -212,10 +204,10 @@
   
   <!-- Main Content -->
   <main>
-    <!-- About Section Tailored for Jeff -->
+    <!-- About Section (Braxton, impressing Jeff) -->
     <section>
-      <h2>👋 About Jeff</h2>
-      <p>Jeff is pioneering a forward‑thinking approach to IT—focusing on innovative, secure, and scalable solutions that adapt to today’s dynamic business challenges.</p>
+      <h2>👋 About Braxton</h2>
+      <p>Braxton is pioneering a forward‑thinking approach to IT infrastructure—focusing on innovative, secure, and scalable solutions that adapt to today’s dynamic business challenges, in order to impress Jeff.</p>
     </section>
     
     <!-- Phase Sections -->
@@ -282,7 +274,7 @@
       </div>
     </section>
     
-    <!-- Insurance Quote (Moved Below Premium Estimator) -->
+    <!-- Insurance Quote -->
     <section>
       <h2>💬 Get a Quick Insurance Quote</h2>
       <form id="quote-form" aria-label="Get a Quick Insurance Quote" style="display: flex; flex-direction: column; gap: 1rem;">
@@ -331,7 +323,7 @@
     </section>
     
     <footer>
-      Built with ❤️ by Jeff – Ready to future‑proof our IT.
+      Built with ❤️ by Braxton – Ready to future‑proof our IT.
     </footer>
   </main>
   
