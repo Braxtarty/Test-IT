@@ -120,3 +120,151 @@
       right: 1rem;
       z-index: 9999;
     }
+
+    #utility-box {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      background: white;
+      color: black;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 250px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: auto;
+    }
+
+    #utility-box.show {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      section {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="utility-welcome"></div>
+
+  <div id="utility-fab">
+    <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
+    <div id="utility-box">
+      <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+      <form id="login-form">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Log In 🔐</button>
+      </form>
+      <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem;">
+        <button onclick="document.getElementById('client-demo').scrollIntoView({ behavior: 'smooth' })">Client Dashboard</button>
+        <button onclick="logoutDemoUser()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <h1 style="font-size: 2rem; animation: glow 2s infinite alternate; border: 2px solid white; padding: 0.75rem 1.25rem; border-radius: 0.75rem; background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2)); display: inline-block; box-shadow: 0 0 10px rgba(0,74,173,0.4); text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+      IT Infrastructure Vision
+    </h1>
+    <p>Laying the foundation for secure, scalable growth 🚀</p>
+  </header>
+
+  <section>
+    <h2>💸 Try Our Premium Estimator</h2>
+    <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin: auto;">
+      <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
+      <input type="range" id="coverage-slider" style="cursor: pointer;" min="10000" max="500000" step="10000" value="100000">
+      <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
+    </div>
+  </section>
+
+  <section id="client-demo" style="display:none;">
+    <div id="dashboard" style="display: none; background:#f9f9f9; padding:1.5rem; border-radius:1rem;">
+      <p id="dashboard-greeting" style="font-weight: bold; font-size: 1.1rem;"></p>
+      <h3>📋 Client Dashboard</h3>
+      <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
+      <ul>
+        <li>✅ Policy Status: Active</li>
+        <li>📅 Next Payment: May 1, 2025</li>
+        <li>📄 Coverage PDF: <a href="#">Download</a></li>
+        <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="diagram">
+    <h2>📊 Visual Overview</h2>
+    <img src="getli.gif" alt="Animated Infrastructure Overview">
+  </section>
+
+  <footer>
+    Built with ❤️ by Braxton – Ready to future-proof our IT.
+  </footer>
+
+  <script>
+    document.getElementById("coverage-slider").addEventListener("input", function () {
+      const coverage = parseInt(this.value);
+      const premium = Math.round(coverage * 0.0005);
+      document.getElementById("coverage-display").textContent = coverage.toLocaleString();
+      document.getElementById("premium-display").textContent = premium;
+    });
+
+    function toggleUtilityBox() {
+      const box = document.getElementById('utility-box');
+      box.classList.toggle('show');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = this.email.value.trim();
+      const pass = this.password.value.trim();
+      if (email && pass) {
+        this.style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("client-demo").style.display = "block";
+        document.getElementById("dashboard-links").style.display = "flex";
+
+        const userName = email.split('@')[0];
+        document.getElementById("dashboard-email").textContent = email;
+        document.getElementById("dashboard-greeting").textContent = `Hello ${userName}, pretty cool right? 😎`;
+
+        const welcome = document.getElementById("utility-welcome");
+        welcome.innerHTML = `💡 Welcome, <strong>${userName}</strong>! Life insurance brings peace of mind, protection for loved ones, and long-term security. You're taking the first step toward future-proofing your legacy.`;
+        welcome.style.display = "block";
+
+        document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert("Please enter valid credentials (any input works for demo).”);
+      }
+    });
+
+    function logoutDemoUser() {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("client-demo").style.display = "none";
+      const loginForm = document.getElementById("login-form");
+      loginForm.style.display = "flex";
+      loginForm.reset();
+      document.getElementById("dashboard-email").textContent = "Demo User";
+      document.getElementById("dashboard-greeting").textContent = "";
+      const welcome = document.getElementById("utility-welcome");
+      welcome.style.display = "none";
+      welcome.textContent = "";
+      document.getElementById("dashboard-links").style.display = "none";
+    }
+  </script>
+</body>
+</html>
