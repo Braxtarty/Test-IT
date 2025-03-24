@@ -31,9 +31,19 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
+      /* Building background behind everything */
       background: url('ashbld1.jpg') no-repeat center center fixed;
       background-size: cover;
       line-height: 1.6;
+    }
+    
+    /* Mobile adjustments for background image */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+        background-size: contain;
+        background-position: center top;
+      }
     }
     
     /* Header Section (normal flow, scrolls away) */
@@ -170,7 +180,7 @@
   </style>
 </head>
 <body>
-  <!-- Header Section (scrolls away with page) -->
+  <!-- Header Section (scrolls away) -->
   <header>
     <div class="header-title-container">
       <h1 class="header-title">IT Infrastructure Vision</h1>
@@ -178,7 +188,7 @@
     </div>
   </header>
   
-  <!-- Fixed Utility FAB (hamburger) that follows the user -->
+  <!-- Fixed Utility FAB (hamburger/login/darkmode) -->
   <div class="utility-fab">
     <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box" id="utility-box">
