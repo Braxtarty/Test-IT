@@ -191,6 +191,7 @@ body.dark-mode {
       <li>Website with quote functionality and secure forms</li>
       <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
     </ul>
+<p style="margin-top: 1rem;">Life insurance can provide financial security for loved ones, help cover final expenses, and even supplement retirement income. With a modern client portal, users gain 24/7 access to their policy, updates from their agent, and peace of mind knowing their information is secure and easy to manage.</p>
   </section>
 
   <section>
@@ -256,8 +257,8 @@ body.dark-mode {
   </section>
 
   <section id="client-demo" style="display:none; margin-top: 1rem;">
-  <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative; display: none;">
-  <p id="dashboard-greeting" style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem;"></p>
+  <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:2rem; border-radius:1rem; position:relative; display: none; font-size: 1.1rem; line-height: 1.7;">
+  <p id="dashboard-greeting" style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem; background: #e6f2ff; padding: 1rem; border-left: 4px solid #004aad; border-radius: 0.5rem;">Welcome! Let’s explore your insurance benefits.</p>
     <div style="position:absolute; top:1rem; right:1rem;">
       <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem; cursor:pointer;">Log Out</button>
     </div>
@@ -265,18 +266,30 @@ body.dark-mode {
       <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=demo" alt="avatar" width="50" height="50" style="border-radius:50%;">
       <h3>📋 Client Dashboard</h3>
     </div>
-    <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
-    <ul>
-      <li>✅ Policy Status: Active</li>
-      <li>📅 Next Payment: May 1, 2025</li>
-      <li>📄 Coverage PDF: <a href="#">Download</a></li>
-      <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
-    </ul>
+    $1
+<p style="margin-top: 1.5rem;">Life insurance offers peace of mind and protects what matters most. With your personal client dashboard, you’ll be able to view documents securely, manage your coverage, and receive timely updates from your agent — all in one place. Convenience and clarity are at your fingertips.</p>
   </div>
 </section>
 
-  <section class="diagram" style="margin-top: 1rem; padding-top: 0;">
-    <h2>📊 Visual Overview</h2>
+  <section>
+  <h2>🔒 Trusted & Secure</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem;">
+    <div style="flex: 1 1 150px; background: var(--card-bg); padding: 1rem; border-radius: 0.75rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;">
+      <p style="font-size: 2rem; margin: 0;">✔️</p>
+      <strong>HIPAA Compliant</strong>
+    </div>
+    <div style="flex: 1 1 150px; background: var(--card-bg); padding: 1rem; border-radius: 0.75rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;">
+      <p style="font-size: 2rem; margin: 0;">🔒</p>
+      <strong>SOC 2 Certified</strong>
+    </div>
+    <div style="flex: 1 1 150px; background: var(--card-bg); padding: 1rem; border-radius: 0.75rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;">
+      <p style="font-size: 2rem; margin: 0;">🛡️</p>
+      <strong>256-bit Encryption</strong>
+    </div>
+  </div>
+</section>
+
+$1
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="width: 100%; max-width: 400px; height: auto; display: block; margin: 0 auto; border-radius: 1rem;">
   </section>
 
@@ -329,10 +342,13 @@ body.dark-mode {
   document.getElementById("client-demo").style.display = "none";
   document.getElementById("login-form").style.display = "flex";
   document.getElementById("dashboard-links").style.display = "none";
+document.getElementById("login-form").style.display = "flex";
   document.getElementById("utility-welcome").style.display = "none";
   document.getElementById("dashboard-email").textContent = "Demo User";
   document.getElementById("dashboard-greeting").textContent = "";
   document.getElementById("login-form").reset();
+  const utilityBox = document.getElementById("utility-box");
+  if (utilityBox.style.display === 'none') toggleUtilityBox();
 }
 function handleMenuJump(value) {
   if (value) location.href = value;
