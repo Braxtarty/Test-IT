@@ -47,7 +47,7 @@
       background-size: cover;
       color: var(--text);
     }
-    /* For mobile, switch background-attachment to scroll for better clarity */
+    /* For mobile, switch to scroll attachment for improved clarity */
     @media (max-width: 600px) {
       body {
         background-attachment: scroll;
@@ -122,7 +122,7 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title wrapper with animated gradient border (blue & grey shades) */
+    /* Flashy title wrapper with animated gradient border (blue & grey) */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -178,41 +178,44 @@
     main {
       padding-bottom: 2rem;
     }
-    section {
+    /* Remove duplicate Phase sections; timeline will be the only roadmap display */
+    /*----------------------------------------------*/
+    
+    /*----------------------------------------------*/
+    /*            Interactive Timeline              */
+    /*----------------------------------------------*/
+    .timeline-section {
+      padding: 2rem 0;
+      /* No visible heading */
+    }
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .timeline-item {
+      background: rgba(255,255,255,0.7); /* Adjusted transparency */
+      padding: 1rem;
+      border-radius: 0.5rem;
       position: relative;
-      background: var(--overlay-bg);
-      color: var(--card-text);
-      padding: 2rem;
-      margin: 2rem 0;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: left;
     }
-    section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border: 2px solid rgba(255,255,255,0.6);
-      border-radius: 0.5rem;
-      pointer-events: none;
-      animation: glow 2s infinite;
+    .timeline-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
-    @media (max-width: 600px) {
-      section {
-        margin: 1rem 0;
-        padding: 1.5rem;
-      }
-    }
-    h1, h2 {
+    .timeline-item h3 {
       font-size: 1.5rem;
-      margin-top: 0;
+      margin-bottom: 0.5rem;
     }
-    h2 { font-size: 1.25rem; }
-    p, ul {
-      font-size: 1rem;
-      margin-bottom: 1rem;
+    .timeline-item ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      text-align: left;
     }
-    ul { padding-left: 1.5rem; }
     
     /*----------------------------------------------*/
     /*           Form & Button Styles               */
@@ -264,7 +267,6 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Email attachment link in footer */
     footer a {
       color: #fff;
       text-decoration: underline;
@@ -311,46 +313,6 @@
         font-size: 0.85rem;
       }
     }
-    
-    /*----------------------------------------------*/
-    /*            Interactive Timeline              */
-    /*----------------------------------------------*/
-    .timeline-section {
-      padding: 2rem 0;
-      text-align: center;
-    }
-    .timeline-section h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-    .timeline-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .timeline-item {
-      background: var(--overlay-bg);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      text-align: left;
-    }
-    .timeline-item.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .timeline-item h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-      text-align: left;
-    }
   </style>
 </head>
 <body>
@@ -378,13 +340,13 @@
     <button id="hamburger-btn" onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box hidden" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
-      <!-- Login form (shown before sign in) -->
+      <!-- Login form (visible before sign in) -->
       <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
         <input type="email" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Password" required />
         <button type="submit">Log In 🔐</button>
       </form>
-      <!-- User Info (shown after sign in) -->
+      <!-- User Info (visible after sign in) -->
       <div id="user-info" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
         <p id="user-text">Logged in as: <span id="user-name"></span></p>
         <button onclick="logoutDemoUser()">Sign Out</button>
@@ -401,36 +363,10 @@
       </p>
     </section>
     
-    <section>
-      <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
-      <ul>
-        <li>Professional Email: Secure, easy-to-use company emails (Google Workspace or Microsoft 365).</li>
-        <li>Company Website: User-friendly website for quotes and secure form submissions.</li>
-        <li>Cloud Storage &amp; Security: Set up secure cloud hosting (AWS or Azure) with version tracking (GitHub).</li>
-      </ul>
-    </section>
+    <!-- Remove duplicate Phase sections; only interactive timeline remains -->
     
-    <section>
-      <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
-      <ul>
-        <li>Customer Relationship System: Integrate tools like HubSpot or Salesforce for client tracking.</li>
-        <li>Client Portal: Secure login for customers to view documents and policy information.</li>
-        <li>Team Knowledge Hub: Create an internal resource center (Notion or Confluence) for your team.</li>
-      </ul>
-    </section>
-    
-    <section>
-      <h2>🌐 Phase 3: Advanced Operations (6+ Months)</h2>
-      <ul>
-        <li>Policy Management System: Develop a custom platform to manage insurance policies.</li>
-        <li>Secure Payments &amp; Signatures: Integrate online payment systems and digital signatures securely.</li>
-        <li>Compliance &amp; Security: Implement regular monitoring, SOC2 compliance checks, and security testing.</li>
-      </ul>
-    </section>
-    
-    <!-- Interactive Timeline Section -->
+    <!-- Interactive Timeline (no visible title) -->
     <section id="interactive-timeline" class="timeline-section">
-      <h2>Interactive Timeline</h2>
       <div class="timeline-container">
         <div class="timeline-item">
           <h3>🚀 Phase 1: Essential Setup (First 3 Months)</h3>
@@ -616,15 +552,13 @@
     const timelineItems = document.querySelectorAll('.timeline-item');
     const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.5 });
-    timelineItems.forEach(item => {
-      observer.observe(item);
-    });
+    timelineItems.forEach(item => observer.observe(item));
     
     // Prevent unwanted scroll restoration.
     window.location.hash = '';
@@ -632,9 +566,8 @@
     window.addEventListener("load", () => { window.scrollTo(0, 0); });
   </script>
   
-  <!-- Interactive Timeline Section -->
+  <!-- Interactive Timeline Section (without a heading) -->
   <section id="interactive-timeline" class="timeline-section">
-    <h2>Interactive Timeline</h2>
     <div class="timeline-container">
       <div class="timeline-item">
         <h3>🚀 Phase 1: Essential Setup (First 3 Months)</h3>
@@ -662,45 +595,5 @@
       </div>
     </div>
   </section>
-  
-  <style>
-    /* Interactive Timeline Styles */
-    .timeline-section {
-      padding: 2rem 0;
-      text-align: center;
-    }
-    .timeline-section h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-    }
-    .timeline-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .timeline-item {
-      background: var(--overlay-bg);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      position: relative;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      text-align: left;
-    }
-    .timeline-item.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .timeline-item h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-      text-align: left;
-    }
-  </style>
 </body>
 </html>
