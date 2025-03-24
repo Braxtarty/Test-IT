@@ -29,6 +29,11 @@
       100% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -98,96 +103,20 @@
       border-radius: 0.5rem;
     }
 
-    footer {
+    #utility-welcome {
+      display: none;
       text-align: center;
       padding: 1rem;
-      font-size: 0.9rem;
-      color: #777;
+      font-size: 1.1rem;
+      background-color: #e6f2ff;
+      color: #004aad;
+      font-weight: bold;
+      animation: fadeIn 0.6s ease-out forwards;
     }
 
-    @media (max-width: 600px) {
-      section {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
+    #utility-fab {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 9999;
     }
-  </style>
-</head>
-<body>
-  <div id="utility-welcome" style="display: none; text-align: center; padding: 1rem; font-size: 1.1rem; background-color: #e6f2ff; color: #004aad; font-weight: bold;"></div>
-
-  <header>
-    <h1 style="font-size: 2rem; animation: glow 2s infinite alternate; border: 2px solid white; padding: 0.75rem 1.25rem; border-radius: 0.75rem; background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2)); display: inline-block; box-shadow: 0 0 10px rgba(0,74,173,0.4); text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
-      IT Infrastructure Vision
-    </h1>
-    <p>Laying the foundation for secure, scalable growth 🚀</p>
-  </header>
-
-  <section>
-    <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem; max-width: 400px; margin: auto;">
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Log In 🔐</button>
-    </form>
-  </section>
-
-  <section id="client-demo" style="display:none;">
-    <div id="dashboard" style="display: none; background:#f9f9f9; padding:1.5rem; border-radius:1rem;">
-      <p id="dashboard-greeting" style="font-weight: bold; font-size: 1.1rem;"></p>
-      <div style="text-align:right;">
-        <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem;">Log Out</button>
-      </div>
-      <h3>📋 Client Dashboard</h3>
-      <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
-      <ul>
-        <li>✅ Policy Status: Active</li>
-        <li>📅 Next Payment: May 1, 2025</li>
-        <li>📄 Coverage PDF: <a href="#">Download</a></li>
-        <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    Built with ❤️ by Braxton – Ready to future-proof our IT.
-  </footer>
-
-  <script>
-    document.getElementById("login-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = this.email.value.trim();
-      const pass = this.password.value.trim();
-      if (email && pass) {
-        this.style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("client-demo").style.display = "block";
-
-        const userName = email.split('@')[0];
-        document.getElementById("dashboard-email").textContent = email;
-        document.getElementById("dashboard-greeting").textContent = `Hello ${userName}, pretty cool right? 😎`;
-
-        const welcome = document.getElementById("utility-welcome");
-        welcome.innerHTML = `💡 Welcome, <strong>${userName}</strong>! Life insurance brings peace of mind, protection for loved ones, and long-term security. You're taking the first step toward future-proofing your legacy.`;
-        welcome.style.display = "block";
-
-        document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert("Please enter valid credentials (any input works for demo).”);
-      }
-    });
-
-    function logoutDemoUser() {
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("client-demo").style.display = "none";
-      const loginForm = document.getElementById("login-form");
-      loginForm.style.display = "flex";
-      loginForm.reset();
-      document.getElementById("dashboard-email").textContent = "Demo User";
-      document.getElementById("dashboard-greeting").textContent = "";
-      const welcome = document.getElementById("utility-welcome");
-      welcome.style.display = "none";
-      welcome.textContent = "";
-    }
-  </script>
-</body>
-</html>
