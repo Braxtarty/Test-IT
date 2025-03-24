@@ -8,6 +8,19 @@
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
+    /* Container to center header/footer content */
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+    }
+
     /* Keyframes for glowing effect on title */
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
@@ -15,25 +28,17 @@
       100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
     }
     
-    /* Container to center content on all sections */
-    .container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    
     /* Light/Dark Color Variables */
     :root {
-      --primary-color: #1669d9;                /* Sky-inspired primary */
-      --text: #0c1a3e;                         /* Deep navy text in light mode */
+      --primary-color: #1669d9; /* Sky-inspired primary */
+      --text: #0c1a3e;          /* Deep navy text in light mode */
       --overlay-bg: rgba(255, 255, 255, 0.85); /* Semi-transparent white for sections */
       --white: #ffffff;
-      --card-text: #0c1a3e;                   /* Dark text inside semi-transparent sections */
+      --card-text: #0c1a3e;
     }
     body.dark-mode {
-      --text: #f0f0f0;                        /* Light text in dark mode */
-      --overlay-bg: rgba(0, 0, 0, 0.7);       /* Semi-transparent black for sections */
+      --text: #f0f0f0;
+      --overlay-bg: rgba(0, 0, 0, 0.7);
       --card-text: #f0f0f0;
     }
     
@@ -50,7 +55,7 @@
       position: relative;
     }
     
-    /* Full-screen, fixed background image */
+    /* Full-screen fixed background image */
     .bg-image {
       position: fixed;
       top: 0;
@@ -59,18 +64,18 @@
       bottom: 0;
       z-index: -1;
       background: url('ashbld1.jpg') no-repeat center center;
-      background-size: cover; 
+      background-size: cover;
     }
     
-    /* Header Section (normal flow, scrolls away) */
+    /* Header Section */
     header {
-      background: rgba(0, 74, 173, 0.85); /* Dark, semi-transparent blue */
+      background: rgba(0, 74, 173, 0.85); /* Dark semi-transparent blue */
       padding: 1rem 0;
       text-align: center;
     }
     .header-title-container {
       position: relative;
-      z-index: 10001; /* Raised above the fixed hamburger */
+      z-index: 10001; /* Ensure it sits above the fixed hamburger */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -81,18 +86,19 @@
       margin: 0;
       font-size: 2rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      letter-spacing: 0.5px;
-      font-weight: bold; /* Increased boldness */
-      padding: 1rem 1.5rem; /* Increased inner margin for breathing room */
+      letter-spacing: 1px; /* Increased letter spacing */
+      font-weight: 900;    /* More bold */
+      padding: 1rem 2rem;   /* Extra horizontal padding */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
       animation: glow 2s infinite;
     }
     .header-subtitle {
       margin: 0;
       font-size: 1rem;
-      padding: 0.5rem 1rem; /* Some padding to match the title */
+      padding: 0.5rem 1rem;
     }
     
-    /* Main Content */
+    /* Main Content Sections */
     main {
       padding-bottom: 2rem;
     }
@@ -139,7 +145,7 @@
       background-color: #0f56b0;
     }
     
-    /* Diagram (GIF) Section */
+    /* Diagram Section */
     .diagram-section {
       text-align: center;
       margin-top: 1rem;
@@ -195,6 +201,7 @@
     @media (max-width: 600px) {
       .header-title {
         font-size: 1.5rem;
+        padding: 0.75rem 1.5rem; /* Adjust slightly for mobile if needed */
       }
       .header-subtitle {
         font-size: 0.85rem;
@@ -364,6 +371,11 @@
   </footer>
   
   <script>
+    // Scroll to top on page load to prevent refreshing at the quote section
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+    
     window.addEventListener('DOMContentLoaded', () => {
       // Handle Quote Form Submission
       const form = document.getElementById("quote-form");
