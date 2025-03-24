@@ -305,6 +305,27 @@
 function handleMenuJump(value) {
   if (value) location.href = value;
 }
+function handleMenuJump(value) {
+  if (value) location.href = value;
+}
+
+// Dark mode toggle
+const toggle = document.createElement('button');
+toggle.textContent = '🌙 Toggle Dark Mode';
+toggle.style.cssText = 'margin-left: 1rem; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: white; color: #004aad; font-weight: bold; border: none; cursor: pointer;';
+document.querySelector('header div').appendChild(toggle);
+
+let darkMode = false;
+toggle.addEventListener('click', () => {
+  darkMode = !darkMode;
+  document.body.style.backgroundColor = darkMode ? '#111' : '#f0f4f8';
+  document.body.style.color = darkMode ? '#eee' : '#333';
+  document.querySelectorAll('section').forEach(s => {
+    s.style.backgroundColor = darkMode ? '#1c1c1c' : 'white';
+    s.style.color = darkMode ? '#eee' : '#333';
+  });
+  document.querySelector('footer').style.color = darkMode ? '#aaa' : '#777';
+});
 </script>
 <script>
   // Quote form logic already exists
