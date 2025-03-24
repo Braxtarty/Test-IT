@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport settings -->
+  <!-- Responsive viewport with device-fit -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-
   <style>
     /*----------------------------------------------*/
-    /*        CSS Variables                         */
+    /*      Consolidated CSS Variables              */
     /*----------------------------------------------*/
     :root {
       --primary-color: #1669d9;
@@ -27,7 +26,7 @@
     }
 
     /*----------------------------------------------*/
-    /*          Global Reset & Settings             */
+    /*      Global Reset & Base Styles              */
     /*----------------------------------------------*/
     * {
       margin: 0;
@@ -40,7 +39,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image on body */
+    /* Background image on body */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -48,19 +47,24 @@
       position: relative;
     }
     @media (max-width: 600px) {
-      /* On mobile, use scroll for background to avoid fuzziness */
+      /* On mobile, use scroll instead of fixed for sharper display */
       body {
         background-attachment: scroll;
       }
     }
 
     /*----------------------------------------------*/
-    /*         Container for Alignment              */
+    /*      Container for Consistent Alignment      */
     /*----------------------------------------------*/
     .container {
       width: 100%;
       margin: 0 auto;
       padding: 0 1rem;
+    }
+    @media (min-width: 600px) {
+      .container {
+        max-width: 1000px;
+      }
     }
     @media (max-width: 600px) {
       .container {
@@ -69,7 +73,7 @@
     }
 
     /*----------------------------------------------*/
-    /*            Animated Glow Effect              */
+    /*      Animated Glow Effect (for borders)       */
     /*----------------------------------------------*/
     @keyframes glow {
       0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
@@ -78,7 +82,7 @@
     }
 
     /*----------------------------------------------*/
-    /*              Header Section                  */
+    /*               Header Section                 */
     /*----------------------------------------------*/
     header {
       position: relative;
@@ -86,11 +90,26 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* Animated border for header */
+    /* Animated watermark watermark in header */
+    header::after {
+      content: "INSURANCE";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-size: 6rem;
+      color: rgba(255,255,255,0.05);
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Animated border around header */
     header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       border: 3px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
@@ -104,7 +123,6 @@
       align-items: center;
       gap: 0.5rem;
       color: #fff;
-      /* No extra right padding so text stays centered */
     }
     .header-title {
       font-size: 2rem;
@@ -122,7 +140,7 @@
     }
 
     /*----------------------------------------------*/
-    /*            White Card Sections               */
+    /*         White Card Sections & Animated Borders */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -137,11 +155,13 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
     }
-    /* Animated border for sections */
     section::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       border: 2px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
@@ -195,6 +215,10 @@
     form button:hover {
       background: #0f56b0;
     }
+    /* Make the slider stretch across the container */
+    input[type="range"] {
+      width: 100%;
+    }
 
     /*----------------------------------------------*/
     /*                   Footer                     */
@@ -213,7 +237,10 @@
     footer::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       border: 2px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
       pointer-events: none;
@@ -221,7 +248,7 @@
     }
 
     /*----------------------------------------------*/
-    /*          Utility FAB (Hamburger)             */
+    /*           Utility FAB (Hamburger)            */
     /*----------------------------------------------*/
     .utility-fab {
       position: fixed;
@@ -259,7 +286,7 @@
   </style>
 </head>
 <body>
-  <!-- Clear any saved anchor & force scroll to top -->
+  <!-- Clear any saved anchor & force scroll to top on load -->
   <script>
     window.location.hash = '';
     history.scrollRestoration = "manual";
@@ -268,7 +295,7 @@
     });
   </script>
   
-  <!-- Header Section with Blue Overlay and Animated Border -->
+  <!-- Header Section -->
   <header>
     <div class="container">
       <div class="header-title-container">
@@ -280,6 +307,7 @@
   
   <!-- Fixed Utility FAB (Hamburger/Login/Dark Mode) -->
   <div class="utility-fab">
+    <!-- When clicked, this will open the utility box -->
     <button onclick="openClientPortal()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
@@ -343,7 +371,7 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- This button will now call openClientPortal() to open the hamburger menu -->
+      <!-- This button now opens the utility box for sign-in -->
       <button onclick="openClientPortal()">Access Client Portal 🔐</button>
     </section>
     
@@ -366,7 +394,7 @@
         Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.
       </p>
       <label for="coverage-slider">Coverage Amount: $<span id="coverage-display">100,000</span></label>
-      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;" />
+      <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" />
       <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
     </section>
     
@@ -375,12 +403,16 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
+        
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
+        
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
+        
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
+        
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
@@ -391,7 +423,7 @@
     </section>
   </main>
   
-  <!-- Footer -->
+  <!-- Footer Section -->
   <footer>
     <div class="container">
       Built with ❤️ by Braxton – Ready to future‑proof our IT.
@@ -399,7 +431,7 @@
   </footer>
   
   <script>
-    // Open the utility box if not open, or scroll to it if open.
+    // Open the utility box for sign-in when Access Client Portal is clicked
     function openClientPortal() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -409,7 +441,7 @@
       }
     }
     
-    // Toggle the utility box (hamburger menu) visibility.
+    // Toggle Utility Box visibility
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (box.style.display === "none" || box.style.opacity === "0") {
@@ -427,7 +459,7 @@
       }
     }
     
-    // Toggle dark mode
+    // Toggle Dark Mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
