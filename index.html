@@ -369,21 +369,23 @@ function handleMenuJump(value) {
   const premiumDisplay = document.getElementById("premium-display");
 
   if (slider && coverageDisplay && premiumDisplay) {
-    const updatePremium = () => {
+    function updatePremium() {
       const coverage = parseInt(slider.value);
       const premium = Math.round(coverage * 0.0005);
       coverageDisplay.textContent = coverage.toLocaleString();
       premiumDisplay.textContent = premium;
-    };
+    }
 
     slider.addEventListener("input", updatePremium);
+    updatePremium();
+  }
     updatePremium(); // Initialize on load
   }
 });
 </script>
 <div id="utility-fab" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
   <button onclick="toggleUtilityBox()" style="$1" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
-  <div id="utility-box" style="display: none; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px; transition: all 0.3s ease; opacity: 0; transform: translateY(-10px);">
+  <div id="utility-box" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px; transition: all 0.3s ease; opacity: 0; transform: translateY(-10px); z-index: 10000;">
     <button onclick="toggleDarkMode()" style="margin-bottom: 1rem; background: #eee; color: #333; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer;">🌓 Toggle Dark Mode</button>
     <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
       <input type="email" name="email" placeholder="Email" required />
