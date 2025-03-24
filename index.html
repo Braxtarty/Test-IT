@@ -6,263 +6,188 @@
   <title>IT Infrastructure Vision</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
-:root {
-  --primary-color: #004aad;
-  --background: #f0f4f8;
-  --text: #333;
-  --white: #ffffff;
-  --card-bg: #ffffff;
-  --card-text: #333333;
-}
+    :root {
+      --primary-color: #004aad;
+      --background: #f0f4f8;
+      --text: #333;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --card-text: #333333;
+    }
 
-body.dark-mode {
-  --background: #1a1a1a;
-  --text: #f0f0f0;
-  --white: #2c2c2c;
-  --card-bg: #2c2c2c;
-  --card-text: #f0f0f0;
-}
+    body.dark-mode {
+      --background: #1a1a1a;
+      --text: #f0f0f0;
+      --white: #2c2c2c;
+      --card-bg: #2c2c2c;
+      --card-text: #f0f0f0;
+    }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
-  50% { box-shadow: 0 0 15px rgba(0, 74, 173, 1); }
-  100% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
-}
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
+      50% { box-shadow: 0 0 15px rgba(0, 74, 173, 1); }
+      100% { box-shadow: 0 0 5px rgba(0, 74, 173, 0.6); }
+    }
 
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  margin: 0;
-  padding: 0;
-  color: var(--text);
-  line-height: 1.6;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-header {
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 2rem 1rem;
-  text-align: center;
-}
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
 
-section {
-  width: 100%;
-  max-width: 1000px;
-  margin: 2rem auto;
-  background: var(--card-bg);
-  color: var(--card-text);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+    section {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: var(--card-bg);
+      color: var(--card-text);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-h1, h2 {
-  margin-top: 0;
-}
+    h1, h2 {
+      margin-top: 0;
+    }
 
-ul {
-  padding-left: 1.5rem;
-}
+    ul {
+      padding-left: 1.5rem;
+    }
 
-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-}
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
 
-button {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1rem;
-}
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
 
-button:hover {
-  background-color: #00388a;
-}
+    button:hover {
+      background-color: #00388a;
+    }
 
-.diagram img {
-  max-width: 100%;
-  height: auto;
-  max-height: 400px;
-  border-radius: 0.5rem;
-}
+    .diagram img {
+      max-width: 100%;
+      height: auto;
+      max-height: 400px;
+      border-radius: 0.5rem;
+    }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: #777;
-}
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
 
-@media (max-width: 600px) {
-  section {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-  }
-}
+    @media (max-width: 600px) {
+      section {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1 style="font-size: 2rem; animation: glow 2s infinite alternate; border: 2px solid white; padding: 0.75rem 1.25rem; border-radius: 0.75rem; background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2)); display: inline-block; box-shadow: 0 0 10px rgba(0,74,173,0.4); text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
-    IT Infrastructure Vision
-  </h1>
-  <p>Laying the foundation for secure, scalable growth 🚀</p>
-</header>
+  <div id="utility-welcome" style="display: none; text-align: center; padding: 1rem; font-size: 1.1rem; background-color: #e6f2ff; color: #004aad; font-weight: bold;"></div>
 
-<section>
-  <h2>👋 About Me</h2>
-  <p>I’m Braxton, stepping into the role of IT point person with a passion for building smart, secure, and scalable systems. This micro-site outlines the initial vision for transforming our IT from the ground up.</p>
-</section>
+  <header>
+    <h1 style="font-size: 2rem; animation: glow 2s infinite alternate; border: 2px solid white; padding: 0.75rem 1.25rem; border-radius: 0.75rem; background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2)); display: inline-block; box-shadow: 0 0 10px rgba(0,74,173,0.4); text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+      IT Infrastructure Vision
+    </h1>
+    <p>Laying the foundation for secure, scalable growth 🚀</p>
+  </header>
 
-<section>
-  <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
-  <ul>
-    <li>Secure email setup with Google Workspace or Microsoft 365</li>
-    <li>Website with quote functionality and secure forms</li>
-    <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
-  </ul>
-</section>
+  <section>
+    <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem; max-width: 400px; margin: auto;">
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Log In 🔐</button>
+    </form>
+  </section>
 
-<section>
-  <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
-  <ul>
-    <li>CRM integration (HubSpot / Salesforce)</li>
-    <li>Client login system + document delivery</li>
-    <li>Internal knowledge base (Notion / Confluence)</li>
-  </ul>
-</section>
-
-<section>
-  <h2>🌐 Phase 3: Long-Term Vision (6+ Months)</h2>
-  <ul>
-    <li>Custom policy management system</li>
-    <li>Secure API integrations (payments, e-signatures)</li>
-    <li>Compliance & monitoring tools (SOC2, penetration testing)</li>
-  </ul>
-</section>
-
-<section>
-  <h2>💬 Get a Quick Insurance Quote</h2>
-  <form id="quote-form" style="display: flex; flex-direction: column; gap: 1rem;">
-    <label>Full Name:<input type="text" name="name" required /></label>
-    <label>Age:<input type="number" name="age" min="18" required /></label>
-    <label>Zip Code:<input type="text" name="zip" required /></label>
-    <label>Desired Coverage Amount ($):<input type="number" name="coverage" required /></label>
-    <button type="submit">Get My Quote 🚀</button>
-  </form>
-</section>
-
-<section>
-  <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
-  <button onclick="openClientPortal()">Access Client Portal 🔐</button>
-</section>
-
-<section id="client-demo" style="display:none;">
-  <div id="dashboard" style="display: none; background:#f9f9f9; padding:1.5rem; border-radius:1rem;">
-    <p id="dashboard-greeting" style="font-weight: bold; font-size: 1.1rem;"></p>
-    <div style="position:absolute; top:1rem; right:1rem;">
-      <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem;">Log Out</button>
+  <section id="client-demo" style="display:none;">
+    <div id="dashboard" style="display: none; background:#f9f9f9; padding:1.5rem; border-radius:1rem;">
+      <p id="dashboard-greeting" style="font-weight: bold; font-size: 1.1rem;"></p>
+      <div style="text-align:right;">
+        <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem;">Log Out</button>
+      </div>
+      <h3>📋 Client Dashboard</h3>
+      <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
+      <ul>
+        <li>✅ Policy Status: Active</li>
+        <li>📅 Next Payment: May 1, 2025</li>
+        <li>📄 Coverage PDF: <a href="#">Download</a></li>
+        <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
+      </ul>
     </div>
-    <h3>📋 Client Dashboard</h3>
-    <p>Welcome back, <strong id="dashboard-email">Demo User</strong>!</p>
-    <ul>
-      <li>✅ Policy Status: Active</li>
-      <li>📅 Next Payment: May 1, 2025</li>
-      <li>📄 Coverage PDF: <a href="#">Download</a></li>
-      <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
-    </ul>
-  </div>
-</section>
+  </section>
 
-<section class="diagram">
-  <h2>📊 Visual Overview</h2>
-  <img src="getli.gif" alt="Animated Infrastructure Overview">
-</section>
+  <footer>
+    Built with ❤️ by Braxton – Ready to future-proof our IT.
+  </footer>
 
-<footer>
-  Built with ❤️ by Braxton – Ready to future-proof our IT.
-</footer>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = this.email.value.trim();
+      const pass = this.password.value.trim();
+      if (email && pass) {
+        this.style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("client-demo").style.display = "block";
 
-<script>
-document.getElementById("quote-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const form = this;
-  const name = form.name.value.trim();
-  const age = parseInt(form.age.value.trim());
-  const zip = form.zip.value.trim();
-  const coverage = parseInt(form.coverage.value.trim());
+        const userName = email.split('@')[0];
+        document.getElementById("dashboard-email").textContent = email;
+        document.getElementById("dashboard-greeting").textContent = `Hello ${userName}, pretty cool right? 😎`;
 
-  let hasError = false;
-  form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
+        const welcome = document.getElementById("utility-welcome");
+        welcome.innerHTML = `💡 Welcome, <strong>${userName}</strong>! Life insurance brings peace of mind, protection for loved ones, and long-term security. You're taking the first step toward future-proofing your legacy.`;
+        welcome.style.display = "block";
 
-  if (!name) { form.name.style.borderColor = "red"; hasError = true; }
-  if (!age || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
-  if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
-  if (!coverage || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
-
-  if (hasError) return;
-
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, age, zip, coverage })
+        document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert("Please enter valid credentials (any input works for demo).”);
+      }
     });
-    alert("✅ Your quote request has been submitted successfully!");
-    form.reset();
-  } catch (err) {
-    alert("❌ Something went wrong. Please try again later.");
-  }
-});
 
-function logoutDemoUser() {
-  document.getElementById("dashboard").style.display = "none";
-  document.getElementById("client-demo").style.display = "none";
-  const loginForm = document.getElementById("login-form");
-  if (loginForm) {
-    loginForm.style.display = "flex";
-    loginForm.reset();
-  }
-  const welcome = document.getElementById("utility-welcome");
-  if (welcome) {
-    welcome.textContent = "";
-    welcome.style.display = "none";
-  }
-  const links = document.getElementById("dashboard-links");
-  if (links) links.style.display = "none";
-  document.getElementById("dashboard-email").textContent = "Demo User";
-  document.getElementById("dashboard-greeting").textContent = "";
-}
-
-function openClientPortal() {
-  const email = document.getElementById("dashboard-email").textContent;
-  if (email && email !== 'Demo User') {
-    document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
-  } else {
-    alert("Please log in to access the portal.");
-  }
-}
-</script>
+    function logoutDemoUser() {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("client-demo").style.display = "none";
+      const loginForm = document.getElementById("login-form");
+      loginForm.style.display = "flex";
+      loginForm.reset();
+      document.getElementById("dashboard-email").textContent = "Demo User";
+      document.getElementById("dashboard-greeting").textContent = "";
+      const welcome = document.getElementById("utility-welcome");
+      welcome.style.display = "none";
+      welcome.textContent = "";
+    }
+  </script>
 </body>
 </html>
