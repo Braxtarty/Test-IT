@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport -->
+  <!-- Responsive viewport with device-fit -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -41,26 +41,17 @@
       line-height: 1.6;
       position: relative;
     }
-    /* Remove background image from body so we use a pseudo-element */
+    /* Background image on body for both PC & mobile */
     body {
+      background: url("ashbld1.jpg") no-repeat center center fixed;
+      background-size: cover;
       color: var(--text);
     }
-    /* Background image on a fixed pseudo-element */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("ashbld1.jpg") no-repeat center center;
-      background-size: cover;
-      z-index: -2;
-    }
-    /* On mobile, apply a filter to improve clarity */
+    /* For mobile, switch background-attachment to scroll for better clarity */
     @media (max-width: 600px) {
-      body::before {
-        filter: contrast(1.1) brightness(1.05);
+      body {
+        background-attachment: scroll;
+        image-rendering: -webkit-optimize-contrast;
       }
     }
     
@@ -97,7 +88,7 @@
     /*----------------------------------------------*/
     header {
       position: relative;
-      background: rgba(0, 74, 173, 0.75); /* Slightly more transparent */
+      background: rgba(0, 74, 173, 0.75);
       padding: 2rem 1rem;
       text-align: center;
     }
@@ -131,7 +122,7 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title with animated gradient border in blue & grey */
+    /* Flashy title wrapper with animated gradient border (blue & grey shades) */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -273,6 +264,12 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
+    /* Email attachment link in footer */
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 0.85rem;
+    }
     
     /*----------------------------------------------*/
     /*         Utility FAB (Hamburger)              */
@@ -313,6 +310,46 @@
       .header-subtitle {
         font-size: 0.85rem;
       }
+    }
+    
+    /*----------------------------------------------*/
+    /*            Interactive Timeline              */
+    /*----------------------------------------------*/
+    .timeline-section {
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .timeline-section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .timeline-item {
+      background: var(--overlay-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: left;
+    }
+    .timeline-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-item ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      text-align: left;
     }
   </style>
 </head>
@@ -363,63 +400,63 @@
         I’m a creatively-driven problem solver with a curious mind and a passion for making things better, weirder, or both. Whether it’s designing, building, or brainstorming, I bring big ideas to life with a grounded, thoughtful approach. This site is a glimpse into what I’ve been up to — thanks for stopping by! 👾🛠️
       </p>
     </section>
-
-    <!-- Interactive Timeline Section -->
-<section id="timeline">
-  <h2>Interactive Timeline</h2>
-  <div class="timeline-container">
-    <div class="timeline-phase">
-      <h3>🚀 Phase 1: Essential Setup (First 3 Months)</h3>
-      <ul>
-        <li><strong>Professional Email:</strong> Secure, easy-to-use company emails (Google Workspace or Microsoft 365).</li>
-        <li><strong>Company Website:</strong> User-friendly website where clients can request quotes and submit forms securely.</li>
-        <li><strong>Cloud Storage &amp; Security:</strong> Set up secure cloud hosting (AWS or Azure) with version tracking (GitHub).</li>
-      </ul>
-    </div>
-    <div class="timeline-phase">
-      <h3>📈 Phase 2: Customer and Team Tools (3–6 Months)</h3>
-      <ul>
-        <li><strong>Customer Relationship System:</strong> Integrate tools like HubSpot or Salesforce to track and communicate with clients.</li>
-        <li><strong>Client Portal:</strong> Allow customers to log in and securely view documents and policy info.</li>
-        <li><strong>Team Knowledge Hub:</strong> Create an internal guide and resource center (using Notion or Confluence) for your team.</li>
-      </ul>
-    </div>
-    <div class="timeline-phase">
-      <h3>🌐 Phase 3: Advanced Operations (6+ Months)</h3>
-      <ul>
-        <li><strong>Policy Management System:</strong> Develop a custom platform to efficiently manage insurance policies.</li>
-        <li><strong>Secure Payments &amp; Signatures:</strong> Safely integrate online payment systems and digital signatures.</li>
-        <li><strong>Compliance &amp; Security:</strong> Regular monitoring, SOC2 compliance checks, and security testing.</li>
-      </ul>
-    </div>
-  </div>
-</section>
     
     <section>
       <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
       <ul>
-        <li>Secure email setup with Google Workspace or Microsoft 365</li>
-        <li>Website with quote functionality and secure forms</li>
-        <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
+        <li>Professional Email: Secure, easy-to-use company emails (Google Workspace or Microsoft 365).</li>
+        <li>Company Website: User-friendly website for quotes and secure form submissions.</li>
+        <li>Cloud Storage &amp; Security: Set up secure cloud hosting (AWS or Azure) with version tracking (GitHub).</li>
       </ul>
     </section>
     
     <section>
       <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
       <ul>
-        <li>CRM integration (HubSpot / Salesforce)</li>
-        <li>Client login system + document delivery</li>
-        <li>Internal knowledge base (Notion / Confluence)</li>
+        <li>Customer Relationship System: Integrate tools like HubSpot or Salesforce for client tracking.</li>
+        <li>Client Portal: Secure login for customers to view documents and policy information.</li>
+        <li>Team Knowledge Hub: Create an internal resource center (Notion or Confluence) for your team.</li>
       </ul>
     </section>
     
     <section>
-      <h2>🌐 Phase 3: Long‑Term Vision (6+ Months)</h2>
+      <h2>🌐 Phase 3: Advanced Operations (6+ Months)</h2>
       <ul>
-        <li>Custom policy management system</li>
-        <li>Secure API integrations (payments, e‑signatures)</li>
-        <li>Compliance &amp; monitoring tools (SOC2, penetration testing)</li>
+        <li>Policy Management System: Develop a custom platform to manage insurance policies.</li>
+        <li>Secure Payments &amp; Signatures: Integrate online payment systems and digital signatures securely.</li>
+        <li>Compliance &amp; Security: Implement regular monitoring, SOC2 compliance checks, and security testing.</li>
       </ul>
+    </section>
+    
+    <!-- Interactive Timeline Section -->
+    <section id="interactive-timeline" class="timeline-section">
+      <h2>Interactive Timeline</h2>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <h3>🚀 Phase 1: Essential Setup (First 3 Months)</h3>
+          <ul>
+            <li>Professional Email: Secure, easy-to-use company emails (Google Workspace or Microsoft 365).</li>
+            <li>Company Website: User-friendly website for quotes and secure form submissions.</li>
+            <li>Cloud Storage &amp; Security: Set up secure cloud hosting (AWS or Azure) with version tracking (GitHub).</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <h3>📈 Phase 2: Customer and Team Tools (3–6 Months)</h3>
+          <ul>
+            <li>Customer Relationship System: Integrate tools like HubSpot or Salesforce for client tracking.</li>
+            <li>Client Portal: Secure login for customers to view documents and policy information.</li>
+            <li>Team Knowledge Hub: Create an internal resource center (Notion or Confluence) for your team.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <h3>🌐 Phase 3: Advanced Operations (6+ Months)</h3>
+          <ul>
+            <li>Policy Management System: Develop a custom platform to manage insurance policies.</li>
+            <li>Secure Payments &amp; Signatures: Integrate online payment systems and digital signatures securely.</li>
+            <li>Compliance &amp; Security: Implement regular monitoring, SOC2 compliance checks, and security testing.</li>
+          </ul>
+        </div>
+      </div>
     </section>
     
     <section>
@@ -431,7 +468,6 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" button toggles the utility box -->
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
@@ -491,7 +527,7 @@
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
   
-  <!-- Footer Section with email attachment link -->
+  <!-- Footer Section with Email Attachment Link -->
   <footer>
     <div class="container">
       Built with ❤️ by Braxton – Ready to future‑proof our IT.
@@ -501,7 +537,7 @@
   </footer>
   
   <script>
-    // Toggle Utility Box using computed style and "hidden" class.
+    // Toggle Utility Box using computed style and a "hidden" class.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
@@ -576,10 +612,95 @@
       });
     }
     
+    // Interactive Timeline: Reveal timeline items on scroll.
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    timelineItems.forEach(item => {
+      observer.observe(item);
+    });
+    
     // Prevent unwanted scroll restoration.
     window.location.hash = '';
     history.scrollRestoration = "manual";
     window.addEventListener("load", () => { window.scrollTo(0, 0); });
   </script>
+  
+  <!-- Interactive Timeline Section -->
+  <section id="interactive-timeline" class="timeline-section">
+    <h2>Interactive Timeline</h2>
+    <div class="timeline-container">
+      <div class="timeline-item">
+        <h3>🚀 Phase 1: Essential Setup (First 3 Months)</h3>
+        <ul>
+          <li>Professional Email: Secure, easy-to-use company emails (Google Workspace or Microsoft 365).</li>
+          <li>Company Website: User-friendly website for quotes and secure form submissions.</li>
+          <li>Cloud Storage &amp; Security: Set up secure cloud hosting (AWS or Azure) with version tracking (GitHub).</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <h3>📈 Phase 2: Customer and Team Tools (3–6 Months)</h3>
+        <ul>
+          <li>Customer Relationship System: Integrate tools like HubSpot or Salesforce for client tracking.</li>
+          <li>Client Portal: Secure login for customers to view documents and policy information.</li>
+          <li>Team Knowledge Hub: Create an internal resource center (Notion or Confluence) for your team.</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <h3>🌐 Phase 3: Advanced Operations (6+ Months)</h3>
+        <ul>
+          <li>Policy Management System: Develop a custom platform to manage insurance policies.</li>
+          <li>Secure Payments &amp; Signatures: Integrate online payment systems and digital signatures securely.</li>
+          <li>Compliance &amp; Security: Implement regular monitoring, SOC2 compliance checks, and security testing.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    /* Interactive Timeline Styles */
+    .timeline-section {
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .timeline-section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .timeline-item {
+      background: var(--overlay-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: left;
+    }
+    .timeline-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .timeline-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-item ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      text-align: left;
+    }
+  </style>
 </body>
 </html>
