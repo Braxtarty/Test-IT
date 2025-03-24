@@ -439,7 +439,9 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
   if (email && pass) {
     this.style.display = "none";
     document.getElementById("dashboard").style.display = "block";
+    document.getElementById("client-demo").style.display = "block";
     document.getElementById("dashboard-links").style.display = "flex";
+    document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
   } else {
     alert("Please enter valid credentials (any input works for demo).");
   }
