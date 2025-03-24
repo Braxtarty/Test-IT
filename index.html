@@ -157,6 +157,7 @@
   </style>
 </head>
 <body>
+<section id="client-demo" style="display:none; margin-top: 1rem;"></section>
   <header>
   <div style="background-color: #004aad; color: white; padding: 2rem 1rem; text-align: center;">
     <h1 style="font-size: 2rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; letter-spacing: 0.5px;">✨ IT Infrastructure Vision ✨</h1>
@@ -240,8 +241,8 @@
     </div>
   </section>
 
-  <section id="client-demo" style="margin-top: 0;">
-  <div id="dashboard" style="display:none; text-align:left; margin-top:2rem; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative;">
+  <section id="client-demo" style="display:none; margin-top: 1rem;">
+  <div id="dashboard" style="text-align:left; background:#f9f9f9; padding:1.5rem; border-radius:1rem; position:relative;">
     <div style="position:absolute; top:1rem; right:1rem;">
       <button onclick="logoutDemoUser()" style="background:#ccc; padding:0.25rem 0.75rem; border:none; border-radius:0.5rem; cursor:pointer;">Log Out</button>
     </div>
@@ -249,16 +250,15 @@
       <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=demo" alt="avatar" width="50" height="50" style="border-radius:50%;">
       <h3>📋 Client Dashboard</h3>
     </div>
-      <h3>📋 Client Dashboard</h3>
-      <p>Welcome back, <strong>Demo User</strong>!</p>
-      <ul>
-        <li>✅ Policy Status: Active</li>
-        <li>📅 Next Payment: May 1, 2025</li>
-        <li>📄 Coverage PDF: <a href="#">Download</a></li>
-        <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
-      </ul>
-    </div>
-  </section>
+    <p>Welcome back, <strong>Demo User</strong>!</p>
+    <ul>
+      <li>✅ Policy Status: Active</li>
+      <li>📅 Next Payment: May 1, 2025</li>
+      <li>📄 Coverage PDF: <a href="#">Download</a></li>
+      <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
+    </ul>
+  </div>
+</section>
 
   <section class="diagram" style="margin-top: 1rem; padding-top: 0;">
     <h2>📊 Visual Overview</h2>
@@ -311,7 +311,9 @@
     });
   function logoutDemoUser() {
   document.getElementById("dashboard").style.display = "none";
+  document.getElementById("client-demo").style.display = "none";
   document.getElementById("login-form").style.display = "flex";
+  document.getElementById("dashboard-links").style.display = "none";
   document.getElementById("login-form").reset();
 }
 function handleMenuJump(value) {
@@ -329,14 +331,8 @@ function handleMenuJump(value) {
   // Quote form logic already exists
 
   // Demo login logic
-  document.getElementById("login-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const email = this.email.value.trim();
-    const pass = this.password.value.trim();
-
-    if (email && pass) {
-      this.style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
+  document.getElementById("login-form").addEventListener("submit", function(e) {$1document.getElementById("dashboard").style.display = "block";
+    document.getElementById("client-demo").style.display = "block";
     } else {
       alert("Please enter valid credentials (any input works for demo).");
     }
@@ -374,6 +370,7 @@ function handleMenuJump(value) {
 <div id="utility-fab" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
   <button onclick="toggleUtilityBox()" style="$1" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
   <div id="utility-box" style="display: none; margin-top: 0.5rem; background: white; color: black; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2); width: 250px; transition: all 0.3s ease; opacity: 0; transform: translateY(-10px);">
+    <button onclick="toggleDarkMode()" style="margin-bottom: 1rem; background: #eee; color: #333; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer;">🌓 Toggle Dark Mode</button>
     <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
       <input type="email" name="email" placeholder="Email" required />
       <input type="password" name="password" placeholder="Password" required />
@@ -435,6 +432,20 @@ function logoutDemoUser() {
   document.getElementById("login-form").style.display = "flex";
   document.getElementById("dashboard-links").style.display = "none";
   document.getElementById("login-form").reset();
+}
+
+function toggleDarkMode() {
+  const root = document.documentElement;
+  const currentBg = getComputedStyle(root).getPropertyValue('--background').trim();
+  if (currentBg === '#f0f4f8') {
+    root.style.setProperty('--background', '#1a1a1a');
+    root.style.setProperty('--text', '#f0f0f0');
+    root.style.setProperty('--white', '#2c2c2c');
+  } else {
+    root.style.setProperty('--background', '#f0f4f8');
+    root.style.setProperty('--text', '#333');
+    root.style.setProperty('--white', '#ffffff');
+  }
 }
 </script>
 </body>
