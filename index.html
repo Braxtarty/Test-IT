@@ -8,6 +8,13 @@
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
   <style>
+    /* Keyframes for glowing effect */
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+      50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
+      100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+    }
+    
     /* Light/Dark Color Variables */
     :root {
       --primary-color: #1669d9;                /* Sky-inspired primary */
@@ -32,10 +39,10 @@
       font-family: 'Inter', sans-serif;
       color: var(--text);
       line-height: 1.6;
-      position: relative; /* So the .bg-image behind can stay fixed */
+      position: relative;
     }
-
-    /* Full-screen, fixed background image div */
+    
+    /* Full-screen, fixed background image behind everything */
     .bg-image {
       position: fixed;
       top: 0;
@@ -54,6 +61,8 @@
       text-align: center;
     }
     .header-title-container {
+      position: relative;
+      z-index: 10001; /* Raised above the fixed hamburger (z-index 9999) */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -65,13 +74,14 @@
       font-size: 2rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       letter-spacing: 0.5px;
+      animation: glow 2s infinite;
     }
     .header-subtitle {
       margin: 0;
       font-size: 1rem;
     }
     
-    /* Main content starts below header */
+    /* Main content */
     main {
       padding-bottom: 2rem;
     }
@@ -179,15 +189,11 @@
         margin: 1rem;
         padding: 1.5rem;
       }
-      form {
-        justify-content: center;
-      }
-      /* If needed, override .bg-image with background-size: contain for certain mobile browsers */
     }
   </style>
 </head>
 <body>
-  <!-- Full-screen background image div -->
+  <!-- Full-screen background image -->
   <div class="bg-image"></div>
   
   <!-- Header Section -->
