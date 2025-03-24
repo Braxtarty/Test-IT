@@ -345,17 +345,6 @@ function handleMenuJump(value) {
   // Quote form logic already exists
 
   // Demo login logic
-  document.getElementById("login-form").addEventListener("submit", function(e) {$1document.getElementById("dashboard").style.display = "block";
-    document.getElementById("client-demo").style.display = "block";
-    } else {
-      alert("Please enter valid credentials (any input works for demo).");
-    }
-  });
-</script>
-<script>
-  // Quote form logic already exists
-
-  // Demo login logic
   document.getElementById("login-form").addEventListener("submit", function(e) {
   e.preventDefault();
   const email = this.email.value.trim();
@@ -363,6 +352,7 @@ function handleMenuJump(value) {
   if (email && pass) {
     this.style.display = "none";
     document.getElementById("dashboard").style.display = "block";
+    document.getElementById("client-demo").style.display = "block";
     document.getElementById("client-demo").style.display = "block";
     document.getElementById("dashboard-links").style.display = "flex";
   } else {
