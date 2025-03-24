@@ -40,19 +40,12 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image on body for both PC & mobile */
+    /* Background image on body (fixed for both PC and mobile) */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
       position: relative;
-    }
-    /* For mobile devices, switch to scroll attachment for a crisper image */
-    @media (max-width: 600px) {
-      body {
-        background-attachment: scroll;
-        image-rendering: optimizeQuality;
-      }
     }
     
     /*----------------------------------------------*/
@@ -88,7 +81,7 @@
     /*----------------------------------------------*/
     header {
       position: relative;
-      background: rgba(0, 74, 173, 0.75); /* Slightly more transparent */
+      background: rgba(0, 74, 173, 0.75);
       padding: 2rem 1rem;
       text-align: center;
     }
@@ -122,7 +115,7 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title wrapper with animated gradient border in blue and grey */
+    /* Flashy title wrapper with animated gradient border (blue & grey) */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -173,7 +166,7 @@
     }
     
     /*----------------------------------------------*/
-    /*      Main Content (White Card Sections)      */
+    /*        Main Content (White Card Sections)    */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -274,7 +267,11 @@
       right: 0.5rem;
       z-index: 100;
     }
+    /* Position the utility box absolutely so it appears beneath the hamburger button */
     .utility-box {
+      position: absolute;
+      top: 100%;
+      right: 0;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -335,8 +332,8 @@
         <input type="password" name="password" placeholder="Password" required />
         <button type="submit">Log In 🔐</button>
       </form>
-      <!-- User info (shown after sign in) -->
-      <div id="user-info" style="display:none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+      <!-- User Info (shown after sign in) -->
+      <div id="user-info" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
         <p id="user-text">Logged in as: <span id="user-name"></span></p>
         <button onclick="logoutDemoUser()">Sign Out</button>
       </div>
@@ -393,7 +390,7 @@
     </section>
     
     <!-- Client Dashboard Section (initially hidden) -->
-    <section id="client-demo" style="display:none;">
+    <section id="client-demo" style="display: none;">
       <h2>📋 Client Dashboard</h2>
       <p id="dashboard-greeting">Hello Demo User, welcome to your dashboard!</p>
       <ul>
@@ -456,7 +453,7 @@
   </footer>
   
   <script>
-    // Utility Box Toggle using computed style and a "hidden" class.
+    // Toggle Utility Box using computed style and "hidden" class.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
@@ -496,15 +493,13 @@
       document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
     });
     
-    // Logout function: resets login state and dashboard.
+    // Logout function: resets login state and hides client dashboard.
     function logoutDemoUser() {
       document.getElementById("client-demo").style.display = "none";
       document.getElementById("dashboard-greeting").textContent = "Hello Demo User, welcome to your dashboard!";
       document.getElementById("login-form").reset();
       document.getElementById("login-form").style.display = "flex";
       document.getElementById("user-info").style.display = "none";
-      // Reset hamburger button text to default symbol.
-      document.getElementById("hamburger-btn").textContent = "☰";
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     
