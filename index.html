@@ -40,7 +40,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image on body for both mobile & PC */
+    /* Use the original background image for both PC and mobile */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -49,7 +49,7 @@
     }
     
     /*----------------------------------------------*/
-    /*   Container for Consistent Alignment         */
+    /*    Container for Consistent Alignment        */
     /*----------------------------------------------*/
     .container {
       width: 100%;
@@ -85,7 +85,6 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* Animated glowing border for header */
     header::before {
       content: "";
       position: absolute;
@@ -95,7 +94,6 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Repeating watermark across the header */
     header::after {
       content: "insurance insurance insurance insurance\ninsurance insurance insurance insurance";
       white-space: pre;
@@ -132,9 +130,18 @@
       padding: 0.5rem 1rem;
       margin: 0;
     }
+    @media (max-width: 600px) {
+      .header-title {
+        font-size: 1.5rem;
+        padding: 0.75rem 1.5rem;
+      }
+      .header-subtitle {
+        font-size: 0.85rem;
+      }
+    }
     
     /*----------------------------------------------*/
-    /*      White Card Sections (Main Content)      */
+    /*      Main Content (White Card Sections)      */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -149,7 +156,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       width: 100%;
     }
-    /* Animated border for sections */
     section::before {
       content: "";
       position: absolute;
@@ -181,7 +187,7 @@
     }
     
     /*----------------------------------------------*/
-    /*          Form & Button Styles                */
+    /*             Form & Button Styles             */
     /*----------------------------------------------*/
     form label {
       display: block;
@@ -207,13 +213,12 @@
     form button:hover {
       background: #0f56b0;
     }
-    /* Ensure the slider stretches full width */
     input[type="range"] {
       width: 100%;
     }
     
     /*----------------------------------------------*/
-    /*                Footer                        */
+    /*                   Footer                     */
     /*----------------------------------------------*/
     footer {
       position: relative;
@@ -237,7 +242,7 @@
     }
     
     /*----------------------------------------------*/
-    /*         Utility FAB (Hamburger)              */
+    /*          Utility FAB (Hamburger)             */
     /*----------------------------------------------*/
     .utility-fab {
       position: fixed;
@@ -246,7 +251,7 @@
       z-index: 100;
     }
     .utility-box {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 0.5rem;
       margin-top: 0.5rem;
@@ -259,8 +264,15 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       opacity: 0;
       transform: translateY(-10px);
-      pointer-events: auto;
+      pointer-events: none;
       z-index: 101;
+    }
+    /* Utility box initially hidden via JS class "hidden" */
+    .hidden {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
     }
     
     @media (max-width: 600px) {
@@ -275,7 +287,7 @@
   </style>
 </head>
 <body>
-  <!-- Prevent unwanted anchor scrolling -->
+  <!-- Clear any saved anchor & force scroll to top -->
   <script>
     window.location.hash = '';
     history.scrollRestoration = "manual";
@@ -284,7 +296,7 @@
     });
   </script>
   
-  <!-- Header Section with Blue Overlay, Animated Border & Watermark -->
+  <!-- Header Section -->
   <header>
     <div class="container">
       <div class="header-title-container">
@@ -297,7 +309,7 @@
   <!-- Fixed Utility FAB (Hamburger) -->
   <div class="utility-fab">
     <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
-    <div class="utility-box" id="utility-box">
+    <div class="utility-box hidden" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
       <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
         <input type="email" name="email" placeholder="Email" required />
@@ -359,8 +371,20 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <!-- "Access Client Portal" button opens the hamburger utility box -->
+      <!-- Button to open utility box for sign-in -->
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
+    </section>
+    
+    <!-- Client Dashboard: Hidden until sign-in -->
+    <section id="client-demo" style="display:none;">
+      <h2>📋 Client Dashboard</h2>
+      <p id="dashboard-greeting">Hello Demo User, welcome to your dashboard!</p>
+      <ul>
+        <li>Policy Status: Active</li>
+        <li>Next Payment: May 1, 2025</li>
+        <li>Coverage PDFs available for download</li>
+        <li>Message from Agent: "We appreciate your loyalty!"</li>
+      </ul>
     </section>
     
     <section>
@@ -391,18 +415,22 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
+        
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
+        
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
+        
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
+        
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
   </main>
   
-  <!-- GIF Section: Centered without a white card container -->
+  <!-- GIF Section: Centered without a card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
@@ -415,31 +443,50 @@
   </footer>
   
   <script>
-    // Toggle Utility Box function using computed style for reliability
+    // Toggle Utility Box using a class toggle for reliability.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
-      const computed = window.getComputedStyle(box);
-      if (computed.display === "none" || computed.opacity === "0") {
-        box.style.display = "flex";
+      if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
+        box.classList.remove("hidden");
+        // Enable pointer events and animate in.
         requestAnimationFrame(() => {
           box.style.opacity = "1";
           box.style.transform = "translateY(0)";
+          box.style.pointerEvents = "auto";
         });
       } else {
         box.style.opacity = "0";
         box.style.transform = "translateY(-10px)";
+        box.style.pointerEvents = "none";
         setTimeout(() => {
-          box.style.display = "none";
+          box.classList.add("hidden");
         }, 300);
       }
     }
-    
+    // Initially mark utility box as hidden.
+    document.getElementById("utility-box").classList.add("hidden");
+
     // Toggle Dark Mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
     
-    // Premium slider functionality
+    // Handle login form submission in utility box.
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // For demonstration, assume login is successful.
+      // Hide the utility box.
+      toggleUtilityBox();
+      // Reveal the client dashboard section.
+      document.getElementById("client-demo").style.display = "block";
+      // Optionally, update the greeting.
+      document.getElementById("dashboard-greeting").textContent = 
+        "Hello " + this.email.value.split('@')[0] + ", welcome to your dashboard!";
+      // Scroll to the dashboard.
+      document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
+    });
+    
+    // Premium slider functionality.
     const coverageSlider = document.getElementById("coverage-slider");
     const coverageDisplay = document.getElementById("coverage-display");
     const premiumDisplay = document.getElementById("premium-display");
@@ -454,7 +501,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder)
+    // Quote form submission (placeholder).
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
@@ -464,7 +511,7 @@
       });
     }
     
-    // Prevent unwanted scroll restoration
+    // Prevent unwanted scroll restoration.
     window.location.hash = '';
     history.scrollRestoration = "manual";
     window.addEventListener("load", () => {
