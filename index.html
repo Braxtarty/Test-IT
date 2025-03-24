@@ -125,10 +125,14 @@
       margin-top: 1rem;
       width: 300px;
       position: absolute;
-      top: 7rem;
-      right: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 50%;
       z-index: 999;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .content input {
+      background-color: rgba(255,255,255,0.85);
     }
     .diagram img {
       max-width: 100%;
@@ -146,7 +150,9 @@
       border-radius: 1rem;
       padding: 4rem 2rem;
       background-image: url('ashbld1.jpg');
+      min-height: 90vh;
       transition: background 0.3s ease, color 0.3s ease;
+      position: relative;
     }
     #dashboard.active {
       background-image: none;
@@ -163,6 +169,13 @@
     <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
     <button class="collapsible" onclick="toggleLoginBox()">🔐 Click to Log In</button>
   </div>
+  <div class="content" id="login-box">
+    <form>
+      <label>Email:<br><input type="email" required></label><br>
+      <label>Password:<br><input type="password" required></label><br>
+      <button type="submit">Log In</button>
+    </form>
+  </div>
   <header>
     <h1>IT Infrastructure Vision</h1>
     <p>Laying the foundation for secure, scalable growth 🚀</p>
@@ -176,8 +189,11 @@
     }
 
     function toggleLoginBox() {
-      const content = document.querySelector('.content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      const box = document.getElementById('login-box');
+      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+      if (box.style.display === 'block') {
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
