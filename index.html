@@ -43,8 +43,8 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 9998; /* Stays behind the FAB, but above content */
-      background: rgba(0, 74, 173, 0.85); /* Dark enough for the widget to remain visible */
+      z-index: 9998; /* Sits above content, below the old hamburger if it was fixed */
+      background: rgba(0, 74, 173, 0.85); /* Dark enough so widgets remain visible */
       padding: 1rem 0;
       text-align: center;
     }
@@ -70,6 +70,16 @@
     main {
       margin-top: 5.5rem; /* Adjust as needed to match header height */
       padding-bottom: 2rem;
+    }
+    
+    /* Utility FAB now scrolls with the user (no fixed position) */
+    .utility-fab {
+      margin: 1rem;
+      text-align: right; /* Keep it to the right in the flow */
+    }
+    .utility-fab button {
+      /* Basic styling for the hamburger button (optional) */
+      cursor: pointer;
     }
     
     /* Semi-transparent sections so building image is visible behind them */
@@ -136,31 +146,6 @@
       color: #fff; /* White-ish text in footer */
     }
     
-    /* Utility FAB & Box */
-    .utility-fab {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 9999; /* Above header */
-    }
-    .utility-box {
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      background: var(--overlay-bg);
-      color: var(--card-text);
-      padding: 1rem;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      width: 250px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: auto;
-      z-index: 10000;
-    }
-    
     @media (max-width: 600px) {
       .header-title {
         font-size: 1.5rem;
@@ -192,10 +177,32 @@
   
   <!-- Main Content -->
   <main>
-    <!-- About Section (Braxton, impressing Jeff) -->
+    <!-- Utility FAB now in normal flow at top of main content -->
+    <div class="utility-fab">
+      <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
+      <div class="utility-box" id="utility-box">
+        <button onclick="toggleDarkMode()" style="margin-bottom: 1rem; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; background: #eee; color: #333;">
+          🌓 Toggle Dark Mode
+        </button>
+        <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Password" required />
+          <button type="submit">Log In 🔐</button>
+        </form>
+        <p id="utility-welcome" style="margin: 0; font-size: 0.9rem; display: none;"></p>
+        <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+          <button onclick="location.href='#client-demo'">Client Dashboard</button>
+          <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
+          <button onclick="location.href='#quote-form'">Quote Form</button>
+          <button onclick="logoutDemoUser()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- About Section with new text -->
     <section>
-      <h2>👋 About Braxton</h2>
-      <p>Braxton is pioneering a forward‑thinking approach to IT infrastructure—focusing on innovative, secure, and scalable solutions that adapt to today’s dynamic business challenges, in order to impress Jeff.</p>
+      <h2>👋 About Me</h2>
+      <p>I’m a creatively-driven problem solver with a curious mind and a passion for making things better, weirder, or both. Whether it’s designing, building, or brainstorming, I bring big ideas to life with a grounded, thoughtful approach. This site is a glimpse into what I’ve been up to — thanks for stopping by! 👾🛠️</p>
     </section>
     
     <!-- Phase Sections -->
@@ -315,28 +322,6 @@
     Built with ❤️ by Braxton – Ready to future‑proof our IT.
   </footer>
   
-  <!-- Utility FAB and Box -->
-  <div class="utility-fab">
-    <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
-    <div class="utility-box" id="utility-box">
-      <button onclick="toggleDarkMode()" style="margin-bottom: 1rem; border: none; padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; background: #eee; color: #333;">
-        🌓 Toggle Dark Mode
-      </button>
-      <form id="login-form" style="display: flex; flex-direction: column; gap: 0.5rem;">
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <button type="submit">Log In 🔐</button>
-      </form>
-      <p id="utility-welcome" style="margin: 0; font-size: 0.9rem; display: none;"></p>
-      <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
-        <button onclick="location.href='#client-demo'">Client Dashboard</button>
-        <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
-        <button onclick="location.href='#quote-form'">Quote Form</button>
-        <button onclick="logoutDemoUser()">Sign Out</button>
-      </div>
-    </div>
-  </div>
-  
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       /* Handle Quote Form */
@@ -430,9 +415,9 @@
       if (email && email !== 'Demo User') {
         document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
       } else {
-        const utilityBox = document.getElementById("utility-box");
-        if (utilityBox.style.display === 'none') toggleUtilityBox();
-        document.getElementById("utility-box").scrollIntoView({ behavior: 'smooth' });
+        const box = document.getElementById("utility-box");
+        if (box.style.display === 'none') toggleUtilityBox();
+        box.scrollIntoView({ behavior: 'smooth' });
       }
     }
     
