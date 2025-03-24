@@ -363,16 +363,23 @@ function handleMenuJump(value) {
   });
 
   // Premium Estimator
+  window.addEventListener("DOMContentLoaded", () => {
   const slider = document.getElementById("coverage-slider");
   const coverageDisplay = document.getElementById("coverage-display");
   const premiumDisplay = document.getElementById("premium-display");
 
-  slider.addEventListener("input", () => {
-    const coverage = parseInt(slider.value);
-    const premium = Math.round(coverage * 0.0005); // just a demo multiplier
-    coverageDisplay.textContent = coverage.toLocaleString();
-    premiumDisplay.textContent = premium;
-  });
+  if (slider && coverageDisplay && premiumDisplay) {
+    const updatePremium = () => {
+      const coverage = parseInt(slider.value);
+      const premium = Math.round(coverage * 0.0005);
+      coverageDisplay.textContent = coverage.toLocaleString();
+      premiumDisplay.textContent = premium;
+    };
+
+    slider.addEventListener("input", updatePremium);
+    updatePremium(); // Initialize on load
+  }
+});
 </script>
 <div id="utility-fab" style="position: fixed; top: 1rem; right: 1rem; z-index: 9999;">
   <button onclick="toggleUtilityBox()" style="$1" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
