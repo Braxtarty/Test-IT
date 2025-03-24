@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Make it responsive on mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <!-- Use viewport-fit=cover for newer iOS devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
   <meta name="keywords" content="IT infrastructure, scalable growth, secure systems">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
 
-  <!-- Minimal CSS for a simpler layout -->
   <style>
-    /* Reset & Basic Setup */
+    /* -- Consolidated CSS Variables -- */
+    :root {
+      --primary-color: #1669d9;
+      --text: #0c1a3e;
+      --overlay-bg: rgba(255, 255, 255, 0.85);
+      --white: #ffffff;
+      --card-text: #0c1a3e;
+    }
+    body.dark-mode {
+      --text: #f0f0f0;
+      --overlay-bg: rgba(0, 0, 0, 0.7);
+      --card-text: #f0f0f0;
+    }
+    
+    /* Global Reset & Settings */
     * {
       margin: 0;
       padding: 0;
@@ -20,160 +33,240 @@
     html, body {
       width: 100%;
       overflow-x: hidden;
-      font-family: sans-serif;
+      font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      color: #0c1a3e; /* Dark text for default body */
     }
-
-    /* Body with the building background, fixed so it doesn't scroll on desktop
-       If iOS Safari doesn't support fixed well, it will degrade gracefully. */
+    
+    /* Background Image on Body (as in your original approach) */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
+      color: var(--text);
+      position: relative;
     }
-
-    /* Single .container that centers content on large screens
-       and uses full width on small screens */
+    
+    /* A single container to align content flush on mobile;
+       on larger screens, center content up to 1000px */
     .container {
       width: 100%;
       max-width: 1000px;
       margin: 0 auto;
       padding: 0 1rem;
-      /* For word wrapping on narrow displays */
-      white-space: normal;
-      overflow-wrap: break-word;
-      word-break: break-word;
     }
-
-    /* A blue header "overlay" on top of the background */
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 0.5rem;
+      }
+    }
+    
+    /* Header Section with Blue Overlay & Animated Border */
     header {
-      background: rgba(0, 74, 173, 0.85); /* Dark blue overlay */
-      text-align: center;
+      position: relative;
+      background: rgba(0, 74, 173, 0.85);
       padding: 2rem 1rem;
-      color: #fff;
+      text-align: center;
+      /* Animated border using a pseudo-element */
     }
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    /* White card-like sections with a subtle drop shadow */
-    section {
-      background: #fff;
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 3px solid rgba(255,255,255,0.6);
       border-radius: 0.5rem;
-      padding: 1.5rem;
+      pointer-events: none;
+      animation: glow 2s infinite;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+      50% { box-shadow: 0 0 15px rgba(255,255,255,1); }
+      100% { box-shadow: 0 0 5px rgba(255,255,255,0.6); }
+    }
+    .header-title-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      /* Add right padding so text doesn’t extend too far into the area reserved for the hamburger */
+      padding-right: 60px;
+    }
+    .header-title {
+      font-size: 2rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: 1px;
+      font-weight: 900;
+      padding: 1rem 2rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      margin: 0;
+    }
+    .header-subtitle {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin: 0;
+    }
+    
+    /* Main Content Sections styled as white "cards" with some margin */
+    main {
+      padding-bottom: 2rem;
+    }
+    section {
+      background: var(--overlay-bg);
+      color: var(--card-text);
+      padding: 2rem;
       margin: 2rem 0;
+      border-radius: 0.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
     }
-    section h2 {
+    @media (max-width: 600px) {
+      section {
+        margin: 1rem 0;
+        padding: 1.5rem;
+      }
+    }
+    h1, h2 {
       font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #0c1a3e;
+      margin-top: 0;
     }
-    section p, section ul {
+    h2 {
+      font-size: 1.25rem;
+    }
+    p, ul {
       font-size: 1rem;
       margin-bottom: 1rem;
     }
-    section ul {
+    ul {
       padding-left: 1.5rem;
     }
-
-    /* Basic form styling */
-    form label {
-      display: block;
-      margin-bottom: 0.25rem;
-      font-weight: bold;
+    
+    /* Form & Button Styles */
+    input, button, select {
+      font-size: 1rem;
     }
-    form input {
+    input {
       width: 100%;
       padding: 0.5rem;
       margin-bottom: 1rem;
       border: 1px solid #ccc;
       border-radius: 0.5rem;
     }
-    form button {
-      background: #1669d9;
-      color: #fff;
+    button {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 0.75rem 1rem;
       border: none;
       border-radius: 0.5rem;
-      padding: 0.75rem 1rem;
-      cursor: pointer;
       font-weight: bold;
+      cursor: pointer;
     }
-    form button:hover {
+    button:hover {
       background: #0f56b0;
     }
-
-    /* A simple footer, also with a blue overlay for contrast */
+    
+    /* Footer */
     footer {
-      background: rgba(0, 74, 173, 0.85);
-      color: #fff;
-      text-align: center;
+      background: rgba(0,74,173,0.85);
       padding: 1rem;
+      font-size: 0.9rem;
+      color: #fff;
       margin-top: 2rem;
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
+      text-align: center;
     }
-
-    /* Optional “hamburger” menu if you want a floating button at top-right */
-    .hamburger-fab {
+    
+    /* Fixed Utility FAB (Hamburger/Login/Dark Mode) 
+       Moved a bit to the right so it doesn't cover the header text */
+    .utility-fab {
       position: fixed;
       top: 1rem;
-      right: 1rem;
-      width: 48px;
-      height: 48px;
-      border: none;
-      border-radius: 50%;
-      background: #1669d9;
-      color: #fff;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 999;
+      right: 0.5rem;
+      z-index: 100;
     }
-
-    /* Media query for smaller screens */
+    .utility-box {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      background: var(--overlay-bg);
+      color: var(--card-text);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 250px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: auto;
+      z-index: 101;
+    }
+    
+    /* Mobile adjustments to ensure content fits fully */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.75rem;
+      .header-title {
+        font-size: 1.5rem;
+        padding: 0.75rem 1.5rem;
       }
-      section {
-        margin: 1rem 0;
-        padding: 1rem;
-      }
-      section h2 {
-        font-size: 1.25rem;
+      .header-subtitle {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- Optional hamburger if you want a floating menu -->
-  <button class="hamburger-fab">☰</button>
-
-  <!-- A Blue Header on top of the building background -->
+  <!-- Clear any saved scroll position -->
+  <script>
+    window.location.hash = '';
+    history.scrollRestoration = "manual";
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+  </script>
+  
+  <!-- Blue background for the header with animated border -->
   <header>
     <div class="container">
-      <h1>IT Infrastructure Vision</h1>
-      <p>Laying the foundation for secure, scalable growth 🚀</p>
+      <div class="header-title-container">
+        <h1 class="header-title">IT Infrastructure Vision</h1>
+        <p class="header-subtitle">Laying the foundation for secure, scalable growth 🚀</p>
+      </div>
     </div>
   </header>
-
-  <!-- Main content container (white "cards" for each section) -->
+  
+  <!-- Fixed Utility FAB (Hamburger) -->
+  <div class="utility-fab">
+    <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
+    <div class="utility-box" id="utility-box">
+      <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
+      <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Log In 🔐</button>
+      </form>
+      <p id="utility-welcome" style="display: none; font-size: 0.9rem;"></p>
+      <div id="dashboard-links" style="display: none; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+        <button onclick="location.href='#client-demo'">Client Dashboard</button>
+        <button onclick="location.href='#coverage-slider'">Premium Estimator</button>
+        <button onclick="location.href='#quote-form'">Quote Form</button>
+        <button onclick="logoutDemoUser()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
   <main class="container">
-    <!-- About Me -->
     <section>
       <h2>👋 About Me</h2>
       <p>
         I’m a creatively-driven problem solver with a curious mind and a passion for making things better, weirder, or both. Whether it’s designing, building, or brainstorming, I bring big ideas to life with a grounded, thoughtful approach. This site is a glimpse into what I’ve been up to — thanks for stopping by! 👾🛠️
       </p>
     </section>
-
-    <!-- Phase 1 -->
+    
     <section>
       <h2>🧱 Phase 1: Core Infrastructure (0–3 Months)</h2>
       <ul>
@@ -182,8 +275,7 @@
         <li>Cloud infrastructure (AWS / Azure) with version control (GitHub)</li>
       </ul>
     </section>
-
-    <!-- Phase 2 -->
+    
     <section>
       <h2>🚀 Phase 2: Growth Tools (3–6 Months)</h2>
       <ul>
@@ -192,8 +284,7 @@
         <li>Internal knowledge base (Notion / Confluence)</li>
       </ul>
     </section>
-
-    <!-- Phase 3 -->
+    
     <section>
       <h2>🌐 Phase 3: Long‑Term Vision (6+ Months)</h2>
       <ul>
@@ -202,8 +293,7 @@
         <li>Compliance &amp; monitoring tools (SOC2, penetration testing)</li>
       </ul>
     </section>
-
-    <!-- Sample Dashboard -->
+    
     <section>
       <h2>📁 View Sample Client Dashboard (Demo Only)</h2>
       <p>This is a placeholder for what a client portal might include in the future:</p>
@@ -213,13 +303,14 @@
         <li>📬 Messages from their assigned agent</li>
         <li>💡 Renewal reminders and auto‑payment settings</li>
       </ul>
-      <button>Access Client Portal 🔐</button>
+      <button onclick="openClientPortal()">Access Client Portal 🔐</button>
     </section>
-
-    <!-- Why This Matters -->
+    
     <section>
       <h2>🧠 Why This Matters</h2>
-      <p>This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.</p>
+      <p>
+        This roadmap demonstrates how scalable tech foundations meet modern industry standards—ensuring simplicity, transparency, and control for clients.
+      </p>
       <ul>
         <li>📱 Fully mobile‑responsive for on‑the‑go accessibility</li>
         <li>🧾 Easy quote intake with data capture to Sheets</li>
@@ -227,8 +318,7 @@
         <li>⚙️ Secure, HIPAA/SOC2‑ready infrastructure vision</li>
       </ul>
     </section>
-
-    <!-- Premium Estimator -->
+    
     <section>
       <h2>💸 Try Our Premium Estimator</h2>
       <p>Adjust your desired coverage to see an estimated monthly premium. This calculator is for demonstration purposes only.</p>
@@ -236,42 +326,38 @@
       <input type="range" id="coverage-slider" min="10000" max="500000" step="10000" value="100000" style="cursor: pointer;" />
       <p>📉 Estimated Monthly Premium: <strong>$<span id="premium-display">50</span></strong></p>
     </section>
-
-    <!-- Quote Form -->
+    
     <section>
       <h2>💬 Get a Quick Insurance Quote</h2>
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
-
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
-
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
-
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
-
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
-
-    <!-- Example GIF / Diagram -->
+    
     <section>
       <h2>Diagram</h2>
       <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
     </section>
   </main>
-
-  <!-- Footer with the same dark blue overlay -->
+  
+  <!-- Footer -->
   <footer>
-    Built with ❤️ by Braxton – Ready to future‑proof our IT.
+    <div class="container">
+      Built with ❤️ by Braxton – Ready to future‑proof our IT.
+    </div>
   </footer>
-
-  <!-- Minimal JS for the slider & quote form -->
+  
+  <!-- Minimal JS for slider and quote form -->
   <script>
-    // Basic Premium Estimator
+    // Premium slider functionality
     const coverageSlider = document.getElementById("coverage-slider");
     const coverageDisplay = document.getElementById("coverage-display");
     const premiumDisplay = document.getElementById("premium-display");
@@ -287,15 +373,42 @@
       updatePremium();
     }
 
-    // Basic Quote Form Submission
+    // Quote form functionality
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        // Just a placeholder for real logic
         alert("✅ Your quote request has been submitted!");
         quoteForm.reset();
       });
+    }
+
+    // Utility FAB toggle
+    function toggleUtilityBox() {
+      const box = document.getElementById("utility-box");
+      if (box.style.display === "none" || box.style.opacity === "0") {
+        box.style.display = "flex";
+        requestAnimationFrame(() => {
+          box.style.opacity = "1";
+          box.style.transform = "translateY(0)";
+        });
+      } else {
+        box.style.opacity = "0";
+        box.style.transform = "translateY(-10px)";
+        setTimeout(() => {
+          box.style.display = "none";
+        }, 300);
+      }
+    }
+
+    // Toggle Dark Mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // Open Client Portal (placeholder)
+    function openClientPortal() {
+      alert("Client portal functionality not implemented in this demo.");
     }
   </script>
 </body>
