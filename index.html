@@ -342,7 +342,6 @@ function handleMenuJump(value) {
 });
 </script>
 <script>
-// Restore Premium Estimator functionality
 window.addEventListener("DOMContentLoaded", () => {
   const slider = document.getElementById("coverage-slider");
   const coverageDisplay = document.getElementById("coverage-display");
@@ -358,8 +357,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     slider.addEventListener("input", updatePremium);
     updatePremium();
-  }
-});
   }
 });
 </script>
@@ -396,58 +393,6 @@ function toggleUtilityBox() {
     setTimeout(() => {
       box.style.display = 'none';
     }, 300);
-  }
-});
-  } else {
-    box.style.opacity = '0';
-    box.style.transform = 'translateY(-10px)';
-    setTimeout(() => {
-      box.style.display = 'none';
-    }, 300);
-  }
-}
-
-function outsideClickListener(event) {
-  const box = document.getElementById('utility-box');
-  const fab = document.getElementById('utility-fab');
-  if (!fab.contains(event.target)) {
-    toggleUtilityBox();
-  }
-}(event) {
-  const box = document.getElementById('utility-box');
-  const fab = document.getElementById('utility-fab');
-  if (!fab.contains(event.target)) {
-    toggleUtilityBox();
-  }
-}
-
-document.getElementById("login-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const email = this.email.value.trim();
-  const pass = this.password.value.trim();
-  if (email && pass) {
-    this.style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("client-demo").style.display = "block";
-    document.getElementById("dashboard-links").style.display = "flex";
-    document.getElementById("client-demo").scrollIntoView({ behavior: 'smooth' });
-  } else {
-    alert("Please enter valid credentials (any input works for demo).");
-  }
-});
-function logoutDemoUser() {
-  document.getElementById("dashboard").style.display = "none";
-  document.getElementById("login-form").style.display = "flex";
-  document.getElementById("dashboard-links").style.display = "none";
-  document.getElementById("login-form").reset();
-}
-
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-} else {
-    root.style.setProperty('--background', '#f0f4f8');
-    root.style.setProperty('--text', '#333');
-    root.style.setProperty('--white', '#ffffff');
   }
 }
 </script>
