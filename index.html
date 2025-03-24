@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport with device-fit -->
+  <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -40,7 +40,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Use the original background image on body for both PC and mobile */
+    /* Use the original background image on body for both PC & mobile */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
@@ -77,7 +77,7 @@
     }
     
     /*----------------------------------------------*/
-    /*             Header Section                   */
+    /*          Header Section                      */
     /*----------------------------------------------*/
     header {
       position: relative;
@@ -85,7 +85,6 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    /* Animated glowing border for header */
     header::before {
       content: "";
       position: absolute;
@@ -95,7 +94,7 @@
       pointer-events: none;
       animation: glow 2s infinite;
     }
-    /* Repeating watermark filling the header */
+    /* Repeating watermark that fills the header */
     header::after {
       content: "insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance insurance";
       white-space: nowrap;
@@ -117,18 +116,31 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title wrapper with animated gradient border */
+    /* Flashy title wrapper with animated gradient border in shades of blue & grey */
     .flashy-title {
       display: inline-block;
-      padding: 0.5rem 1rem;
-      border: 2px solid;
-      border-image: linear-gradient(45deg, #f06, #ff6, #f06) 1;
-      animation: borderPulse 3s infinite;
+      padding: 0.3rem 0.6rem;
+      border: 2px solid transparent;
+      border-radius: 0.3rem;
+      position: relative;
     }
-    @keyframes borderPulse {
-      0% { border-image-source: linear-gradient(45deg, #f06, #ff6, #f06); }
-      50% { border-image-source: linear-gradient(45deg, #ff6, #f06, #ff6); }
-      100% { border-image-source: linear-gradient(45deg, #f06, #ff6, #f06); }
+    .flashy-title::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: inherit;
+      background: linear-gradient(45deg, #1e90ff, #808080, #1e90ff);
+      background-size: 200% 200%;
+      z-index: -1;
+      animation: gradientAnimation 3s ease infinite;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     .header-title {
       font-size: 2rem;
@@ -155,7 +167,7 @@
     }
     
     /*----------------------------------------------*/
-    /*      Main Content (White Card Sections)      */
+    /*       Main Content (White Card Sections)     */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -273,10 +285,20 @@
       pointer-events: none;
       z-index: 101;
     }
-    .hidden { display: none; opacity: 0; transform: translateY(-10px); pointer-events: none; }
+    .hidden {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
     @media (max-width: 600px) {
-      .header-title { font-size: 1.5rem; padding: 0.75rem 1.5rem; }
-      .header-subtitle { font-size: 0.85rem; }
+      .header-title {
+        font-size: 1.5rem;
+        padding: 0.75rem 1.5rem;
+      }
+      .header-subtitle {
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
@@ -302,7 +324,7 @@
   
   <!-- Utility FAB (Hamburger) -->
   <div class="utility-fab">
-    <button onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
+    <button id="hamburger-btn" onclick="toggleUtilityBox()" onmouseover="this.style.animation='glow 1s infinite alternate'" onmouseout="this.style.animation='none'">☰</button>
     <div class="utility-box hidden" id="utility-box">
       <button onclick="toggleDarkMode()" style="margin-bottom: 1rem;">🌓 Toggle Dark Mode</button>
       <form id="login-form" aria-label="Login Form" role="form" style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -369,7 +391,7 @@
       <button onclick="toggleUtilityBox()">Access Client Portal 🔐</button>
     </section>
     
-    <!-- Client Dashboard Section (Hidden until login) -->
+    <!-- Client Dashboard Section (initially hidden) -->
     <section id="client-demo" style="display:none;">
       <h2>📋 Client Dashboard</h2>
       <p id="dashboard-greeting">Hello Demo User, welcome to your dashboard!</p>
@@ -409,12 +431,16 @@
       <form id="quote-form" aria-label="Get a Quick Insurance Quote">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />
+        
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" min="18" required />
+        
         <label for="zip">Zip Code:</label>
         <input type="text" id="zip" name="zip" required />
+        
         <label for="coverage">Desired Coverage Amount ($):</label>
         <input type="number" id="coverage" name="coverage" required />
+        
         <button type="submit">Get My Quote 🚀</button>
       </form>
     </section>
@@ -433,7 +459,7 @@
   </footer>
   
   <script>
-    // Utility box toggle function using computed style and a "hidden" class.
+    // Toggle Utility Box using computed style and a "hidden" class.
     function toggleUtilityBox() {
       const box = document.getElementById("utility-box");
       if (window.getComputedStyle(box).display === "none" || window.getComputedStyle(box).opacity === "0") {
@@ -448,27 +474,28 @@
         box.style.opacity = "0";
         box.style.transform = "translateY(-10px)";
         box.style.pointerEvents = "none";
-        setTimeout(() => {
-          box.classList.add("hidden");
-        }, 300);
+        setTimeout(() => { box.classList.add("hidden"); }, 300);
       }
     }
     // Initially mark the utility box as hidden.
     document.getElementById("utility-box").classList.add("hidden");
     
-    // Toggle Dark Mode
+    // Toggle Dark Mode.
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
     
-    // Handle login form submission: simulate successful login, close utility box, show client dashboard, and scroll to it.
+    // Handle login form submission.
     document.getElementById("login-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      toggleUtilityBox(); // Close the utility box
+      // Update hamburger button text to show signed-in username.
+      const username = this.email.value.split('@')[0];
+      document.getElementById("hamburger-btn").textContent = username;
+      // Close utility box.
+      toggleUtilityBox();
+      // Show client dashboard.
       document.getElementById("client-demo").style.display = "block";
-      // Update the dashboard greeting with the user's email prefix
-      document.getElementById("dashboard-greeting").textContent =
-        "Hello " + this.email.value.split('@')[0] + ", welcome to your dashboard!";
+      document.getElementById("dashboard-greeting").textContent = "Hello " + username + ", welcome to your dashboard!";
       document.getElementById("client-demo").scrollIntoView({ behavior: "smooth" });
     });
     
@@ -487,7 +514,7 @@
       updatePremium();
     }
     
-    // Quote form submission (placeholder logic)
+    // Quote form submission (placeholder).
     const quoteForm = document.getElementById("quote-form");
     if (quoteForm) {
       quoteForm.addEventListener("submit", (e) => {
@@ -497,12 +524,14 @@
       });
     }
     
-    // Logout function: hides client dashboard and resets the login form in the utility box.
+    // Logout function: resets login and dashboard.
     function logoutDemoUser() {
       document.getElementById("client-demo").style.display = "none";
       document.getElementById("dashboard-greeting").textContent = "Hello Demo User, welcome to your dashboard!";
       document.getElementById("login-form").reset();
       document.getElementById("login-form").style.display = "flex";
+      // Reset hamburger button text to default.
+      document.getElementById("hamburger-btn").textContent = "☰";
       // Optionally, scroll back to the header.
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
