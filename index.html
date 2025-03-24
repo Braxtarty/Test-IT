@@ -40,12 +40,19 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
-    /* Background image on body (fixed for both PC and mobile) */
+    /* Background image on body for both PC & mobile */
     body {
       background: url("ashbld1.jpg") no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
       position: relative;
+    }
+    /* Mobile adjustments: use scroll attachment and optimized contrast */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+        image-rendering: -webkit-optimize-contrast;
+      }
     }
     
     /*----------------------------------------------*/
@@ -115,7 +122,6 @@
       gap: 0.5rem;
       color: #fff;
     }
-    /* Flashy title wrapper with animated gradient border (blue & grey) */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -166,7 +172,7 @@
     }
     
     /*----------------------------------------------*/
-    /*        Main Content (White Card Sections)    */
+    /*      Main Content (White Card Sections)      */
     /*----------------------------------------------*/
     main {
       padding-bottom: 2rem;
@@ -267,7 +273,6 @@
       right: 0.5rem;
       z-index: 100;
     }
-    /* Position the utility box absolutely so it appears beneath the hamburger button */
     .utility-box {
       position: absolute;
       top: 100%;
@@ -440,7 +445,7 @@
     </section>
   </main>
   
-  <!-- GIF Section: Centered without a white card container -->
+  <!-- GIF Section: Centered without a card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
