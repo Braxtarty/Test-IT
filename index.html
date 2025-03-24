@@ -165,7 +165,7 @@
       <li>📬 Messages from their assigned agent</li>
       <li>💡 Renewal reminders and auto-payment settings</li>
     </ul>
-    <button onclick="alert('🔐 Demo mode: This feature is coming soon!')">Access Client Portal</button>
+    <button onclick="location.href='#client-demo'">Access Client Portal 🔐</button>
   </section>
 
   <section>
@@ -177,6 +177,25 @@
       <li>🔍 Clear phase breakdowns for leadership & dev planning</li>
       <li>⚙️ Secure, HIPAA/SOC2-ready infrastructure vision</li>
     </ul>
+  </section>
+
+  <section id="client-demo">
+    <h2>🔐 Demo Client Portal Login</h2>
+    <form id="login-form" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: auto;">
+      <label>Email:<input type="email" name="email" required /></label>
+      <label>Password:<input type="password" name="password" required /></label>
+      <button type="submit">Log In (Demo)</button>
+    </form>
+    <div id="dashboard" style="display:none; text-align:left; margin-top:2rem; background:#f9f9f9; padding:1.5rem; border-radius:1rem;">
+      <h3>📋 Client Dashboard</h3>
+      <p>Welcome back, <strong>Demo User</strong>!</p>
+      <ul>
+        <li>✅ Policy Status: Active</li>
+        <li>📅 Next Payment: May 1, 2025</li>
+        <li>📄 Coverage PDF: <a href="#">Download</a></li>
+        <li>📬 Message from Agent: "We appreciate your loyalty!"</li>
+      </ul>
+    </div>
   </section>
 
   <section class="diagram">
@@ -229,6 +248,23 @@
       });
     });
   </script>
+<script>
+  // Quote form logic already exists
+
+  // Demo login logic
+  document.getElementById("login-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = this.email.value.trim();
+    const pass = this.password.value.trim();
+
+    if (email && pass) {
+      this.style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    } else {
+      alert("Please enter valid credentials (any input works for demo).");
+    }
+  });
+</script>
 </body>
 </html>
 
