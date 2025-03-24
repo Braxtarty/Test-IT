@@ -123,11 +123,12 @@
       background: rgba(255, 255, 255, 0.95);
       color: #000;
       margin-top: 1rem;
-      width: 300px;
+      width: 90%;
+      max-width: 350px;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 50%;
+      top: 50vh;
       z-index: 999;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
@@ -146,21 +147,21 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      background-image: url('ashbld1.jpg');
       color: white;
       border-radius: 1rem;
-      padding: 4rem 2rem;
-      background-image: url('ashbld1.jpg');
-      min-height: 90vh;
-      transition: background 0.3s ease, color 0.3s ease;
+      padding: 6rem 2rem;
+      min-height: 95vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
     }
     #dashboard.active {
       background-image: none;
       background-color: var(--card-bg);
       color: var(--card-text);
-    }
-    #quote-form input {
-      background-color: white;
     }
   </style>
 </head>
@@ -169,6 +170,7 @@
     <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
     <button class="collapsible" onclick="toggleLoginBox()">🔐 Click to Log In</button>
   </div>
+
   <div class="content" id="login-box">
     <form>
       <label>Email:<br><input type="email" required></label><br>
@@ -176,12 +178,13 @@
       <button type="submit">Log In</button>
     </form>
   </div>
+
   <header>
     <h1>IT Infrastructure Vision</h1>
     <p>Laying the foundation for secure, scalable growth 🚀</p>
   </header>
 
-  <!-- Main content here -->
+  <section id="dashboard"></section>
 
   <script>
     function toggleDarkMode() {
@@ -195,45 +198,6 @@
         box.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById("quote-form");
-      if (!form) return;
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const name = form.name.value.trim();
-        const age = form.age.value.trim();
-        const zip = form.zip.value.trim();
-        const coverage = form.coverage.value.trim();
-
-        form.querySelectorAll("input").forEach(input => input.style.borderColor = "#ccc");
-
-        let hasError = false;
-        if (!name) { form.name.style.borderColor = "red"; hasError = true; }
-        if (!age || isNaN(age) || age < 18) { form.age.style.borderColor = "red"; hasError = true; }
-        if (!zip || zip.length < 5) { form.zip.style.borderColor = "red"; hasError = true; }
-        if (!coverage || isNaN(coverage) || coverage <= 0) { form.coverage.style.borderColor = "red"; hasError = true; }
-
-        if (hasError) return;
-
-        const data = { name, age, zip, coverage };
-
-        try {
-          await fetch("https://script.google.com/macros/s/AKfycbyUAyX42eae95rgt3QHCXLqh7Z0LEdvabzAiu76PIv5EWer6xQaLWj2fl1iP7d1l2yYrA/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-
-          alert("✅ Your quote request has been submitted successfully!");
-          form.reset();
-        } catch (error) {
-          alert("❌ There was a problem submitting your quote. Please try again later.");
-        }
-      });
-    });
   </script>
 </body>
 </html>
