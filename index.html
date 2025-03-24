@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive viewport with device-fit -->
+  <!-- Responsive viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>IT Infrastructure Vision</title>
   <meta name="description" content="IT Infrastructure Vision - Secure, scalable growth">
@@ -39,19 +39,28 @@
       overflow-x: hidden;
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-    }
-    /* Background image on body for both PC & mobile */
-    body {
-      background: url("ashbld1.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: var(--text);
       position: relative;
     }
-    /* Mobile adjustments: use scroll attachment and optimized contrast */
+    /* Remove background image from body so we use a pseudo-element */
+    body {
+      color: var(--text);
+    }
+    /* Background image on a fixed pseudo-element */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("ashbld1.jpg") no-repeat center center;
+      background-size: cover;
+      z-index: -2;
+    }
+    /* On mobile, apply a filter to improve clarity */
     @media (max-width: 600px) {
-      body {
-        background-attachment: scroll;
-        image-rendering: -webkit-optimize-contrast;
+      body::before {
+        filter: contrast(1.1) brightness(1.05);
       }
     }
     
@@ -88,7 +97,7 @@
     /*----------------------------------------------*/
     header {
       position: relative;
-      background: rgba(0, 74, 173, 0.75);
+      background: rgba(0, 74, 173, 0.75); /* Slightly more transparent */
       padding: 2rem 1rem;
       text-align: center;
     }
@@ -122,6 +131,7 @@
       gap: 0.5rem;
       color: #fff;
     }
+    /* Flashy title with animated gradient border in blue & grey */
     .flashy-title {
       display: inline-block;
       padding: 0.3rem 0.6rem;
@@ -445,15 +455,17 @@
     </section>
   </main>
   
-  <!-- GIF Section: Centered without a card container -->
+  <!-- GIF Section: Centered without a white card container -->
   <div style="text-align: center; margin: 2rem 0;">
     <img src="getli.gif" alt="Animated Infrastructure Overview" style="max-width: 100%; height: auto; border-radius: 0.5rem;" />
   </div>
   
-  <!-- Footer Section -->
+  <!-- Footer Section with email attachment link -->
   <footer>
     <div class="container">
       Built with ❤️ by Braxton – Ready to future‑proof our IT.
+      <br />
+      <a href="mailto:monsieurbraxton@aol.com?subject=IT%20Site%20Feedback" style="color: #fff; text-decoration: underline; font-size: 0.85rem;">Report Bugs or Suggestions</a>
     </div>
   </footer>
   
